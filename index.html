@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Blue Tide Experiences | Belize Boat Tours</title>
+  <title>Blue Tide Tours | Belize Boat & Snorkel Adventures</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Blue Tide Experiences – fun, social boat tours in Belize: snorkeling, sunset cruises, private charters and more." />
+  <meta name="description" content="Blue Tide Tours – fun, social boat tours in Belize. Snorkel Shark Ray Alley, cruise at sunset, explore sandbars or book a private charter." />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -14,14 +14,18 @@
       --bg: #f7fbff;
       --text: #123047;
     }
+
     * { box-sizing: border-box; margin: 0; padding: 0; }
+
     body {
       font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       background: var(--bg);
       color: var(--text);
       line-height: 1.6;
     }
+
     a { text-decoration: none; color: inherit; }
+
     img { max-width: 100%; display: block; }
 
     .container {
@@ -39,28 +43,33 @@
       backdrop-filter: blur(10px);
       border-bottom: 1px solid rgba(0,0,0,0.03);
     }
+
     .nav {
       display: flex;
       align-items: center;
       justify-content: space-between;
       padding: 0.6rem 0;
     }
+
     .logo-wrap {
       display: flex;
       align-items: center;
       gap: 0.5rem;
     }
+
     .logo-wrap img {
-      width: 60px;
+      width: 46px;
       height: auto;
-      border-radius: 12px;
+      border-radius: 10px;
     }
+
     .logo-text {
       font-weight: 700;
-      font-size: 1.1rem;
+      font-size: 1.05rem;
       letter-spacing: 0.04em;
       text-transform: uppercase;
     }
+
     nav ul {
       list-style: none;
       display: flex;
@@ -68,11 +77,13 @@
       font-size: 0.9rem;
       font-weight: 500;
     }
+
     nav a {
       padding: 0.3rem 0.5rem;
       border-radius: 999px;
       transition: background 0.2s, color 0.2s;
     }
+
     nav a:hover {
       background: var(--primary);
       color: #fff;
@@ -92,92 +103,121 @@
       transition: transform 0.15s, box-shadow 0.15s, background 0.2s, color 0.2s;
       text-decoration: none;
     }
+
     .btn-primary {
       background: linear-gradient(135deg, var(--primary), var(--primary-dark));
       color: #fff;
       box-shadow: 0 8px 16px rgba(2,136,209,0.35);
     }
+
     .btn-primary:hover {
       transform: translateY(-1px);
       box-shadow: 0 12px 20px rgba(2,136,209,0.45);
     }
+
     .btn-ghost {
       background: transparent;
       border: 1px solid rgba(18,48,71,0.18);
       color: var(--text);
     }
+
     .btn-ghost:hover {
       background: rgba(255,255,255,0.9);
     }
 
-    /* Hero */
-    .hero {
-      padding: 3.5rem 0 3rem;
-      background: radial-gradient(circle at top left, #e1f5fe 0, #f7fbff 55%, #ffffff 100%);
+    /* Giant logo section */
+    .hero-logo {
+      padding: 2.2rem 0 1.5rem;
+      background: radial-gradient(circle at top, #ffe0b2 0, #f7fbff 55%, #ffffff 100%);
+      border-bottom: 1px solid rgba(0,0,0,0.03);
     }
-    .hero-grid {
+
+    .hero-logo-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 1rem;
+    }
+
+    .hero-logo img {
+      width: 576px; /* ~6 inches at 96dpi */
+      max-width: 90vw;
+      height: auto;
+      border-radius: 24px;
+      box-shadow: 0 24px 60px rgba(0,0,0,0.25);
+      background: #fdf7ee;
+    }
+
+    .hero-logo h1 {
+      font-size: 2rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    .hero-logo p {
+      font-size: 0.95rem;
+      max-width: 620px;
+      color: #42566a;
+    }
+
+    /* Below-logo hero summary */
+    .hero-summary {
+      padding: 2rem 0 2.4rem;
+    }
+
+    .hero-summary-grid {
       display: grid;
-      grid-template-columns: 1.1fr 1fr;
+      grid-template-columns: 1.4fr 1fr;
       gap: 2.5rem;
       align-items: center;
     }
+
     .hero-kicker {
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 0.2em;
       color: var(--primary-dark);
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: rgba(255,255,255,0.9);
-      padding: 0.25rem 0.9rem;
-      border-radius: 999px;
-      box-shadow: 0 4px 10px rgba(2,136,209,0.15);
-      margin-bottom: 0.9rem;
+      margin-bottom: 0.6rem;
     }
-    .hero-kicker span.icon { font-size: 1.1rem; }
-    .hero h1 {
-      font-size: 2.4rem;
-      line-height: 1.15;
-      margin-bottom: 0.75rem;
+
+    .hero-summary h2 {
+      font-size: 1.8rem;
+      margin-bottom: 0.6rem;
     }
+
     .hero-highlight { color: var(--primary); }
-    .hero p {
+
+    .hero-summary p {
       font-size: 0.95rem;
-      max-width: 460px;
-      margin-bottom: 1.4rem;
       color: #42566a;
+      margin-bottom: 1.2rem;
     }
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.8rem;
-      align-items: center;
-      margin-bottom: 1.1rem;
-    }
+
     .hero-meta {
       display: flex;
-      gap: 1.5rem;
+      flex-wrap: wrap;
+      gap: 1rem;
       font-size: 0.8rem;
       color: #60748a;
+      margin-top: 0.4rem;
     }
-    .hero-meta span {
-      display: flex;
-      align-items: center;
-      gap: 0.35rem;
-    }
+
     .hero-meta span strong { color: #29415b; }
 
     .hero-card {
       background: linear-gradient(145deg, #0288d1 0%, #00acc1 40%, #ffb74d 100%);
-      border-radius: 28px;
-      padding: 1.3rem 1.2rem 1.1rem;
+      border-radius: 24px;
+      padding: 1.2rem 1.1rem 1.1rem;
       color: #fff;
       box-shadow: 0 18px 40px rgba(0,0,0,0.25);
       position: relative;
       overflow: hidden;
+      font-size: 0.85rem;
     }
+
     .hero-card::after {
       content: "";
       position: absolute;
@@ -185,49 +225,43 @@
       background-image: radial-gradient(circle at 20% 0, rgba(255,255,255,0.25) 0, transparent 55%);
       pointer-events: none;
     }
+
     .hero-card-heading {
-      font-size: 1.1rem;
+      font-size: 1.05rem;
       font-weight: 700;
       margin-bottom: 0.35rem;
     }
+
     .hero-card-sub {
-      font-size: 0.8rem;
-      opacity: 0.9;
+      opacity: 0.95;
       margin-bottom: 0.7rem;
     }
+
     .hero-pill-row {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.4rem;
-      margin-bottom: 0.7rem;
-      font-size: 0.75rem;
-    }
-    .hero-pill {
-      padding: 0.2rem 0.6rem;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.16);
-      backdrop-filter: blur(4px);
-    }
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
       gap: 0.35rem;
-      padding: 0.25rem 0.55rem;
+      margin-bottom: 0.7rem;
+    }
+
+    .hero-pill {
+      padding: 0.18rem 0.6rem;
       border-radius: 999px;
-      background: rgba(255,255,255,0.16);
-      font-size: 0.7rem;
-      margin-bottom: 0.4rem;
+      background: rgba(255,255,255,0.18);
+      backdrop-filter: blur(4px);
     }
 
     section {
       padding: 3rem 0;
     }
+
     section h2 {
       font-size: 1.6rem;
       margin-bottom: 0.4rem;
       text-align: center;
     }
-    section .section-subtitle {
+
+    .section-subtitle {
       text-align: center;
       font-size: 0.9rem;
       color: #60748a;
@@ -235,12 +269,12 @@
       margin: 0 auto 2.2rem;
     }
 
-    /* Tours summary */
     .tours-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0,1fr));
       gap: 1.5rem;
     }
+
     .tour-card {
       background: #fff;
       border-radius: 18px;
@@ -250,21 +284,25 @@
       flex-direction: column;
       transition: transform 0.18s, box-shadow 0.18s;
     }
+
     .tour-card:hover {
       transform: translateY(-4px);
       box-shadow: 0 18px 30px rgba(15,35,52,0.12);
     }
+
     .tour-image {
       height: 180px;
       background-size: cover;
       background-position: center;
     }
+
     .tour-body {
       padding: 1rem 1rem 0.9rem;
       flex: 1;
       display: flex;
       flex-direction: column;
     }
+
     .tour-meta-row {
       font-size: 0.75rem;
       color: #72859a;
@@ -273,16 +311,19 @@
       justify-content: space-between;
       gap: 0.3rem;
     }
+
     .tour-title {
       font-weight: 600;
       font-size: 1rem;
       margin-bottom: 0.3rem;
     }
+
     .tour-desc {
       font-size: 0.85rem;
       color: #4e6074;
       margin-bottom: 0.6rem;
     }
+
     .tour-footer {
       display: flex;
       justify-content: space-between;
@@ -292,18 +333,19 @@
       border-top: 1px solid rgba(0,0,0,0.05);
       font-size: 0.8rem;
     }
+
     .price-tag {
       font-weight: 700;
       color: var(--primary-dark);
     }
 
-    /* About */
     .about-grid {
       display: grid;
       grid-template-columns: 1.1fr 1fr;
       gap: 2.5rem;
       align-items: center;
     }
+
     .chip-row {
       display: flex;
       flex-wrap: wrap;
@@ -311,6 +353,7 @@
       font-size: 0.78rem;
       margin-top: 0.5rem;
     }
+
     .chip {
       padding: 0.25rem 0.6rem;
       border-radius: 999px;
@@ -319,13 +362,13 @@
       font-weight: 500;
     }
 
-    /* Contact & FAQ */
     .faq-contact-grid {
       display: grid;
       grid-template-columns: 1.1fr 1fr;
       gap: 2.5rem;
       align-items: flex-start;
     }
+
     .faq-item {
       background: #fff;
       border-radius: 16px;
@@ -333,15 +376,18 @@
       margin-bottom: 0.6rem;
       box-shadow: 0 6px 16px rgba(15,35,52,0.04);
     }
+
     .faq-q {
       font-weight: 600;
       font-size: 0.9rem;
       margin-bottom: 0.2rem;
     }
+
     .faq-a {
       font-size: 0.8rem;
       color: #4a5c70;
     }
+
     .contact-card {
       background: linear-gradient(150deg, #0288d1, #00acc1);
       color: #fff;
@@ -350,37 +396,46 @@
       box-shadow: 0 16px 32px rgba(0,0,0,0.25);
       font-size: 0.85rem;
     }
+
     .contact-card h3 {
       font-size: 1.1rem;
       margin-bottom: 0.4rem;
     }
+
     .contact-card p {
       opacity: 0.95;
       margin-bottom: 0.7rem;
     }
+
     .contact-info {
       margin-bottom: 0.7rem;
     }
+
     .contact-info div {
       display: flex;
       align-items: center;
       gap: 0.5rem;
       margin-bottom: 0.2rem;
     }
+
     .contact-info span.emoji { font-size: 1.1rem; }
+
     .contact-note {
       font-size: 0.75rem;
       opacity: 0.9;
     }
+
     form {
       display: grid;
       gap: 0.45rem;
       margin-top: 0.7rem;
     }
+
     label {
       font-size: 0.75rem;
       font-weight: 500;
     }
+
     input,
     textarea {
       width: 100%;
@@ -392,11 +447,13 @@
       outline: none;
       transition: border-color 0.15s, box-shadow 0.15s;
     }
+
     input:focus,
     textarea:focus {
       border-color: var(--primary);
       box-shadow: 0 0 0 2px rgba(2,136,209,0.15);
     }
+
     textarea { min-height: 80px; resize: vertical; }
 
     footer {
@@ -405,6 +462,7 @@
       font-size: 0.8rem;
       color: #60748a;
     }
+
     footer .footer-inner {
       display: flex;
       flex-wrap: wrap;
@@ -412,6 +470,7 @@
       align-items: center;
       justify-content: space-between;
     }
+
     .badge-pill {
       background: #e3f2fd;
       padding: 0.2rem 0.6rem;
@@ -419,22 +478,21 @@
       font-size: 0.72rem;
     }
 
-    @media (max-width: 840px) {
-      .hero-grid,
+    @media (max-width: 900px) {
+      .hero-summary-grid,
       .about-grid,
       .faq-contact-grid {
         grid-template-columns: 1fr;
       }
-      .hero { padding-top: 2.4rem; }
-      .hero-card { margin-top: 0.8rem; }
+      .hero-summary { padding-top: 1.2rem; }
       .tours-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
       nav ul { display: none; }
     }
-    @media (max-width: 580px) {
-      .hero-grid { gap: 1.5rem; }
-      .hero h1 { font-size: 2rem; }
+
+    @media (max-width: 600px) {
       .tours-grid { grid-template-columns: minmax(0,1fr); }
-      .hero-meta { flex-direction: column; gap: 0.4rem; }
+      .hero-logo img { width: 90vw; }
+      .hero-summary h2 { font-size: 1.5rem; }
     }
   </style>
 </head>
@@ -443,8 +501,8 @@
 <header>
   <div class="container nav">
     <div class="logo-wrap">
-      <img src="assets/logo-c.png" alt="Blue Tide Experiences logo">
-      <div class="logo-text">Blue Tide Experiences</div>
+      <img src="assets/logo-tours.png" alt="Blue Tide Tours logo">
+      <div class="logo-text">Blue Tide Tours</div>
     </div>
     <nav>
       <ul>
@@ -458,49 +516,53 @@
   </div>
 </header>
 
-<main>
-  <!-- HERO -->
-  <section class="hero">
-    <div class="container hero-grid">
-      <div>
-        <div class="hero-kicker">
-          <span class="icon">🌊</span>
-          Belize Boat Tours • Caye Caulker
-        </div>
-        <h1>
-          Where every wave <span class="hero-highlight">brings a good time.</span>
-        </h1>
-        <p>
-          Blue Tide Experiences is your fun, social way to explore Belize by sea — from shark &amp; ray encounters and reef snorkel sessions to sunset cruises and private party charters.
-        </p>
+<!-- GIANT LOGO SECTION -->
+<section class="hero-logo">
+  <div class="container hero-logo-inner">
+    <img src="assets/logo-tours.png" alt="Blue Tide Tours main logo">
+    <h1>Blue Tide Tours</h1>
+    <p>
+      Fun, social boat tours in Belize — from Shark Ray Alley and reef snorkel days to golden-hour sunset cruises and sandbar party stops.
+    </p>
+  </div>
+</section>
 
-        <div class="hero-actions">
-          <a href="#tours" class="btn-primary">View Tours</a>
-          <a href="#contact" class="btn-ghost">Reserve Your Date</a>
-        </div>
-
-        <div class="hero-meta">
-          <span>⭐ <strong>5.0</strong> guest-rated experiences</span>
-          <span>🦈 Hol Chan • Shark Ray Alley • Reef &amp; Sandbar</span>
-        </div>
+<!-- BELOW-LOGO HERO SUMMARY -->
+<section class="hero-summary" id="top">
+  <div class="container hero-summary-grid">
+    <div>
+      <div class="hero-kicker">Belize • Caye Caulker</div>
+      <h2>Where every wave <span class="hero-highlight">brings a good time.</span></h2>
+      <p>
+        Blue Tide Tours is your laid-back, high-energy way to explore the Belize Barrier Reef.
+        Small groups, friendly crew, great music and cold drinks – no giant cattle boats here.
+      </p>
+      <div style="display:flex;flex-wrap:wrap;gap:0.8rem;margin-bottom:0.8rem;">
+        <a href="#tours" class="btn-primary">View Tours</a>
+        <a href="#contact" class="btn-ghost">Reserve Your Date</a>
       </div>
+      <div class="hero-meta">
+        <span>⭐ <strong>5.0</strong> guest-rated experiences</span>
+        <span>🦈 Hol Chan • Shark Ray Alley • Sandbars</span>
+      </div>
+    </div>
 
+    <div>
       <div class="hero-card">
-        <div class="hero-badge">🔥 Popular this season</div>
         <div class="hero-card-heading">Reef &amp; Sandbar Party Day</div>
         <div class="hero-card-sub">
-          Snorkel Belize’s famous reef, then vibe at a shallow sandbar with music, floats and rum punch.
+          Snorkel Belize’s famous reef, then anchor at a shallow sandbar for floats, drinks and island tunes.
         </div>
         <div class="hero-pill-row">
           <div class="hero-pill">🦈 Shark Ray Alley stop</div>
-          <div class="hero-pill">🥭 Fresh fruit &amp; ceviche</div>
-          <div class="hero-pill">🎵 Island tunes on board</div>
+          <div class="hero-pill">🥭 Fresh fruit &amp; snacks</div>
+          <div class="hero-pill">🎵 Bluetooth music on board</div>
           <div class="hero-pill">🍹 Rum punch included</div>
         </div>
         <div style="display:flex;justify-content:space-between;align-items:center;font-size:0.8rem;margin-top:0.4rem;">
           <div>
             From <strong>$95 USD</strong> per person<br>
-            <span style="opacity:0.85;">Half &amp; full day options</span>
+            <span style="opacity:0.9;">Half &amp; full day options</span>
           </div>
           <a href="#contact" class="btn-primary" style="padding:0.45rem 0.9rem;font-size:0.8rem;box-shadow:none;">
             Lock in my spot
@@ -508,206 +570,259 @@
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- TOURS SUMMARY -->
-  <section id="tours">
-    <div class="container">
-      <h2>Choose Your Blue Tide Experience</h2>
-      <p class="section-subtitle">
-        Whether you’re here to chill with friends, celebrate something big, or finally swim with nurse sharks, we’ve got a tour with your name on it.
+<!-- TOURS SUMMARY -->
+<section id="tours">
+  <div class="container">
+    <h2>Choose Your Blue Tide Tour</h2>
+    <p class="section-subtitle">
+      Pick your vibe — chill sunset cruise, wildlife day, reef explorer or full-on sandbar party.
+      You can also mix &amp; match with a private charter.
+    </p>
+
+    <div class="tours-grid">
+      <article class="tour-card">
+        <div class="tour-image" style="background-image:url('https://images.pexels.com/photos/3861488/pexels-photo-3861488.jpeg?auto=compress&cs=tinysrgb&w=800');"></div>
+        <div class="tour-body">
+          <div class="tour-meta-row">
+            <span>⏱ 4–5 hours</span>
+            <span>Easy</span>
+          </div>
+          <div class="tour-title">Shark Ray Alley Snorkel Party</div>
+          <p class="tour-desc">
+            Swim with gentle nurse sharks and rays with a fun crew, music on the boat and guides keeping you safe in the water.
+          </p>
+          <div class="tour-footer">
+            <span class="price-tag">From $85 USD</span>
+            <a href="tours.html#shark-ray-alley" class="btn-ghost" style="font-size:0.8rem;padding:0.35rem 0.8rem;">View details</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="tour-card">
+        <div class="tour-image" style="background-image:url('https://images.pexels.com/photos/210205/pexels-photo-210205.jpeg?auto=compress&cs=tinysrgb&w=800');"></div>
+        <div class="tour-body">
+          <div class="tour-meta-row">
+            <span>⏱ 2.5 hours</span>
+            <span>Evening</span>
+          </div>
+          <div class="tour-title">Sunset Cruise &amp; Rum Punch</div>
+          <p class="tour-desc">
+            Glide along the coast as the sky turns gold with bottomless rum punch and mellow island beats.
+          </p>
+          <div class="tour-footer">
+            <span class="price-tag">From $65 USD</span>
+            <a href="tours.html#sunset-cruise" class="btn-ghost" style="font-size:0.8rem;padding:0.35rem 0.8rem;">View details</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="tour-card">
+        <div class="tour-image" style="background-image:url('https://images.pexels.com/photos/3601420/pexels-photo-3601420.jpeg?auto=compress&cs=tinysrgb&w=800');"></div>
+        <div class="tour-body">
+          <div class="tour-meta-row">
+            <span>⏱ Full day</span>
+            <span>Lunch included</span>
+          </div>
+          <div class="tour-title">Reef Explorer &amp; Beach BBQ</div>
+          <p class="tour-desc">
+            Multiple reef snorkel stops plus a grilled Belizean-style lunch on a quiet beach or sandbar.
+          </p>
+          <div class="tour-footer">
+            <span class="price-tag">From $120 USD</span>
+            <a href="tours.html#reef-explorer" class="btn-ghost" style="font-size:0.8rem;padding:0.35rem 0.8rem;">View details</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="tour-card">
+        <div class="tour-image" style="background-image:url('https://images.pexels.com/photos/1813208/pexels-photo-1813208.jpeg?auto=compress&cs=tinysrgb&w=800');"></div>
+        <div class="tour-body">
+          <div class="tour-meta-row">
+            <span>⏱ Flexible</span>
+            <span>Custom</span>
+          </div>
+          <div class="tour-title">Private Charter – Your Day, Your Way</div>
+          <p class="tour-desc">
+            Book the whole boat and build your own custom route with your captain: reef, sandbar, sunset and more.
+          </p>
+          <div class="tour-footer">
+            <span class="price-tag">Ask for group pricing</span>
+            <a href="tours.html#private-charter" class="btn-ghost" style="font-size:0.8rem;padding:0.35rem 0.8rem;">View details</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="tour-card">
+        <div class="tour-image" style="background-image:url('https://images.pexels.com/photos/261102/pexels-photo-261102.jpeg?auto=compress&cs=tinysrgb&w=800');"></div>
+        <div class="tour-body">
+          <div class="tour-meta-row">
+            <span>⏱ 4–6 hours</span>
+            <span>Nature</span>
+          </div>
+          <div class="tour-title">Manatee &amp; Wildlife Encounter</div>
+          <p class="tour-desc">
+            Drift through calm channels and mangroves watching for manatees, dolphins and seabirds with a local guide.
+          </p>
+          <div class="tour-footer">
+            <span class="price-tag">From $99 USD</span>
+            <a href="tours.html#manatee" class="btn-ghost" style="font-size:0.8rem;padding:0.35rem 0.8rem;">View details</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="tour-card">
+        <div class="tour-image" style="background-image:url('https://images.pexels.com/photos/165451/pexels-photo-165451.jpeg?auto=compress&cs=tinysrgb&w=800');"></div>
+        <div class="tour-body">
+          <div class="tour-meta-row">
+            <span>⏱ Half or full day</span>
+            <span>Party vibes</span>
+          </div>
+          <div class="tour-title">Sandbar Sunday Funday</div>
+          <p class="tour-desc">
+            Anchor at a shallow sandbar with floats, games, drinks and music – your own pop-up beach club.
+          </p>
+          <div class="tour-footer">
+            <span class="price-tag">From $89 USD</span>
+            <a href="tours.html#sandbar-sunday" class="btn-ghost" style="font-size:0.8rem;padding:0.35rem 0.8rem;">View details</a>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container about-grid">
+    <div>
+      <h2>Locally Owned. Big on Good Vibes.</h2>
+      <p class="section-subtitle" style="margin-bottom:1.2rem;">
+        Blue Tide Tours was started by Jorge and a small crew of Belizean captains and guides who grew up on these waters.
+      </p>
+      <p style="font-size:0.9rem;margin-bottom:0.6rem;">
+        We keep things simple: safe boats, friendly crew, good music, cold drinks and unforgettable reef time. No rushed
+        cattle boats – just relaxed island energy and plenty of time to enjoy the day.
+      </p>
+      <p style="font-size:0.9rem;">
+        From first-time snorkelers to seasoned ocean lovers, we match each group with the right tour and pace. You focus
+        on having fun – we’ll handle the rest.
+      </p>
+      <div class="chip-row">
+        <span class="chip">Licensed &amp; insured boat &amp; crew</span>
+        <span class="chip">Snorkel gear &amp; safety briefing included</span>
+        <span class="chip">Small-group trips (no packed boats)</span>
+        <span class="chip">Custom private charters available</span>
+      </div>
+    </div>
+    <div>
+      <div class="hero-card" style="padding:1.1rem 1rem 1rem;">
+        <div class="hero-card-heading">“You arrive as guests, leave as friends.”</div>
+        <div class="hero-card-sub">
+          Ask anyone who’s taken a Blue Tide tour – the boats are fun, but the crew is what makes the day unforgettable.
+        </div>
+        <div style="display:flex;align-items:center;gap:0.7rem;margin-top:0.4rem;">
+          <div style="width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,0.4);display:flex;align-items:center;justify-content:center;font-size:1.4rem;">
+            👨‍✈️
+          </div>
+          <div style="font-size:0.8rem;">
+            <strong>Jorge • Captain &amp; Founder</strong><br>
+            “I grew up on this water. Now I get to show it off every day.”
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ + CONTACT -->
+<section id="contact">
+  <div class="container faq-contact-grid">
+    <div id="faq">
+      <h2>Questions Before You Book?</h2>
+      <p class="section-subtitle" style="margin-bottom:1.4rem;">
+        Here are some of the things guests ask us most often. If you don’t see your question, just message us.
       </p>
 
-      <div class="tours-grid">
-        <article class="tour-card">
-          <div class="tour-image" style="background-image:url('https://images.pexels.com/photos/3861488/pexels-photo-3861488.jpeg?auto=compress&cs=tinysrgb&w=800');"></div>
-          <div class="tour-body">
-            <div class="tour-meta-row">
-              <span>⏱ 4–5 hours</span>
-              <span>Easy</span>
-            </div>
-            <div class="tour-title">Shark Ray Alley Snorkel Party</div>
-            <p class="tour-desc">
-              Swim with gentle nurse sharks and rays with a fun crew, music on the boat and guides keeping you safe in the water.
-            </p>
-            <div class="tour-footer">
-              <span class="price-tag">From $85 USD</span>
-              <a href="tours.html#shark-ray-alley" class="btn-ghost" style="font-size:0.8rem;padding:0.35rem 0.8rem;">View details</a>
-            </div>
-          </div>
-        </article>
-
-        <article class="tour-card">
-          <div class="tour-image" style="background-image:url('https://images.pexels.com/photos/210205/pexels-photo-210205.jpeg?auto=compress&cs=tinysrgb&w=800');"></div>
-          <div class="tour-body">
-            <div class="tour-meta-row">
-              <span>⏱ 2.5 hours</span>
-              <span>Evening</span>
-            </div>
-            <div class="tour-title">Sunset Cruise &amp; Rum Punch</div>
-            <p class="tour-desc">
-              Glide along the coast as the sky turns gold. Chill beats, bottomless rum punch and a front-row seat to a Belizean sunset.
-            </p>
-            <div class="tour-footer">
-              <span class="price-tag">From $65 USD</span>
-              <a href="tours.html#sunset-cruise" class="btn-ghost" style="font-size:0.8rem;padding:0.35rem 0.8rem;">View details</a>
-            </div>
-          </div>
-        </article>
-
-        <article class="tour-card">
-          <div class="tour-image" style="background-image:url('https://images.pexels.com/photos/3601420/pexels-photo-3601420.jpeg?auto=compress&cs=tinysrgb&w=800');"></div>
-          <div class="tour-body">
-            <div class="tour-meta-row">
-              <span>⏱ Full day</span>
-              <span>Lunch included</span>
-            </div>
-            <div class="tour-title">Reef Explorer &amp; Beach BBQ</div>
-            <p class="tour-desc">
-              Multiple reef snorkel stops and a grilled Belizean-style lunch on a quiet beach or sandbar.
-            </p>
-            <div class="tour-footer">
-              <span class="price-tag">From $120 USD</span>
-              <a href="tours.html#reef-explorer" class="btn-ghost" style="font-size:0.8rem;padding:0.35rem 0.8rem;">View details</a>
-            </div>
-          </div>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- ABOUT -->
-  <section id="about">
-    <div class="container about-grid">
-      <div>
-        <h2>Locally Owned. Big on Good Vibes.</h2>
-        <p class="section-subtitle" style="margin-bottom:1.2rem;">
-          Blue Tide Experiences was started by Jorge and a small crew of Belizean captains and guides
-          who grew up on these waters and love sharing their home with guests.
-        </p>
-        <p style="font-size:0.9rem;margin-bottom:0.6rem;">
-          We keep things simple: safe boats, friendly crew, great music, cold drinks and unforgettable reef time.
-          No rushed cattle-boat tours, just relaxed island energy and plenty of time to enjoy the moment.
-        </p>
-        <p style="font-size:0.9rem;">
-          From first-time snorkelers to seasoned ocean addicts, we’ll match you with the right tour and pace.
-          You focus on having fun — we’ll handle the rest.
-        </p>
-        <div class="chip-row">
-          <span class="chip">Licensed &amp; insured boat &amp; crew</span>
-          <span class="chip">Snorkel gear &amp; safety briefing included</span>
-          <span class="chip">Small-group trips (no packed boats)</span>
-          <span class="chip">Custom private charters available</span>
+      <div class="faq-item">
+        <div class="faq-q">Do I need to be an experienced swimmer?</div>
+        <div class="faq-a">
+          Not at all. We provide life vests, flotation and a safety briefing. Our guides stay close in the water and
+          can adjust the tour to your comfort level.
         </div>
       </div>
-      <div>
-        <div class="hero-card" style="padding:1.1rem 1rem 1rem;">
-          <div class="hero-card-heading">“You arrive as guests, leave as friends.”</div>
-          <div class="hero-card-sub">
-            Ask anyone who’s taken a Blue Tide trip — the boats are fun, but the crew is what makes
-            the day unforgettable.
-          </div>
-          <div style="display:flex;align-items:center;gap:0.7rem;margin-top:0.4rem;">
-            <div style="width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,0.4);display:flex;align-items:center;justify-content:center;font-size:1.4rem;">
-              👨‍✈️
-            </div>
-            <div style="font-size:0.8rem;">
-              <strong>Jorge • Captain &amp; Founder</strong><br>
-              “I grew up on this water. Now I get to show it off every day.”
-            </div>
-          </div>
+
+      <div class="faq-item">
+        <div class="faq-q">What should I bring on the boat?</div>
+        <div class="faq-a">
+          Swimsuit, towel, reef-safe sunscreen, hat, sunglasses and a waterproof case if you want phone pics. We
+          provide gear, drinks and snacks on many tours.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Can you accommodate private groups and celebrations?</div>
+        <div class="faq-a">
+          Yes! Birthdays, bachelor/bachelorette trips, proposals, family reunions – tell us what you’re celebrating and
+          we’ll help you plan the perfect day.
         </div>
       </div>
     </div>
-  </section>
 
-  <!-- FAQ + CONTACT -->
-  <section id="faq">
-    <div class="container faq-contact-grid">
-      <div>
-        <h2>Questions Before You Book?</h2>
-        <p class="section-subtitle" style="margin-bottom:1.4rem;">
-          Here are some of the things guests ask us most often. If you don’t see your question, just message us.
+    <div>
+      <div class="contact-card">
+        <h3>Ready to Ride the Tide?</h3>
+        <p>
+          Share a few details and we’ll confirm availability, pricing and next steps. You can also reach us on WhatsApp
+          for faster replies.
         </p>
 
-        <div class="faq-item">
-          <div class="faq-q">Do I need to be an experienced swimmer?</div>
-          <div class="faq-a">
-            Not at all. We provide life vests, flotation and a safety briefing. Our guides stay close in the
-            water and can adjust the tour to your comfort level.
-          </div>
+        <div class="contact-info">
+          <div><span class="emoji">📍</span><span>Caye Caulker, Belize</span></div>
+          <div><span class="emoji">📞</span><span>+501 XXX-XXXX</span></div>
+          <div><span class="emoji">💬</span><span>WhatsApp link here</span></div>
+          <div><span class="emoji">✉️</span><span>hello@bluetidetours.com</span></div>
         </div>
 
-        <div class="faq-item">
-          <div class="faq-q">What should I bring on the boat?</div>
-          <div class="faq-a">
-            Swimsuit, towel, reef-safe sunscreen, hat, sunglasses and a waterproof case if you want phone pics.
-            We provide gear, drinks and snacks on many tours.
+        <form>
+          <div>
+            <label for="name">Name</label>
+            <input id="name" type="text" placeholder="Your name" required>
           </div>
-        </div>
-
-        <div class="faq-item">
-          <div class="faq-q">Can you accommodate private groups and celebrations?</div>
-          <div class="faq-a">
-            Yes! Birthdays, bachelor/bachelorette trips, proposals, family reunions — tell us what you’re
-            celebrating and we’ll help you plan the perfect day.
+          <div>
+            <label for="email">Email</label>
+            <input id="email" type="email" placeholder="you@example.com" required>
           </div>
-        </div>
-      </div>
-
-      <div id="contact">
-        <div class="contact-card">
-          <h3>Ready to Ride the Tide?</h3>
-          <p>
-            Share a few details and we’ll confirm availability, pricing and next steps.
-            You can also reach us directly on WhatsApp for faster replies.
-          </p>
-
-          <div class="contact-info">
-            <div><span class="emoji">📍</span><span>Caye Caulker, Belize</span></div>
-            <div><span class="emoji">📞</span><span>+501 XXX-XXXX</span></div>
-            <div><span class="emoji">💬</span><span>WhatsApp link here</span></div>
-            <div><span class="emoji">✉️</span><span>hello@bluetideexperiences.com</span></div>
+          <div>
+            <label for="tour">Which tour are you interested in?</label>
+            <input id="tour" type="text" placeholder="Shark Ray Alley, Sunset Cruise, Private Charter..." />
           </div>
+          <div>
+            <label for="date">Preferred date</label>
+            <input id="date" type="text" placeholder="MM / DD / YYYY" />
+          </div>
+          <div>
+            <label for="message">Tell us about your group</label>
+            <textarea id="message" placeholder="How many people, any special celebration, etc."></textarea>
+          </div>
+          <button type="submit" class="btn-primary" style="justify-content:center;margin-top:0.3rem;">
+            Send inquiry
+          </button>
+        </form>
 
-          <form>
-            <div>
-              <label for="name">Name</label>
-              <input id="name" type="text" placeholder="Your name" required>
-            </div>
-            <div>
-              <label for="email">Email</label>
-              <input id="email" type="email" placeholder="you@example.com" required>
-            </div>
-            <div>
-              <label for="tour">Which tour are you interested in?</label>
-              <input id="tour" type="text" placeholder="Shark Ray Alley, Sunset Cruise, Private Charter..." />
-            </div>
-            <div>
-              <label for="date">Preferred date</label>
-              <input id="date" type="text" placeholder="MM / DD / YYYY" />
-            </div>
-            <div>
-              <label for="message">Tell us about your group</label>
-              <textarea id="message" placeholder="How many people, any special celebration, etc."></textarea>
-            </div>
-            <button type="submit" class="btn-primary" style="justify-content:center;margin-top:0.3rem;">
-              Send inquiry
-            </button>
-          </form>
-
-          <p class="contact-note">
-            *Form is a sample layout — connect it to your preferred booking or email system.
-          </p>
-        </div>
+        <p class="contact-note">
+          *Form is a sample layout — connect it to your booking or email system.
+        </p>
       </div>
     </div>
-  </section>
-</main>
+  </div>
+</section>
 
 <footer>
   <div class="container footer-inner">
-    <div>© <span id="year"></span> Blue Tide Experiences. All rights reserved.</div>
+    <div>© <span id="year"></span> Blue Tide Tours. All rights reserved.</div>
     <div class="badge-pill">Fun &amp; social Belize boat tours</div>
   </div>
 </footer>

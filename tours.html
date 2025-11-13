@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Tours | Blue Tide Experiences – Belize Boat Tours</title>
+  <title>Tours | Blue Tide Tours – Belize Boat Trips</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Browse all Blue Tide Experiences tours in Belize – Shark Ray Alley snorkel trips, sunset cruises, private charters, sandbar parties and more." />
+  <meta name="description" content="Detailed overview of all Blue Tide Tours in Belize – Shark Ray Alley snorkel, sunset cruise, sandbar party, manatee tour and private charters." />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -23,12 +23,14 @@
     }
     a { text-decoration: none; color: inherit; }
     img { max-width: 100%; display: block; }
+
     .container {
       width: 100%;
       max-width: 1100px;
       margin: 0 auto;
       padding: 0 1.5rem;
     }
+
     header {
       position: sticky;
       top: 0;
@@ -37,28 +39,33 @@
       backdrop-filter: blur(10px);
       border-bottom: 1px solid rgba(0,0,0,0.03);
     }
+
     .nav {
       display: flex;
       align-items: center;
       justify-content: space-between;
       padding: 0.6rem 0;
     }
+
     .logo-wrap {
       display: flex;
       align-items: center;
       gap: 0.5rem;
     }
+
     .logo-wrap img {
-      width: 60px;
+      width: 46px;
       height: auto;
-      border-radius: 12px;
+      border-radius: 10px;
     }
+
     .logo-text {
       font-weight: 700;
-      font-size: 1.1rem;
+      font-size: 1.05rem;
       letter-spacing: 0.04em;
       text-transform: uppercase;
     }
+
     nav ul {
       list-style: none;
       display: flex;
@@ -66,15 +73,18 @@
       font-size: 0.9rem;
       font-weight: 500;
     }
+
     nav a {
       padding: 0.3rem 0.5rem;
       border-radius: 999px;
       transition: background 0.2s, color 0.2s;
     }
+
     nav a:hover {
       background: var(--primary);
       color: #fff;
     }
+
     .btn-primary {
       border-radius: 999px;
       padding: 0.6rem 1.4rem;
@@ -90,30 +100,37 @@
       box-shadow: 0 8px 16px rgba(2,136,209,0.35);
       text-decoration: none;
     }
+
     .btn-primary:hover {
       transform: translateY(-1px);
       box-shadow: 0 12px 20px rgba(2,136,209,0.45);
     }
+
     .hero-sub {
       padding: 2.2rem 0 1.8rem;
       background: radial-gradient(circle at top left, #e1f5fe 0, #f7fbff 55%, #ffffff 100%);
       border-bottom: 1px solid rgba(0,0,0,0.03);
     }
+
     .hero-sub h1 {
       font-size: 2rem;
       margin-bottom: 0.4rem;
     }
+
     .hero-sub p {
       font-size: 0.95rem;
       color: #42566a;
       max-width: 640px;
     }
+
     .breadcrumbs {
       font-size: 0.8rem;
       color: #7b8ea3;
       margin-bottom: 0.5rem;
     }
+
     section { padding: 2.5rem 0; }
+
     .tour-detail {
       background: #fff;
       border-radius: 20px;
@@ -124,15 +141,18 @@
       box-shadow: 0 12px 26px rgba(15,35,52,0.08);
       margin-bottom: 1.8rem;
     }
+
     .tour-detail h2 {
       font-size: 1.2rem;
       margin-bottom: 0.4rem;
     }
+
     .tour-tagline {
       font-size: 0.85rem;
       color: #60748a;
       margin-bottom: 0.7rem;
     }
+
     .tour-meta-row {
       display: flex;
       flex-wrap: wrap;
@@ -141,6 +161,7 @@
       margin-bottom: 0.7rem;
       color: #4c6278;
     }
+
     .meta-pill {
       padding: 0.18rem 0.6rem;
       border-radius: 999px;
@@ -148,11 +169,13 @@
       color: #0d47a1;
       font-weight: 500;
     }
+
     .tour-detail p {
       font-size: 0.88rem;
       color: #42566a;
       margin-bottom: 0.5rem;
     }
+
     .detail-columns {
       display: grid;
       grid-template-columns: repeat(2, minmax(0,1fr));
@@ -160,18 +183,22 @@
       margin-top: 0.5rem;
       font-size: 0.85rem;
     }
+
     .detail-columns h3 {
       font-size: 0.9rem;
       margin-bottom: 0.3rem;
     }
+
     ul {
       list-style: none;
       padding-left: 0;
       font-size: 0.85rem;
     }
+
     ul li {
       margin-bottom: 0.2rem;
     }
+
     ul li::before {
       content: "•";
       color: var(--primary);
@@ -179,6 +206,7 @@
       width: 1rem;
       margin-left: 0;
     }
+
     .price-box {
       background: #f1f8ff;
       border-radius: 16px;
@@ -186,11 +214,13 @@
       font-size: 0.85rem;
       margin-top: 0.6rem;
     }
+
     .price-main {
       font-weight: 700;
       font-size: 1rem;
       color: var(--primary-dark);
     }
+
     .side-image {
       border-radius: 18px;
       overflow: hidden;
@@ -199,14 +229,17 @@
       background-position: center;
       min-height: 220px;
     }
+
     .back-home {
       margin-top: 1rem;
       font-size: 0.85rem;
     }
+
     .back-home a {
       color: var(--primary-dark);
       text-decoration: underline;
     }
+
     footer {
       border-top: 1px solid rgba(0,0,0,0.04);
       padding: 1.2rem 0;
@@ -214,6 +247,7 @@
       color: #60748a;
       margin-top: 1rem;
     }
+
     footer .footer-inner {
       display: flex;
       flex-wrap: wrap;
@@ -221,10 +255,12 @@
       align-items: center;
       justify-content: space-between;
     }
+
     @media (max-width: 880px) {
       .tour-detail { grid-template-columns: 1fr; }
       nav ul { display: none; }
     }
+
     @media (max-width: 580px) {
       .hero-sub h1 { font-size: 1.7rem; }
       .detail-columns { grid-template-columns: 1fr; }
@@ -235,8 +271,8 @@
 <header>
   <div class="container nav">
     <div class="logo-wrap">
-      <img src="assets/logo-c.png" alt="Blue Tide Experiences logo">
-      <div class="logo-text">Blue Tide Experiences</div>
+      <img src="assets/logo-tours.png" alt="Blue Tide Tours logo">
+      <div class="logo-text">Blue Tide Tours</div>
     </div>
     <nav>
       <ul>
@@ -253,7 +289,7 @@
 <section class="hero-sub">
   <div class="container">
     <div class="breadcrumbs"><a href="index.html">Home</a> › Tours</div>
-    <h1>All Blue Tide Experiences Tours</h1>
+    <h1>All Blue Tide Tours</h1>
     <p>
       Here are the details for each of our most popular boat tours. Use this page to choose the
       perfect vibe for your day on the water in Belize.
@@ -336,7 +372,7 @@
         </div>
         <p>
           We set out in the late afternoon and hug the coastline as the sky starts to glow. This is the
-          laid-back side of Blue Tide – think comfy seating, mellow tunes and plenty of photo ops as
+          laid-back side of Blue Tide Tours – think comfy seating, mellow tunes and plenty of photo ops as
           the sun drops behind the horizon.
         </p>
         <p>
@@ -592,14 +628,14 @@
 
   <div class="back-home">
     Looking for contact details or more photos?
-    <a href="index.html">Return to the homepage</a> to see our gallery and booking form.
+    <a href="index.html">Return to the homepage</a> to see our giant logo, overview and booking form.
   </div>
 
 </main>
 
 <footer>
   <div class="container footer-inner">
-    <div>© <span id="year"></span> Blue Tide Experiences. All rights reserved.</div>
+    <div>© <span id="year"></span> Blue Tide Tours. All rights reserved.</div>
     <div>Fun &amp; social Belize boat tours.</div>
   </div>
 </footer>
