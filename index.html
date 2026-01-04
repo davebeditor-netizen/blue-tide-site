@@ -294,7 +294,34 @@
       height: 180px;
       background-size: cover;
       background-position: center;
+          position: relative;
+      overflow: hidden;
     }
+    .tour-card .hover-label {
+      position: absolute;
+      left: 14px;
+      right: 14px;
+      bottom: 14px;
+      padding: 10px 12px;
+      border-radius: 12px;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: .2px;
+      color: #fff;
+      background: rgba(0,0,0,.45);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      opacity: 0;
+      transform: translateY(6px);
+      transition: opacity .25s ease, transform .25s ease;
+      pointer-events: none;
+    }
+    .tour-card:hover .hover-label,
+    .tour-card:focus-within .hover-label {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
 
     .tour-body {
       padding: 1rem 1rem 0.9rem;
@@ -714,7 +741,8 @@
     
       
       <article class="tour-card">
-        <div class="tour-image" style="background-image:url('https://images.pexels.com/photos/37530/diver-underwater-sea-ocean-37530.jpeg?auto=compress&cs=tinysrgb&w=800');"></div>
+        <div class="tour-image" style="background-image:url('assets/images/turneffe-atoll.jpg');">
+  <div class="hover-label">Wildlife • Manatees • Birds</div></div>
         <div class="tour-body">
           <div class="tour-meta-row">
             <span>⏱ 5 hours</span>
