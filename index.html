@@ -494,7 +494,124 @@
       .hero-logo img { width: 90vw; }
       .hero-summary h2 { font-size: 1.5rem; }
     }
-  </style>
+  
+/* Booking Modal */
+.owt-modal-overlay{
+  position:fixed; inset:0;
+  background:rgba(0,0,0,0.55);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:24px;
+  z-index:9999;
+}
+.owt-modal-overlay.show{display:flex;}
+.owt-modal{
+  width:min(860px, 96vw);
+  background:#fff;
+  border-radius:18px;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.35);
+  overflow:hidden;
+  display:grid;
+  grid-template-columns: 0.95fr 1.05fr;
+}
+.owt-modal-media{
+  min-height: 520px;
+  background-size:cover;
+  background-position:center;
+}
+.owt-modal-content{
+  padding:20px 20px 18px;
+  position:relative;
+}
+.owt-modal-title{
+  font-size:1.25rem;
+  font-weight:700;
+  margin-bottom:12px;
+}
+.owt-close{
+  position:absolute;
+  top:14px;
+  right:14px;
+  width:34px;height:34px;
+  border-radius:10px;
+  border:1px solid rgba(0,0,0,0.12);
+  background:#fff;
+  cursor:pointer;
+  font-size:18px;
+  line-height:1;
+}
+.owt-form{
+  display:grid;
+  gap:12px;
+}
+.owt-row{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap:10px;
+}
+.owt-form label{
+  font-size:0.78rem;
+  font-weight:600;
+  color:#30485f;
+  display:block;
+  margin-bottom:4px;
+}
+.owt-form input, .owt-form select, .owt-form textarea{
+  width:100%;
+  padding:10px 10px;
+  border-radius:10px;
+  border:1px solid rgba(0,0,0,0.14);
+  font-family:inherit;
+  font-size:0.9rem;
+  outline:none;
+}
+.owt-form textarea{min-height:90px; resize:vertical;}
+.owt-help{
+  font-size:0.78rem;
+  color:#5e748a;
+  margin-top:-4px;
+}
+.owt-check{
+  display:flex;
+  gap:10px;
+  align-items:flex-start;
+  font-size:0.82rem;
+  color:#445b72;
+  padding-top:6px;
+  border-top:1px solid rgba(0,0,0,0.06);
+}
+.owt-actions{
+  display:flex;
+  justify-content:flex-start;
+  gap:10px;
+  align-items:center;
+  padding-top:6px;
+}
+.owt-btn{
+  border-radius:12px;
+  padding:10px 14px;
+  font-weight:700;
+  border:none;
+  cursor:pointer;
+  background:#123047;
+  color:#fff;
+}
+.owt-btn.secondary{
+  background:transparent;
+  color:#123047;
+  border:1px solid rgba(0,0,0,0.16);
+}
+.owt-note{
+  font-size:0.72rem;
+  color:#6a8096;
+}
+@media (max-width: 880px){
+  .owt-modal{grid-template-columns:1fr;}
+  .owt-modal-media{min-height:220px;}
+}
+
+</style>
 </head>
 <body>
 
@@ -569,7 +686,74 @@
           </a>
         </div>
       </div>
-    </div>
+    
+      <article class="tour-card">
+        <div class="tour-image" style="background-image:url('https://images.pexels.com/photos/1001682/pexels-photo-1001682.jpeg?auto=compress&cs=tinysrgb&w=800');"></div>
+        <div class="tour-body">
+          <div class="tour-meta-row">
+            <span>⏱ Full day</span>
+            <span>Premium</span>
+          </div>
+          <div class="tour-title">Goff's Caye Premium Day</div>
+          <p class="tour-desc">
+            Full-day trip to Goff’s Caye for snorkeling, beach time and optional fishing — a longer premium ride with lunch included.
+          </p>
+          <div class="tour-footer">
+            <span class="price-tag">$210 USD</span>
+            <div style="display:flex; gap:10px; align-items:center; justify-content:flex-end;">
+              <a href="#" class="btn-primary" style="padding:0.35rem 0.8rem; font-size:0.8rem; box-shadow:none;"
+                 data-book-tour="Goff's Caye Premium Day" data-book-img="https://images.pexels.com/photos/1001682/pexels-photo-1001682.jpeg?auto=compress&cs=tinysrgb&w=1200">Book</a>
+              <a href="tours.html#goffs-caye" class="btn-ghost" style="font-size:0.8rem;padding:0.35rem 0.8rem;">View details</a>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="tour-card">
+        <div class="tour-image" style="background-image:url('https://images.pexels.com/photos/2404370/pexels-photo-2404370.jpeg?auto=compress&cs=tinysrgb&w=800');"></div>
+        <div class="tour-body">
+          <div class="tour-meta-row">
+            <span>⏱ Full day</span>
+            <span>Premium</span>
+          </div>
+          <div class="tour-title">Half Moon Caye Adventure</div>
+          <p class="tour-desc">
+            A premium longer-range full-day to Half Moon Caye with epic snorkeling, beach time, and optional fishing — lunch included.
+          </p>
+          <div class="tour-footer">
+            <span class="price-tag">$210 USD</span>
+            <div style="display:flex; gap:10px; align-items:center; justify-content:flex-end;">
+              <a href="#" class="btn-primary" style="padding:0.35rem 0.8rem; font-size:0.8rem; box-shadow:none;"
+                 data-book-tour="Half Moon Caye Adventure" data-book-img="https://images.pexels.com/photos/2404370/pexels-photo-2404370.jpeg?auto=compress&cs=tinysrgb&w=1200">Book</a>
+              <a href="tours.html#half-moon-caye" class="btn-ghost" style="font-size:0.8rem;padding:0.35rem 0.8rem;">View details</a>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="tour-card">
+        <div class="tour-image" style="background-image:url('https://images.pexels.com/photos/1450360/pexels-photo-1450360.jpeg?auto=compress&cs=tinysrgb&w=800');"></div>
+        <div class="tour-body">
+          <div class="tour-meta-row">
+            <span>⏱ Full day</span>
+            <span>Premium</span>
+          </div>
+          <div class="tour-title">Turneffe Atoll Premium Explorer</div>
+          <p class="tour-desc">
+            Full-day premium ride to Turneffe Atoll for world-class snorkeling, relaxed beach time and optional fishing — lunch included.
+          </p>
+          <div class="tour-footer">
+            <span class="price-tag">$210 USD</span>
+            <div style="display:flex; gap:10px; align-items:center; justify-content:flex-end;">
+              <a href="#" class="btn-primary" style="padding:0.35rem 0.8rem; font-size:0.8rem; box-shadow:none;"
+                 data-book-tour="Turneffe Atoll Premium Explorer" data-book-img="https://images.pexels.com/photos/1450360/pexels-photo-1450360.jpeg?auto=compress&cs=tinysrgb&w=1200">Book</a>
+              <a href="tours.html#turneffe-atoll" class="btn-ghost" style="font-size:0.8rem;padding:0.35rem 0.8rem;">View details</a>
+            </div>
+          </div>
+        </div>
+      </article>
+
+</div>
   </div>
 </section>
 
@@ -578,7 +762,7 @@
   <div class="container">
     <h2>Choose Your Ocean Wave Tour</h2>
     <p class="section-subtitle">
-      Pick your vibe — chill sunset cruise, wildlife day, reef explorer or full-on sandbar party.
+      Pick your vibe — chill sunset cruise, wildlife day, reef explorer, premium full-day caye adventures, or full-on sandbar party.
       You can also mix &amp; match with a private charter.
     </p>
 
@@ -596,7 +780,7 @@
           </p>
           <div class="tour-footer">
             <span class="price-tag">From $85 USD</span>
-            <a href="tours.html#shark-ray-alley" class="btn-ghost" style="font-size:0.8rem;padding:0.35rem 0.8rem;">View details</a>
+            <div style="display:flex; gap:10px; align-items:center; justify-content:flex-end;"><a href="#" class="btn-primary" style="padding:0.35rem 0.8rem; font-size:0.8rem; box-shadow:none;" data-book-tour="Shark Ray Alley Snorkel Party" data-book-img="https://images.pexels.com/photos/3601420/pexels-photo-3601420.jpeg?auto=compress&cs=tinysrgb&w=1200">Book</a><a href="tours.html#shark-ray-alley" class="btn-ghost" style="font-size:0.8rem;padding:0.35rem 0.8rem;">View details</a></div>
           </div>
         </div>
       </article>
@@ -614,7 +798,7 @@
           </p>
           <div class="tour-footer">
             <span class="price-tag">From $65 USD</span>
-            <a href="tours.html#sunset-cruise" class="btn-ghost" style="font-size:0.8rem;padding:0.35rem 0.8rem;">View details</a>
+            <div style="display:flex; gap:10px; align-items:center; justify-content:flex-end;"><a href="#" class="btn-primary" style="padding:0.35rem 0.8rem; font-size:0.8rem; box-shadow:none;" data-book-tour="Sunset Cruise & Rum Punch" data-book-img="https://images.pexels.com/photos/210205/pexels-photo-210205.jpeg?auto=compress&cs=tinysrgb&w=1200">Book</a><a href="tours.html#sunset-cruise" class="btn-ghost" style="font-size:0.8rem;padding:0.35rem 0.8rem;">View details</a></div>
           </div>
         </div>
       </article>
@@ -632,7 +816,7 @@
           </p>
           <div class="tour-footer">
             <span class="price-tag">From $120 USD</span>
-            <a href="tours.html#reef-explorer" class="btn-ghost" style="font-size:0.8rem;padding:0.35rem 0.8rem;">View details</a>
+            <div style="display:flex; gap:10px; align-items:center; justify-content:flex-end;"><a href="#" class="btn-primary" style="padding:0.35rem 0.8rem; font-size:0.8rem; box-shadow:none;" data-book-tour="Reef Explorer & Beach BBQ" data-book-img="https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&w=1200">Book</a><a href="tours.html#reef-explorer" class="btn-ghost" style="font-size:0.8rem;padding:0.35rem 0.8rem;">View details</a></div>
           </div>
         </div>
       </article>
@@ -650,7 +834,7 @@
           </p>
           <div class="tour-footer">
             <span class="price-tag">Ask for group pricing</span>
-            <a href="tours.html#private-charter" class="btn-ghost" style="font-size:0.8rem;padding:0.35rem 0.8rem;">View details</a>
+            <div style="display:flex; gap:10px; align-items:center; justify-content:flex-end;"><a href="#" class="btn-primary" style="padding:0.35rem 0.8rem; font-size:0.8rem; box-shadow:none;" data-book-tour="Private Charter – Your Day, Your Way" data-book-img="https://images.pexels.com/photos/1813208/pexels-photo-1813208.jpeg?auto=compress&cs=tinysrgb&w=1200">Book</a><a href="tours.html#private-charter" class="btn-ghost" style="font-size:0.8rem;padding:0.35rem 0.8rem;">View details</a></div>
           </div>
         </div>
       </article>
@@ -668,7 +852,7 @@
           </p>
           <div class="tour-footer">
             <span class="price-tag">From $99 USD</span>
-            <a href="tours.html#manatee" class="btn-ghost" style="font-size:0.8rem;padding:0.35rem 0.8rem;">View details</a>
+            <div style="display:flex; gap:10px; align-items:center; justify-content:flex-end;"><a href="#" class="btn-primary" style="padding:0.35rem 0.8rem; font-size:0.8rem; box-shadow:none;" data-book-tour="Manatee & Wildlife Encounter" data-book-img="https://images.pexels.com/photos/261102/pexels-photo-261102.jpeg?auto=compress&cs=tinysrgb&w=1200">Book</a><a href="tours.html#manatee" class="btn-ghost" style="font-size:0.8rem;padding:0.35rem 0.8rem;">View details</a></div>
           </div>
         </div>
       </article>
@@ -686,7 +870,7 @@
           </p>
           <div class="tour-footer">
             <span class="price-tag">From $89 USD</span>
-            <a href="tours.html#sandbar-sunday" class="btn-ghost" style="font-size:0.8rem;padding:0.35rem 0.8rem;">View details</a>
+            <div style="display:flex; gap:10px; align-items:center; justify-content:flex-end;"><a href="#" class="btn-primary" style="padding:0.35rem 0.8rem; font-size:0.8rem; box-shadow:none;" data-book-tour="Sandbar Sunday Funday" data-book-img="https://images.pexels.com/photos/165451/pexels-photo-165451.jpeg?auto=compress&cs=tinysrgb&w=1200">Book</a><a href="tours.html#sandbar-sunday" class="btn-ghost" style="font-size:0.8rem;padding:0.35rem 0.8rem;">View details</a></div>
           </div>
         </div>
       </article>
@@ -829,6 +1013,163 @@
 
 <script>
   document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
+
+<!-- Booking Modal -->
+<div class="owt-modal-overlay" id="bookingOverlay" aria-hidden="true">
+  <div class="owt-modal" role="dialog" aria-modal="true" aria-labelledby="bookingTitle">
+    <div class="owt-modal-media" id="bookingMedia" style="background-image:url('https://images.pexels.com/photos/3861488/pexels-photo-3861488.jpeg?auto=compress&cs=tinysrgb&w=1200');"></div>
+    <div class="owt-modal-content">
+      <button class="owt-close" type="button" id="bookingClose" aria-label="Close">✕</button>
+      <div class="owt-modal-title" id="bookingTitle">Tour Booking Form</div>
+
+      <form class="owt-form" id="bookingForm">
+        <input type="hidden" id="tourName" name="tourName" value="">
+
+        <div>
+          <label for="people">How many people are you booking for? *</label>
+          <select id="people" name="people" required>
+            <option value="1">1</option><option value="2">2</option><option value="3">3</option>
+            <option value="4">4</option><option value="5">5</option><option value="6">6</option>
+            <option value="7">7</option><option value="8">8</option><option value="9">9</option>
+            <option value="10+">10+</option>
+          </select>
+        </div>
+
+        <div>
+          <label>Name *</label>
+          <div class="owt-row">
+            <div>
+              <input id="firstName" name="firstName" type="text" placeholder="First Name" required>
+            </div>
+            <div>
+              <input id="lastName" name="lastName" type="text" placeholder="Last Name" required>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <label for="phone">Phone Number</label>
+          <input id="phone" name="phone" type="tel" placeholder="+1 (555) 555-5555">
+        </div>
+
+        <div>
+          <label for="date">Date *</label>
+          <input id="date" name="date" type="date" required>
+          <div class="owt-help">What date are you interested in going on tour?</div>
+        </div>
+
+        <div>
+          <label>Food Options *</label>
+          <div class="owt-row" style="grid-template-columns:1fr 1fr; align-items:center;">
+            <label style="font-weight:600; margin:0; display:flex; gap:8px; align-items:center;">
+              <input type="radio" name="food" value="Regular" required> Regular
+            </label>
+            <label style="font-weight:600; margin:0; display:flex; gap:8px; align-items:center;">
+              <input type="radio" name="food" value="Vegetarian" required> Vegetarian
+            </label>
+          </div>
+        </div>
+
+        <div>
+          <label for="requests">Special Requests</label>
+          <textarea id="requests" name="requests" placeholder="Anything else to note or any special requests? Let us know!"></textarea>
+        </div>
+
+        <div class="owt-check">
+          <input id="confirm" type="checkbox" required style="margin-top:3px;">
+          <label for="confirm" style="margin:0; font-weight:600;">
+            Confirmation *<br>
+            <span style="font-weight:400;">
+              Please be ready 30 minutes before departure. We'll message you to confirm pickup/location details.
+            </span>
+          </label>
+        </div>
+
+        <div class="owt-actions">
+          <button class="owt-btn" type="submit">Send Booking Request</button>
+          <button class="owt-btn secondary" type="button" id="bookingCancel">Cancel</button>
+        </div>
+
+        <div class="owt-note">
+          This form opens an email request (no payment). We’ll reply with availability and next steps.
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+<script>
+(function(){
+  const overlay = document.getElementById('bookingOverlay');
+  const closeBtn = document.getElementById('bookingClose');
+  const cancelBtn = document.getElementById('bookingCancel');
+  const title = document.getElementById('bookingTitle');
+  const tourName = document.getElementById('tourName');
+  const media = document.getElementById('bookingMedia');
+  const form = document.getElementById('bookingForm');
+
+  function openModal(tour, img){
+    title.textContent = tour + " – Booking Form";
+    tourName.value = tour;
+    if(img){ media.style.backgroundImage = `url('${img}')`; }
+    overlay.classList.add('show');
+    overlay.setAttribute('aria-hidden','false');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal(){
+    overlay.classList.remove('show');
+    overlay.setAttribute('aria-hidden','true');
+    document.body.style.overflow = '';
+  }
+
+  document.addEventListener('click', function(e){
+    const btn = e.target.closest('[data-book-tour]');
+    if(btn){
+      e.preventDefault();
+      const tour = btn.getAttribute('data-book-tour');
+      const img = btn.getAttribute('data-book-img');
+      openModal(tour, img);
+    }
+  });
+
+  closeBtn && closeBtn.addEventListener('click', closeModal);
+  cancelBtn && cancelBtn.addEventListener('click', closeModal);
+  overlay && overlay.addEventListener('click', function(e){
+    if(e.target === overlay) closeModal();
+  });
+
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape' && overlay.classList.contains('show')) closeModal();
+  });
+
+  form && form.addEventListener('submit', function(e){
+    e.preventDefault();
+    const data = new FormData(form);
+    const lines = [
+      `Tour: ${data.get('tourName')}`,
+      `People: ${data.get('people')}`,
+      `Name: ${data.get('firstName')} ${data.get('lastName')}`,
+      `Phone: ${data.get('phone') || ''}`,
+      `Date: ${data.get('date')}`,
+      `Food: ${data.get('food')}`,
+      `Special Requests: ${data.get('requests') || ''}`
+    ].join('%0D%0A');
+
+    const subject = encodeURIComponent(`Ocean Wave Tours Booking Request – ${data.get('tourName')}`);
+    const body = lines;
+    // Update this email anytime:
+    const to = 'hello@oceanwavetours.com';
+    window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
+    closeModal();
+    form.reset();
+  });
+
+  // Expose for debugging if needed
+  window.__owtOpen = openModal;
+})();
 </script>
 
 </body>

@@ -265,7 +265,124 @@
       .hero-sub h1 { font-size: 1.7rem; }
       .detail-columns { grid-template-columns: 1fr; }
     }
-  </style>
+  
+/* Booking Modal */
+.owt-modal-overlay{
+  position:fixed; inset:0;
+  background:rgba(0,0,0,0.55);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:24px;
+  z-index:9999;
+}
+.owt-modal-overlay.show{display:flex;}
+.owt-modal{
+  width:min(860px, 96vw);
+  background:#fff;
+  border-radius:18px;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.35);
+  overflow:hidden;
+  display:grid;
+  grid-template-columns: 0.95fr 1.05fr;
+}
+.owt-modal-media{
+  min-height: 520px;
+  background-size:cover;
+  background-position:center;
+}
+.owt-modal-content{
+  padding:20px 20px 18px;
+  position:relative;
+}
+.owt-modal-title{
+  font-size:1.25rem;
+  font-weight:700;
+  margin-bottom:12px;
+}
+.owt-close{
+  position:absolute;
+  top:14px;
+  right:14px;
+  width:34px;height:34px;
+  border-radius:10px;
+  border:1px solid rgba(0,0,0,0.12);
+  background:#fff;
+  cursor:pointer;
+  font-size:18px;
+  line-height:1;
+}
+.owt-form{
+  display:grid;
+  gap:12px;
+}
+.owt-row{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap:10px;
+}
+.owt-form label{
+  font-size:0.78rem;
+  font-weight:600;
+  color:#30485f;
+  display:block;
+  margin-bottom:4px;
+}
+.owt-form input, .owt-form select, .owt-form textarea{
+  width:100%;
+  padding:10px 10px;
+  border-radius:10px;
+  border:1px solid rgba(0,0,0,0.14);
+  font-family:inherit;
+  font-size:0.9rem;
+  outline:none;
+}
+.owt-form textarea{min-height:90px; resize:vertical;}
+.owt-help{
+  font-size:0.78rem;
+  color:#5e748a;
+  margin-top:-4px;
+}
+.owt-check{
+  display:flex;
+  gap:10px;
+  align-items:flex-start;
+  font-size:0.82rem;
+  color:#445b72;
+  padding-top:6px;
+  border-top:1px solid rgba(0,0,0,0.06);
+}
+.owt-actions{
+  display:flex;
+  justify-content:flex-start;
+  gap:10px;
+  align-items:center;
+  padding-top:6px;
+}
+.owt-btn{
+  border-radius:12px;
+  padding:10px 14px;
+  font-weight:700;
+  border:none;
+  cursor:pointer;
+  background:#123047;
+  color:#fff;
+}
+.owt-btn.secondary{
+  background:transparent;
+  color:#123047;
+  border:1px solid rgba(0,0,0,0.16);
+}
+.owt-note{
+  font-size:0.72rem;
+  color:#6a8096;
+}
+@media (max-width: 880px){
+  .owt-modal{grid-template-columns:1fr;}
+  .owt-modal-media{min-height:220px;}
+}
+
+</style>
 </head>
 <body>
 <header>
@@ -291,7 +408,7 @@
     <div class="breadcrumbs"><a href="index.html">Home</a> › Tours</div>
     <h1>All Ocean Wave Tours</h1>
     <p>
-      Here are the details for each of our most popular boat tours. Use this page to choose the
+      Here are the details for each of our most popular boat tours — including our premium full-day caye adventures. Use this page to choose the
       perfect vibe for your day on the water in Belize.
     </p>
   </div>
@@ -306,6 +423,10 @@
         <h2>Shark Ray Alley Snorkel Party</h2>
         <div class="tour-tagline">
           Swim with nurse sharks and stingrays, then cruise Belize’s turquoise reef with a fun, social crew.
+        </div>
+        <div style="display:flex; gap:10px; align-items:center; margin-bottom:10px;">
+          <a href="#" class="btn-primary" data-book-tour="Shark Ray Alley Snorkel Party" data-book-img="https://images.pexels.com/photos/3601420/pexels-photo-3601420.jpeg?auto=compress&cs=tinysrgb&w=1200">Book</a>
+          <span style="font-size:0.82rem;color:#60748a;">Quick request form (no payment) – we’ll confirm availability.</span>
         </div>
         <div class="tour-meta-row">
           <span class="meta-pill">Duration: 4–5 hours</span>
@@ -365,6 +486,10 @@
         <div class="tour-tagline">
           Slow the day down with golden-hour views, easy tunes and bottomless rum punch.
         </div>
+        <div style="display:flex; gap:10px; align-items:center; margin-bottom:10px;">
+          <a href="#" class="btn-primary" data-book-tour="Sunset Cruise & Rum Punch" data-book-img="https://images.pexels.com/photos/210205/pexels-photo-210205.jpeg?auto=compress&cs=tinysrgb&w=1200">Book</a>
+          <span style="font-size:0.82rem;color:#60748a;">Quick request form (no payment) – we’ll confirm availability.</span>
+        </div>
         <div class="tour-meta-row">
           <span class="meta-pill">Duration: ~2.5 hours</span>
           <span class="meta-pill">Departure: Late afternoon</span>
@@ -419,6 +544,10 @@
         <div class="tour-tagline">
           A full day of reef snorkeling, island hopping and a grilled lunch on the beach.
         </div>
+        <div style="display:flex; gap:10px; align-items:center; margin-bottom:10px;">
+          <a href="#" class="btn-primary" data-book-tour="Reef Explorer & Beach BBQ" data-book-img="https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&w=1200">Book</a>
+          <span style="font-size:0.82rem;color:#60748a;">Quick request form (no payment) – we’ll confirm availability.</span>
+        </div>
         <div class="tour-meta-row">
           <span class="meta-pill">Duration: Full day</span>
           <span class="meta-pill">Activity level: Easy–moderate</span>
@@ -466,13 +595,183 @@
     </div>
   </section>
 
-  <!-- Private Charter -->
+  
+  <section>
+    <div class="tour-detail" id="goffs-caye">
+      <div>
+        <h2>Goff's Caye Premium Day</h2>
+        <div class="tour-tagline">
+          A longer premium full-day caye adventure focused on snorkeling, beach time and optional fishing — lunch included.
+        </div>
+        <div style="display:flex; gap:10px; align-items:center; margin-bottom:10px;">
+          <a href="#" class="btn-primary" data-book-tour="Goff's Caye Premium Day" data-book-img="https://images.pexels.com/photos/1001682/pexels-photo-1001682.jpeg?auto=compress&cs=tinysrgb&w=1200">Book</a>
+          <span style="font-size:0.82rem;color:#60748a;">Quick request form (no payment) – we’ll confirm availability.</span>
+        </div>
+        <div class="tour-meta-row">
+          <span class="meta-pill">Duration: Full day</span><span class="meta-pill">Premium: Longer ride</span><span class="meta-pill">Snorkel • Fish • Beach</span><span class="meta-pill">Lunch included</span>
+        </div>
+        <p>
+          We head out for a full-day run to beautiful Goff’s Caye — clear water, reef life, and plenty of time to actually enjoy the day (not rushed). Your captain sets the pace based on sea conditions and your group’s vibe.
+        </p>
+        <p>
+          Expect multiple snorkel stops, time to cast a line if you want to fish, and a laid-back beach break where we serve lunch and let you reset before cruising home.
+        </p>
+
+        <div class="detail-columns">
+          <div>
+            <h3>What’s included</h3>
+            <ul>
+              <li>Licensed captain & guide</li><li>Snorkel gear & life vests</li><li>Lunch (Belizean-style)</li><li>Water, soft drinks & snacks</li><li>Cooler space for your extras</li><li>Optional fishing time (gear by request)</li>
+            </ul>
+
+            <h3 style="margin-top:0.8rem;">What to bring</h3>
+            <ul>
+              <li>Swimsuit & towel</li><li>Reef-safe sunscreen & hat</li><li>Sunglasses (strap recommended)</li><li>Waterproof phone case / GoPro</li><li>Light jacket for the ride back</li><li>Cash for tips/extras</li>
+            </ul>
+          </div>
+          <div>
+            <h3>Highlights</h3>
+            <ul>
+              <li>Multiple snorkel stops with guide support</li><li>Beach time on a beautiful caye</li><li>Optional fishing window during the day</li><li>Lunch included + relaxed pace</li><li>Photo stops and scenic cruising</li>
+            </ul>
+
+            <h3 style="margin-top:0.8rem;">Who it’s for</h3>
+            <ul>
+              <li>Groups that want a premium full-day</li><li>Snorkelers who want more reef time</li><li>Friends/families who want beach + water activities</li><li>Guests who don’t mind a longer boat ride for a better day</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="price-box">
+          <div class="price-main">From $210 USD per person</div>
+          <div>Premium full-day tour. Route and exact stops may adjust based on weather and sea conditions.</div>
+        </div>
+      </div>
+      <div class="side-image" style="background-image:url('https://images.pexels.com/photos/1001682/pexels-photo-1001682.jpeg?auto=compress&cs=tinysrgb&w=1200');"></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="tour-detail" id="half-moon-caye">
+      <div>
+        <h2>Half Moon Caye Adventure</h2>
+        <div class="tour-tagline">
+          A premium longer-range full-day to Half Moon Caye with epic snorkeling, beach time and optional fishing — lunch included.
+        </div>
+        <div style="display:flex; gap:10px; align-items:center; margin-bottom:10px;">
+          <a href="#" class="btn-primary" data-book-tour="Half Moon Caye Adventure" data-book-img="https://images.pexels.com/photos/2404370/pexels-photo-2404370.jpeg?auto=compress&cs=tinysrgb&w=1200">Book</a>
+          <span style="font-size:0.82rem;color:#60748a;">Quick request form (no payment) – we’ll confirm availability.</span>
+        </div>
+        <div class="tour-meta-row">
+          <span class="meta-pill">Duration: Full day</span><span class="meta-pill">Premium: Longer ride</span><span class="meta-pill">Snorkel • Fish • Beach</span><span class="meta-pill">Lunch included</span>
+        </div>
+        <p>
+          Half Moon Caye is the kind of place you travel to Belize for — bright water, vibrant reef scenes and a true “remote island” feeling. This is a premium full-day trip with a longer ride, but the payoff is worth it.
+        </p>
+        <p>
+          We’ll mix guided snorkeling with time to relax on the sand, plus an optional fishing window if your group wants it. Lunch is served during the beach break so you can recharge and keep the day rolling.
+        </p>
+
+        <div class="detail-columns">
+          <div>
+            <h3>What’s included</h3>
+            <ul>
+              <li>Licensed captain & guide</li><li>Snorkel gear & life vests</li><li>Lunch (Belizean-style)</li><li>Water, soft drinks & snacks</li><li>Shaded seating on board</li><li>Optional fishing time (gear by request)</li>
+            </ul>
+
+            <h3 style="margin-top:0.8rem;">What to bring</h3>
+            <ul>
+              <li>Swimsuit & towel</li><li>Reef-safe sunscreen & hat</li><li>Sunglasses (strap recommended)</li><li>Waterproof phone case / GoPro</li><li>Motion-sickness meds (if you get seasick)</li><li>Cash for tips/extras</li>
+            </ul>
+          </div>
+          <div>
+            <h3>Highlights</h3>
+            <ul>
+              <li>Remote caye beach break + lunch</li><li>Guided snorkeling at premium sites</li><li>Optional fishing time (by request)</li><li>More time on the water — more scenery</li><li>Small-group, flexible pace</li>
+            </ul>
+
+            <h3 style="margin-top:0.8rem;">Who it’s for</h3>
+            <ul>
+              <li>Snorkel lovers chasing a premium day</li><li>Adventurous groups who want a more remote caye</li><li>Visitors who want a full day of water + beach</li><li>Anyone who wants a ‘big day’ highlight trip</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="price-box">
+          <div class="price-main">From $210 USD per person</div>
+          <div>Premium full-day tour. Longer ride means earlier start time; we’ll confirm schedule when you book.</div>
+        </div>
+      </div>
+      <div class="side-image" style="background-image:url('https://images.pexels.com/photos/2404370/pexels-photo-2404370.jpeg?auto=compress&cs=tinysrgb&w=1200');"></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="tour-detail" id="turneffe-atoll">
+      <div>
+        <h2>Turneffe Atoll Premium Explorer</h2>
+        <div class="tour-tagline">
+          Full-day premium ride to Turneffe Atoll for world-class snorkeling, relaxed beach time and optional fishing — lunch included.
+        </div>
+        <div style="display:flex; gap:10px; align-items:center; margin-bottom:10px;">
+          <a href="#" class="btn-primary" data-book-tour="Turneffe Atoll Premium Explorer" data-book-img="https://images.pexels.com/photos/1450360/pexels-photo-1450360.jpeg?auto=compress&cs=tinysrgb&w=1200">Book</a>
+          <span style="font-size:0.82rem;color:#60748a;">Quick request form (no payment) – we’ll confirm availability.</span>
+        </div>
+        <div class="tour-meta-row">
+          <span class="meta-pill">Duration: Full day</span><span class="meta-pill">Premium: Longer ride</span><span class="meta-pill">Snorkel • Fish • Beach</span><span class="meta-pill">Lunch included</span>
+        </div>
+        <p>
+          Turneffe Atoll is famous for clear water and reef action — this is a premium full-day trip designed for guests who want an elevated Belize day on the water. We plan the route around sea conditions to find the best snorkeling visibility.
+        </p>
+        <p>
+          Between snorkel stops, we build in real downtime: beach time, lunch, and an optional fishing window so your group can balance adventure with relaxation.
+        </p>
+
+        <div class="detail-columns">
+          <div>
+            <h3>What’s included</h3>
+            <ul>
+              <li>Licensed captain & guide</li><li>Snorkel gear & life vests</li><li>Lunch (Belizean-style)</li><li>Water, soft drinks & snacks</li><li>Guided snorkeling support</li><li>Optional fishing time (gear by request)</li>
+            </ul>
+
+            <h3 style="margin-top:0.8rem;">What to bring</h3>
+            <ul>
+              <li>Swimsuit & towel</li><li>Reef-safe sunscreen & hat</li><li>Sunglasses (strap recommended)</li><li>Waterproof phone case / GoPro</li><li>Light jacket for the ride back</li><li>Cash for tips/extras</li>
+            </ul>
+          </div>
+          <div>
+            <h3>Highlights</h3>
+            <ul>
+              <li>World-class snorkeling zones</li><li>Premium full-day itinerary with lunch</li><li>Optional fishing time (by request)</li><li>Scenic cruising + photo ops</li><li>Small-group experience</li>
+            </ul>
+
+            <h3 style="margin-top:0.8rem;">Who it’s for</h3>
+            <ul>
+              <li>Guests who want the premium reef day</li><li>Strong snorkel interest (beginners welcome with vests)</li><li>Groups wanting beach + water activities</li><li>Travelers looking for a “bucket list” day trip</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="price-box">
+          <div class="price-main">From $210 USD per person</div>
+          <div>Premium full-day tour. Availability can be limited—book early for peak dates.</div>
+        </div>
+      </div>
+      <div class="side-image" style="background-image:url('https://images.pexels.com/photos/1450360/pexels-photo-1450360.jpeg?auto=compress&cs=tinysrgb&w=1200');"></div>
+    </div>
+  </section>
+
+<!-- Private Charter -->
   <section>
     <div class="tour-detail" id="private-charter">
       <div>
         <h2>Private Charter – Your Day, Your Way</h2>
         <div class="tour-tagline">
           Charter the whole boat and design a custom Belize experience with our captain.
+        </div>
+        <div style="display:flex; gap:10px; align-items:center; margin-bottom:10px;">
+          <a href="#" class="btn-primary" data-book-tour="Private Charter – Your Day, Your Way" data-book-img="https://images.pexels.com/photos/1813208/pexels-photo-1813208.jpeg?auto=compress&cs=tinysrgb&w=1200">Book</a>
+          <span style="font-size:0.82rem;color:#60748a;">Quick request form (no payment) – we’ll confirm availability.</span>
         </div>
         <div class="tour-meta-row">
           <span class="meta-pill">Duration: Half or full day</span>
@@ -528,6 +827,10 @@
         <div class="tour-tagline">
           Slow down in sheltered channels and mangroves as we search for gentle manatees and other wildlife.
         </div>
+        <div style="display:flex; gap:10px; align-items:center; margin-bottom:10px;">
+          <a href="#" class="btn-primary" data-book-tour="Manatee & Wildlife Encounter" data-book-img="https://images.pexels.com/photos/261102/pexels-photo-261102.jpeg?auto=compress&cs=tinysrgb&w=1200">Book</a>
+          <span style="font-size:0.82rem;color:#60748a;">Quick request form (no payment) – we’ll confirm availability.</span>
+        </div>
         <div class="tour-meta-row">
           <span class="meta-pill">Duration: 4–6 hours</span>
           <span class="meta-pill">Nature-focused</span>
@@ -580,6 +883,10 @@
         <h2>Sandbar Sunday Funday</h2>
         <div class="tour-tagline">
           Your own pop-up beach club in the middle of the sea – floats, games, drinks and good energy.
+        </div>
+        <div style="display:flex; gap:10px; align-items:center; margin-bottom:10px;">
+          <a href="#" class="btn-primary" data-book-tour="Sandbar Sunday Funday" data-book-img="https://images.pexels.com/photos/165451/pexels-photo-165451.jpeg?auto=compress&cs=tinysrgb&w=1200">Book</a>
+          <span style="font-size:0.82rem;color:#60748a;">Quick request form (no payment) – we’ll confirm availability.</span>
         </div>
         <div class="tour-meta-row">
           <span class="meta-pill">Duration: Half or full day</span>
@@ -642,5 +949,162 @@
 <script>
   document.getElementById("year").textContent = new Date().getFullYear();
 </script>
+
+<!-- Booking Modal -->
+<div class="owt-modal-overlay" id="bookingOverlay" aria-hidden="true">
+  <div class="owt-modal" role="dialog" aria-modal="true" aria-labelledby="bookingTitle">
+    <div class="owt-modal-media" id="bookingMedia" style="background-image:url('https://images.pexels.com/photos/3861488/pexels-photo-3861488.jpeg?auto=compress&cs=tinysrgb&w=1200');"></div>
+    <div class="owt-modal-content">
+      <button class="owt-close" type="button" id="bookingClose" aria-label="Close">✕</button>
+      <div class="owt-modal-title" id="bookingTitle">Tour Booking Form</div>
+
+      <form class="owt-form" id="bookingForm">
+        <input type="hidden" id="tourName" name="tourName" value="">
+
+        <div>
+          <label for="people">How many people are you booking for? *</label>
+          <select id="people" name="people" required>
+            <option value="1">1</option><option value="2">2</option><option value="3">3</option>
+            <option value="4">4</option><option value="5">5</option><option value="6">6</option>
+            <option value="7">7</option><option value="8">8</option><option value="9">9</option>
+            <option value="10+">10+</option>
+          </select>
+        </div>
+
+        <div>
+          <label>Name *</label>
+          <div class="owt-row">
+            <div>
+              <input id="firstName" name="firstName" type="text" placeholder="First Name" required>
+            </div>
+            <div>
+              <input id="lastName" name="lastName" type="text" placeholder="Last Name" required>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <label for="phone">Phone Number</label>
+          <input id="phone" name="phone" type="tel" placeholder="+1 (555) 555-5555">
+        </div>
+
+        <div>
+          <label for="date">Date *</label>
+          <input id="date" name="date" type="date" required>
+          <div class="owt-help">What date are you interested in going on tour?</div>
+        </div>
+
+        <div>
+          <label>Food Options *</label>
+          <div class="owt-row" style="grid-template-columns:1fr 1fr; align-items:center;">
+            <label style="font-weight:600; margin:0; display:flex; gap:8px; align-items:center;">
+              <input type="radio" name="food" value="Regular" required> Regular
+            </label>
+            <label style="font-weight:600; margin:0; display:flex; gap:8px; align-items:center;">
+              <input type="radio" name="food" value="Vegetarian" required> Vegetarian
+            </label>
+          </div>
+        </div>
+
+        <div>
+          <label for="requests">Special Requests</label>
+          <textarea id="requests" name="requests" placeholder="Anything else to note or any special requests? Let us know!"></textarea>
+        </div>
+
+        <div class="owt-check">
+          <input id="confirm" type="checkbox" required style="margin-top:3px;">
+          <label for="confirm" style="margin:0; font-weight:600;">
+            Confirmation *<br>
+            <span style="font-weight:400;">
+              Please be ready 30 minutes before departure. We'll message you to confirm pickup/location details.
+            </span>
+          </label>
+        </div>
+
+        <div class="owt-actions">
+          <button class="owt-btn" type="submit">Send Booking Request</button>
+          <button class="owt-btn secondary" type="button" id="bookingCancel">Cancel</button>
+        </div>
+
+        <div class="owt-note">
+          This form opens an email request (no payment). We’ll reply with availability and next steps.
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+<script>
+(function(){
+  const overlay = document.getElementById('bookingOverlay');
+  const closeBtn = document.getElementById('bookingClose');
+  const cancelBtn = document.getElementById('bookingCancel');
+  const title = document.getElementById('bookingTitle');
+  const tourName = document.getElementById('tourName');
+  const media = document.getElementById('bookingMedia');
+  const form = document.getElementById('bookingForm');
+
+  function openModal(tour, img){
+    title.textContent = tour + " – Booking Form";
+    tourName.value = tour;
+    if(img){ media.style.backgroundImage = `url('${img}')`; }
+    overlay.classList.add('show');
+    overlay.setAttribute('aria-hidden','false');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal(){
+    overlay.classList.remove('show');
+    overlay.setAttribute('aria-hidden','true');
+    document.body.style.overflow = '';
+  }
+
+  document.addEventListener('click', function(e){
+    const btn = e.target.closest('[data-book-tour]');
+    if(btn){
+      e.preventDefault();
+      const tour = btn.getAttribute('data-book-tour');
+      const img = btn.getAttribute('data-book-img');
+      openModal(tour, img);
+    }
+  });
+
+  closeBtn && closeBtn.addEventListener('click', closeModal);
+  cancelBtn && cancelBtn.addEventListener('click', closeModal);
+  overlay && overlay.addEventListener('click', function(e){
+    if(e.target === overlay) closeModal();
+  });
+
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape' && overlay.classList.contains('show')) closeModal();
+  });
+
+  form && form.addEventListener('submit', function(e){
+    e.preventDefault();
+    const data = new FormData(form);
+    const lines = [
+      `Tour: ${data.get('tourName')}`,
+      `People: ${data.get('people')}`,
+      `Name: ${data.get('firstName')} ${data.get('lastName')}`,
+      `Phone: ${data.get('phone') || ''}`,
+      `Date: ${data.get('date')}`,
+      `Food: ${data.get('food')}`,
+      `Special Requests: ${data.get('requests') || ''}`
+    ].join('%0D%0A');
+
+    const subject = encodeURIComponent(`Ocean Wave Tours Booking Request – ${data.get('tourName')}`);
+    const body = lines;
+    // Update this email anytime:
+    const to = 'hello@oceanwavetours.com';
+    window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
+    closeModal();
+    form.reset();
+  });
+
+  // Expose for debugging if needed
+  window.__owtOpen = openModal;
+})();
+</script>
+
 </body>
 </html>
