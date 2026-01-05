@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "routes": [
+    {
+      "src": "/tours",
+      "dest": "/tours.html"
+    },
+    {
+      "src": "/index",
+      "dest": "/index.html"
+    }
+  ]
+}

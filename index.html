@@ -1,0 +1,1250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Ocean Wave Tours | Belize Boat & Snorkel Adventures</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Ocean Wave Tours – fun, social boat tours in Belize. Snorkel Shark Ray Alley, cruise at sunset, explore sandbars or book a private charter." />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #0288d1;
+      --primary-dark: #01579b;
+      --accent: #ff9800;
+      --bg: #f7fbff;
+      --text: #123047;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a { text-decoration: none; color: inherit; }
+
+    img { max-width: 100%; display: block; }
+
+    .container {
+      width: 100%;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(247,251,255,0.98);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(0,0,0,0.03);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.6rem 0;
+    }
+
+    .logo-wrap {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .logo-wrap img {
+      width: 46px;
+      height: auto;
+      border-radius: 10px;
+    }
+
+    .logo-text {
+      font-weight: 700;
+      font-size: 1.05rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1rem;
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    nav a {
+      padding: 0.3rem 0.5rem;
+      border-radius: 999px;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    nav a:hover {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    .btn-primary,
+    .btn-ghost {
+      border-radius: 999px;
+      padding: 0.6rem 1.4rem;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      font-size: 0.95rem;
+      transition: transform 0.15s, box-shadow 0.15s, background 0.2s, color 0.2s;
+      text-decoration: none;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: #fff;
+      box-shadow: 0 8px 16px rgba(2,136,209,0.35);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 12px 20px rgba(2,136,209,0.45);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      border: 1px solid rgba(18,48,71,0.18);
+      color: var(--text);
+    }
+
+    .btn-ghost:hover {
+      background: rgba(255,255,255,0.9);
+    }
+
+    /* Giant logo section */
+    .hero-logo {
+      padding: 2.2rem 0 1.5rem;
+      background: radial-gradient(circle at top, #ffe0b2 0, #f7fbff 55%, #ffffff 100%);
+      border-bottom: 1px solid rgba(0,0,0,0.03);
+    }
+
+    .hero-logo-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 1rem;
+    }
+
+    .hero-logo img {
+      width: 576px; /* ~6 inches at 96dpi */
+      max-width: 90vw;
+      height: auto;
+      border-radius: 24px;
+      box-shadow: 0 24px 60px rgba(0,0,0,0.25);
+      background: #fdf7ee;
+    }
+
+    .hero-logo h1 {
+      font-size: 2rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    .hero-logo p {
+      font-size: 0.95rem;
+      max-width: 620px;
+      color: #42566a;
+    }
+
+    /* Below-logo hero summary */
+    .hero-summary {
+      padding: 2rem 0 2.4rem;
+    }
+
+    .hero-summary-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    .hero-kicker {
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--primary-dark);
+      margin-bottom: 0.6rem;
+    }
+
+    .hero-summary h2 {
+      font-size: 1.8rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .hero-highlight { color: var(--primary); }
+
+    .hero-summary p {
+      font-size: 0.95rem;
+      color: #42566a;
+      margin-bottom: 1.2rem;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      font-size: 0.8rem;
+      color: #60748a;
+      margin-top: 0.4rem;
+    }
+
+    .hero-meta span strong { color: #29415b; }
+
+    .hero-card {
+      background: linear-gradient(145deg, #0288d1 0%, #00acc1 40%, #ffb74d 100%);
+      border-radius: 24px;
+      padding: 1.2rem 1.1rem 1.1rem;
+      color: #fff;
+      box-shadow: 0 18px 40px rgba(0,0,0,0.25);
+      position: relative;
+      overflow: hidden;
+      font-size: 0.85rem;
+    }
+
+    .hero-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle at 20% 0, rgba(255,255,255,0.25) 0, transparent 55%);
+      pointer-events: none;
+    }
+
+    .hero-card-heading {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 0.35rem;
+    }
+
+    .hero-card-sub {
+      opacity: 0.95;
+      margin-bottom: 0.7rem;
+    }
+
+    .hero-pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      margin-bottom: 0.7rem;
+    }
+
+    .hero-pill {
+      padding: 0.18rem 0.6rem;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.18);
+      backdrop-filter: blur(4px);
+    }
+
+    section {
+      padding: 3rem 0;
+    }
+
+    section h2 {
+      font-size: 1.6rem;
+      margin-bottom: 0.4rem;
+      text-align: center;
+    }
+
+    .section-subtitle {
+      text-align: center;
+      font-size: 0.9rem;
+      color: #60748a;
+      max-width: 520px;
+      margin: 0 auto 2.2rem;
+    }
+
+    .tours-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 1.5rem;
+    }
+
+    .tour-card {
+      background: #fff;
+      border-radius: 18px;
+      box-shadow: 0 10px 22px rgba(15,35,52,0.08);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.18s, box-shadow 0.18s;
+    }
+
+    .tour-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 18px 30px rgba(15,35,52,0.12);
+    }
+
+    .tour-image {
+      height: 180px;
+      background-size: cover;
+      background-position: center;
+          position: relative;
+      overflow: hidden;
+    }
+    .tour-card .hover-label {
+      position: absolute;
+      left: 14px;
+      right: 14px;
+      bottom: 14px;
+      padding: 10px 12px;
+      border-radius: 12px;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: .2px;
+      color: #fff;
+      background: rgba(0,0,0,.45);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      opacity: 0;
+      transform: translateY(6px);
+      transition: opacity .25s ease, transform .25s ease;
+      pointer-events: none;
+    }
+    .tour-card:hover .hover-label,
+    .tour-card:focus-within .hover-label {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+
+    .tour-body {
+      padding: 1rem 1rem 0.9rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .tour-meta-row {
+      font-size: 0.75rem;
+      color: #72859a;
+      margin-bottom: 0.35rem;
+      display: flex;
+      justify-content: space-between;
+      gap: 0.3rem;
+    }
+
+    .tour-title {
+      font-weight: 600;
+      font-size: 1rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .tour-desc {
+      font-size: 0.85rem;
+      color: #4e6074;
+      margin-bottom: 0.6rem;
+    }
+
+    .tour-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: auto;
+      padding-top: 0.5rem;
+      border-top: 1px solid rgba(0,0,0,0.05);
+      font-size: 0.8rem;
+    }
+
+    .price-tag {
+      font-weight: 700;
+      color: var(--primary-dark);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    .chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      font-size: 0.78rem;
+      margin-top: 0.5rem;
+    }
+
+    .chip {
+      padding: 0.25rem 0.6rem;
+      border-radius: 999px;
+      background: #e3f2fd;
+      color: #0d47a1;
+      font-weight: 500;
+    }
+
+    .faq-contact-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 2.5rem;
+      align-items: flex-start;
+    }
+
+    .faq-item {
+      background: #fff;
+      border-radius: 16px;
+      padding: 0.8rem 0.9rem;
+      margin-bottom: 0.6rem;
+      box-shadow: 0 6px 16px rgba(15,35,52,0.04);
+    }
+
+    .faq-q {
+      font-weight: 600;
+      font-size: 0.9rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .faq-a {
+      font-size: 0.8rem;
+      color: #4a5c70;
+    }
+
+    .contact-card {
+      background: linear-gradient(150deg, #0288d1, #00acc1);
+      color: #fff;
+      border-radius: 20px;
+      padding: 1.2rem 1.1rem 1.3rem;
+      box-shadow: 0 16px 32px rgba(0,0,0,0.25);
+      font-size: 0.85rem;
+    }
+
+    .contact-card h3 {
+      font-size: 1.1rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .contact-card p {
+      opacity: 0.95;
+      margin-bottom: 0.7rem;
+    }
+
+    .contact-info {
+      margin-bottom: 0.7rem;
+    }
+
+    .contact-info div {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .contact-info span.emoji { font-size: 1.1rem; }
+
+    .contact-note {
+      font-size: 0.75rem;
+      opacity: 0.9;
+    }
+
+    form {
+      display: grid;
+      gap: 0.45rem;
+      margin-top: 0.7rem;
+    }
+
+    label {
+      font-size: 0.75rem;
+      font-weight: 500;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      padding: 0.45rem 0.55rem;
+      border-radius: 10px;
+      border: 1px solid rgba(0,0,0,0.12);
+      font-family: inherit;
+      font-size: 0.85rem;
+      outline: none;
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+
+    input:focus,
+    textarea:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 2px rgba(2,136,209,0.15);
+    }
+
+    textarea { min-height: 80px; resize: vertical; }
+
+    footer {
+      border-top: 1px solid rgba(0,0,0,0.04);
+      padding: 1.2rem 0;
+      font-size: 0.8rem;
+      color: #60748a;
+    }
+
+    footer .footer-inner {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .badge-pill {
+      background: #e3f2fd;
+      padding: 0.2rem 0.6rem;
+      border-radius: 999px;
+      font-size: 0.72rem;
+    }
+
+    @media (max-width: 900px) {
+      .hero-summary-grid,
+      .about-grid,
+      .faq-contact-grid {
+        grid-template-columns: 1fr;
+      }
+      .hero-summary { padding-top: 1.2rem; }
+      .tours-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+      nav ul { display: none; }
+    }
+
+    @media (max-width: 600px) {
+      .tours-grid { grid-template-columns: minmax(0,1fr); }
+      .hero-logo img { width: 90vw; }
+      .hero-summary h2 { font-size: 1.5rem; }
+    }
+  
+/* Booking Modal */
+.owt-modal-overlay{
+  position:fixed; inset:0;
+  background:rgba(0,0,0,0.55);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:24px;
+  z-index:9999;
+}
+.owt-modal-overlay.show{display:flex;}
+.owt-modal{
+  width:min(860px, 96vw);
+  background:#fff;
+  border-radius:18px;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.35);
+  overflow:hidden;
+  display:grid;
+  grid-template-columns: 0.95fr 1.05fr;
+}
+.owt-modal-media{
+  min-height: 520px;
+  background-size:cover;
+  background-position:center;
+}
+.owt-modal-content{
+  padding:20px 20px 18px;
+  position:relative;
+}
+.owt-modal-title{
+  font-size:1.25rem;
+  font-weight:700;
+  margin-bottom:12px;
+}
+.owt-close{
+  position:absolute;
+  top:14px;
+  right:14px;
+  width:34px;height:34px;
+  border-radius:10px;
+  border:1px solid rgba(0,0,0,0.12);
+  background:#fff;
+  cursor:pointer;
+  font-size:18px;
+  line-height:1;
+}
+.owt-form{
+  display:grid;
+  gap:12px;
+}
+.owt-row{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap:10px;
+}
+.owt-form label{
+  font-size:0.78rem;
+  font-weight:600;
+  color:#30485f;
+  display:block;
+  margin-bottom:4px;
+}
+.owt-form input, .owt-form select, .owt-form textarea{
+  width:100%;
+  padding:10px 10px;
+  border-radius:10px;
+  border:1px solid rgba(0,0,0,0.14);
+  font-family:inherit;
+  font-size:0.9rem;
+  outline:none;
+}
+.owt-form textarea{min-height:90px; resize:vertical;}
+.owt-help{
+  font-size:0.78rem;
+  color:#5e748a;
+  margin-top:-4px;
+}
+.owt-check{
+  display:flex;
+  gap:10px;
+  align-items:flex-start;
+  font-size:0.82rem;
+  color:#445b72;
+  padding-top:6px;
+  border-top:1px solid rgba(0,0,0,0.06);
+}
+.owt-actions{
+  display:flex;
+  justify-content:flex-start;
+  gap:10px;
+  align-items:center;
+  padding-top:6px;
+}
+.owt-btn{
+  border-radius:12px;
+  padding:10px 14px;
+  font-weight:700;
+  border:none;
+  cursor:pointer;
+  background:#123047;
+  color:#fff;
+}
+.owt-btn.secondary{
+  background:transparent;
+  color:#123047;
+  border:1px solid rgba(0,0,0,0.16);
+}
+.owt-note{
+  font-size:0.72rem;
+  color:#6a8096;
+}
+@media (max-width: 880px){
+  .owt-modal{grid-template-columns:1fr;}
+  .owt-modal-media{min-height:220px;}
+}
+
+
+/* --- Sandbar Sunset Overlay --- */
+.tour-card.sandbar::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:linear-gradient(to top, rgba(0,0,0,0.65), rgba(255,153,51,0.25), rgba(255,204,102,0.15));
+  z-index:1;
+}
+.tour-card.sandbar *{
+  position:relative;
+  z-index:2;
+}
+.sunset-badge{
+  display:inline-block;
+  margin-top:8px;
+  padding:6px 14px;
+  border-radius:999px;
+  background:linear-gradient(90deg,#ff8c42,#ffb347);
+  color:#fff;
+  font-size:0.75rem;
+  font-weight:600;
+  letter-spacing:0.5px;
+}
+
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container nav">
+    <div class="logo-wrap">
+      <div style="width:34px;height:34px;border-radius:10px;background:#0288d1;display:flex;align-items:center;justify-content:center;font-size:18px;color:#fff;">🌊</div>
+      <div class="logo-text">Ocean Wave Tours</div>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="#tours">Tours</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="tours.html">Details</a></li>
+        <li><a href="#contact">Book</a></li>
+      </ul>
+    </nav>
+    <a href="#contact" class="btn-primary">Book Now</a>
+  </div>
+</header>
+
+<!-- GIANT LOGO SECTION -->
+<section class="hero-logo">
+  <div class="container hero-logo-inner">
+    <video src="assets/ocean-wave-logo.mp4" autoplay muted loop playsinline style="width:576px;max-width:90vw;height:auto;border-radius:24px;box-shadow:0 24px 60px rgba(0,0,0,0.25);background:#000;"></video>
+    <h1>Ocean Wave Tours</h1>
+    <p>
+      Fun, social boat tours in Belize — from Shark Ray Alley and reef snorkel days to golden-hour sunset cruises and sandbar party stops.
+    </p>
+  </div>
+</section>
+
+<!-- BELOW-LOGO HERO SUMMARY -->
+<section class="hero-summary" id="top">
+  <div class="container hero-summary-grid">
+    <div>
+      <div class="hero-kicker">Belize • Caye Caulker</div>
+      <h2>Where every wave <span class="hero-highlight">brings a good time.</span></h2>
+      <p>
+        Ocean Wave Tours is your laid-back, high-energy way to explore the Belize Barrier Reef.
+        Small groups, friendly crew, great music and cold drinks – no giant cattle boats here.
+      </p>
+      <div style="display:flex;flex-wrap:wrap;gap:0.8rem;margin-bottom:0.8rem;">
+        <a href="#tours" class="btn-primary">View Tours</a>
+        <a href="#contact" class="btn-ghost">Reserve Your Date</a>
+      </div>
+      <div class="hero-meta">
+        <span>⭐ <strong>5.0</strong> guest-rated experiences</span>
+        <span>🦈 Hol Chan • Shark Ray Alley • Sandbars</span>
+      </div>
+    </div>
+
+    <div>
+      <div class="hero-card">
+        <div class="hero-card-heading">Reef &amp; Sandbar Party Day</div>
+        <div class="hero-card-sub">
+          Snorkel Belize’s famous reef, then anchor at a shallow sandbar for floats, drinks and island tunes.
+        </div>
+        <div class="hero-pill-row">
+          <div class="hero-pill">🦈 Shark Ray Alley stop</div>
+          <div class="hero-pill">🥭 Fresh fruit &amp; snacks</div>
+          <div class="hero-pill">🎵 Bluetooth music on board</div>
+          <div class="hero-pill">🍹 Rum punch included</div>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;font-size:0.8rem;margin-top:0.4rem;">
+          <div>
+            From <strong>$95 USD</strong> per person<br>
+            <span style="opacity:0.9;">Half &amp; full day options</span>
+          </div>
+          <a href="#contact" class="btn-primary" style="padding:0.45rem 0.9rem;font-size:0.8rem;box-shadow:none;">
+            Lock in my spot
+          </a>
+        </div>
+      </div>
+</div>
+  </div>
+</section>
+
+<!-- TOURS SUMMARY -->
+<section id="tours">
+  <div class="container">
+    <h2>Choose Your Ocean Wave Tour</h2>
+    <p class="section-subtitle">
+      Pick your vibe — chill sunset cruise, wildlife day, reef explorer, premium full-day caye adventures, or full-on sandbar party.
+      You can also mix &amp; match with a private charter.
+    </p>
+
+    <div class="tours-grid">
+      <article class="tour-card">
+        <div class="tour-image" style="background-image:url('assets/images/ALL_DAY_SNORKEL_01.JPEG');"></div>
+        <div class="tour-body">
+          <div class="tour-meta-row">
+            <span>⏱ 4–5 hours</span>
+            <span>Easy</span>
+          </div>
+          <div class="tour-title">All Day Snorkel Party</div>
+          <p class="tour-desc">
+            Swim with gentle nurse sharks and rays with a fun crew, music on the boat and guides keeping you safe in the water.
+          </p>
+          <div class="tour-footer">
+            <span class="price-tag">From $85 USD</span>
+            <div style="display:flex; gap:10px; align-items:center; justify-content:flex-end;"><a href="#" class="btn-primary" style="padding:0.35rem 0.8rem; font-size:0.8rem; box-shadow:none;" data-book-tour="All Day Snorkel Party" data-book-img="assets/images/ALL_DAY_SNORKEL_01.JPEG">Book</a><a href="tours.html#shark-ray-alley" class="btn-ghost" style="font-size:0.8rem;padding:0.35rem 0.8rem;">View details</a></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="tour-card">
+        <div class="tour-image" style="background-image:url('assets/images/SPEARFISHING_TOUR_01.JPEG');"></div>
+        <div class="tour-body">
+          <div class="tour-meta-row">
+            <span>⏱ 5 hours</span>
+            <span>Sport</span>
+          </div>
+          <div class="tour-title">Spearfishing Tour</div>
+          <p class="tour-desc">
+            Learn the basics with a local guide and practice responsible reef spearfishing. Includes safety briefing, technique tips, and time on the water.
+          </p>
+          <div class="tour-footer">
+            <span class="price-tag">From $125.50 USD</span>
+            <div style="display:flex; gap:10px; align-items:center; justify-content:flex-end;">
+              <a href="#" class="btn-primary" style="padding:0.35rem 0.8rem; font-size:0.8rem; box-shadow:none;" data-book-tour="Spearfishing Tour" data-book-img="assets/images/SPEARFISHING_TOUR_01.JPEG">Book</a>
+              <a href="tours.html#spearfishing" class="btn-ghost" style="font-size:0.8rem;padding:0.35rem 0.8rem;">View details</a>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="tour-card">
+        <div class="tour-image" style="background-image:url('assets/images/SUNSET_CRUISE_RUM_PUNCH_01.jpg');"></div>
+        <div class="tour-body">
+          <div class="tour-meta-row">
+            <span>⏱ 2.5 hours</span>
+            <span>Evening</span>
+          </div>
+          <div class="tour-title">Sunset Cruise &amp; Rum Punch</div>
+          <p class="tour-desc">
+            Glide along the coast as the sky turns gold with bottomless rum punch and mellow island beats.
+          </p>
+          <div class="tour-footer">
+            <span class="price-tag">From $65 USD</span>
+            <div style="display:flex; gap:10px; align-items:center; justify-content:flex-end;"><a href="#" class="btn-primary" style="padding:0.35rem 0.8rem; font-size:0.8rem; box-shadow:none;" data-book-tour="Sunset Cruise & Rum Punch" data-book-img="assets/images/SUNSET_CRUISE_RUM_PUNCH_01.jpg">Book</a><a href="tours.html#sunset-cruise" class="btn-ghost" style="font-size:0.8rem;padding:0.35rem 0.8rem;">View details</a></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="tour-card">
+        <div class="tour-image" style="background-image:url('assets/images/REEF_EXPLORER_BEACH_BBQ_01.jpg');"></div>
+        <div class="tour-body">
+          <div class="tour-meta-row">
+            <span>⏱ Full day</span>
+            <span>Lunch included</span>
+          </div>
+          <div class="tour-title">Reef Explorer &amp; Beach BBQ</div>
+          <p class="tour-desc">
+            Multiple reef snorkel stops plus a grilled Belizean-style lunch on a quiet beach or sandbar.
+          </p>
+          <div class="tour-footer">
+            <span class="price-tag">From $120 USD</span>
+            <div style="display:flex; gap:10px; align-items:center; justify-content:flex-end;"><a href="#" class="btn-primary" style="padding:0.35rem 0.8rem; font-size:0.8rem; box-shadow:none;" data-book-tour="Reef Explorer & Beach BBQ" data-book-img="assets/images/REEF_EXPLORER_BEACH_BBQ_01.jpg">Book</a><a href="tours.html#reef-explorer" class="btn-ghost" style="font-size:0.8rem;padding:0.35rem 0.8rem;">View details</a></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="tour-card">
+        <div class="tour-image" style="background-image:url('assets/images/PRIVATE_CHARTER_01.PNG');"></div>
+        <div class="tour-body">
+          <div class="tour-meta-row">
+            <span>⏱ Flexible</span>
+            <span>Custom</span>
+          </div>
+          <div class="tour-title">Private Charter – Your Day, Your Way</div>
+          <p class="tour-desc">
+            Book the whole boat and build your own custom route with your captain: reef, sandbar, sunset and more.
+          </p>
+          <div class="tour-footer">
+            <span class="price-tag">Ask for group pricing</span>
+            <div style="display:flex; gap:10px; align-items:center; justify-content:flex-end;"><a href="#" class="btn-primary" style="padding:0.35rem 0.8rem; font-size:0.8rem; box-shadow:none;" data-book-tour="Private Charter – Your Day, Your Way" data-book-img="assets/images/PRIVATE_CHARTER_01.PNG">Book</a><a href="tours.html#private-charter" class="btn-ghost" style="font-size:0.8rem;padding:0.35rem 0.8rem;">View details</a></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="tour-card">
+        <div class="tour-image" style="background-image:url('assets/images/MANATEE_WILDLIFE_ENCOUNTER_01.JPEG');"></div>
+        <div class="tour-body">
+          <div class="tour-meta-row">
+            <span>⏱ 4–6 hours</span>
+            <span>Nature</span>
+          </div>
+          <div class="tour-title">Manatee &amp; Wildlife Encounter</div>
+          <p class="tour-desc">
+            Drift through calm channels and mangroves watching for manatees, dolphins and seabirds with a local guide.
+          </p>
+          <div class="tour-footer">
+            <span class="price-tag">From $99 USD</span>
+            <div style="display:flex; gap:10px; align-items:center; justify-content:flex-end;"><a href="#" class="btn-primary" style="padding:0.35rem 0.8rem; font-size:0.8rem; box-shadow:none;" data-book-tour="Manatee & Wildlife Encounter" data-book-img="assets/images/MANATEE_WILDLIFE_ENCOUNTER_01.JPEG">Book</a><a href="tours.html#manatee" class="btn-ghost" style="font-size:0.8rem;padding:0.35rem 0.8rem;">View details</a></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="tour-card">
+        <div class="tour-image" style="background-image:url('assets/images/SANDBAR_SUNDAY_FUNDAY_01.jpg');"></div>
+        <div class="tour-body">
+          <div class="tour-meta-row">
+            <span>⏱ Half or full day</span>
+            <span>Party vibes</span>
+          </div>
+          <div class="tour-title">Sandbar Sunday Funday</div>
+          <p class="tour-desc">
+            Anchor at a shallow sandbar with floats, games, drinks and music – your own pop-up beach club.
+          </p>
+          <div class="tour-footer">
+            <span class="price-tag">From $89 USD</span>
+            <div style="display:flex; gap:10px; align-items:center; justify-content:flex-end;"><a href="#" class="btn-primary" style="padding:0.35rem 0.8rem; font-size:0.8rem; box-shadow:none;" data-book-tour="Sandbar Sunday Funday" data-book-img="assets/images/SANDBAR_SUNDAY_FUNDAY_01.jpg">Book</a><a href="tours.html#sandbar-sunday" class="btn-ghost" style="font-size:0.8rem;padding:0.35rem 0.8rem;">View details</a></div>
+          </div>
+        </div>
+      </article>
+    
+
+      <article class="tour-card">
+        <div class="tour-image" style="background-image:url('assets/images/GOFFS_CAYE_TOUR_01.JPEG');"></div>
+        <div class="tour-body">
+          <div class="tour-meta-row">
+            <span>⏱ Full day</span>
+            <span>Premium</span>
+          </div>
+          <div class="tour-title">Goff's Caye Premium Day</div>
+          <p class="tour-desc">
+            Premium full-day run for snorkeling, optional fishing, and beach time at Goff’s Caye — lunch included.
+          </p>
+          <div class="tour-footer">
+            <span class="price-tag">From $210 USD</span>
+            <div style="display:flex; gap:10px; align-items:center; justify-content:flex-end;">
+              <a href="#" class="btn-primary" style="padding:0.35rem 0.8rem; font-size:0.8rem; box-shadow:none;"
+                 data-book-tour="Goff's Caye Premium Day" data-book-img="assets/images/GOFFS_CAYE_TOUR_01.JPEG">Book</a>
+              <a href="tours.html#goffs-caye" class="btn-ghost" style="font-size:0.8rem;padding:0.35rem 0.8rem;">View details</a>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="tour-card">
+        <div class="tour-image" style="background-image:url('assets/images/HALF_MOON_CAYE_TOUR_01.JPEG');"></div>
+        <div class="tour-body">
+          <div class="tour-meta-row">
+            <span>⏱ Full day</span>
+            <span>Premium</span>
+          </div>
+          <div class="tour-title">Half Moon Caye Adventure</div>
+          <p class="tour-desc">
+            Premium full-day ride with snorkeling, optional fishing, and beach time at Half Moon Caye — lunch included.
+          </p>
+          <div class="tour-footer">
+            <span class="price-tag">From $210 USD</span>
+            <div style="display:flex; gap:10px; align-items:center; justify-content:flex-end;">
+              <a href="#" class="btn-primary" style="padding:0.35rem 0.8rem; font-size:0.8rem; box-shadow:none;"
+                 data-book-tour="Half Moon Caye Adventure" data-book-img="assets/images/HALF_MOON_CAYE_TOUR_01.JPEG">Book</a>
+              <a href="tours.html#half-moon-caye" class="btn-ghost" style="font-size:0.8rem;padding:0.35rem 0.8rem;">View details</a>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="tour-card">
+        <div class="tour-image" style="background-image:url('assets/images/TURNEFFE_ATOLL_PREMIUM_EXPLORER_01.JPEG');"></div>
+        <div class="tour-body">
+          <div class="tour-meta-row">
+            <span>⏱ Full day</span>
+            <span>Premium</span>
+          </div>
+          <div class="tour-title">Turneffe Atoll Premium Explorer</div>
+          <p class="tour-desc">
+            Premium full-day trip to Turneffe Atoll for snorkeling, optional fishing, and beach time — lunch included.
+          </p>
+          <div class="tour-footer">
+            <span class="price-tag">From $210 USD</span>
+            <div style="display:flex; gap:10px; align-items:center; justify-content:flex-end;">
+              <a href="#" class="btn-primary" style="padding:0.35rem 0.8rem; font-size:0.8rem; box-shadow:none;"
+                 data-book-tour="Turneffe Atoll Premium Explorer" data-book-img="assets/images/TURNEFFE_ATOLL_PREMIUM_EXPLORER_01.JPEG">Book</a>
+              <a href="tours.html#turneffe-atoll" class="btn-ghost" style="font-size:0.8rem;padding:0.35rem 0.8rem;">View details</a>
+            </div>
+          </div>
+        </div>
+      </article>
+
+</div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container about-grid">
+    <div>
+      <h2>Locally Owned. Big on Good Vibes.</h2>
+      <p class="section-subtitle" style="margin-bottom:1.2rem;">
+        Ocean Wave Tours was started by Jorge and a small crew of Belizean captains and guides who grew up on these waters.
+      </p>
+      <p style="font-size:0.9rem;margin-bottom:0.6rem;">
+        We keep things simple: safe boats, friendly crew, good music, cold drinks and unforgettable reef time. No rushed
+        cattle boats – just relaxed island energy and plenty of time to enjoy the day.
+      </p>
+      <p style="font-size:0.9rem;">
+        From first-time snorkelers to seasoned ocean lovers, we match each group with the right tour and pace. You focus
+        on having fun – we’ll handle the rest.
+      </p>
+      <div class="chip-row">
+        <span class="chip">Licensed &amp; insured boat &amp; crew</span>
+        <span class="chip">Snorkel gear &amp; safety briefing included</span>
+        <span class="chip">Small-group trips (no packed boats)</span>
+        <span class="chip">Custom private charters available</span>
+      </div>
+    </div>
+    <div>
+      <div class="hero-card" style="padding:1.1rem 1rem 1rem;">
+        <div class="hero-card-heading">“You arrive as guests, leave as friends.”</div>
+        <div class="hero-card-sub">
+          Ask anyone who’s taken a Blue Tide tour – the boats are fun, but the crew is what makes the day unforgettable.
+        </div>
+        <div style="display:flex;align-items:center;gap:0.7rem;margin-top:0.4rem;">
+          <div style="width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,0.4);display:flex;align-items:center;justify-content:center;font-size:1.4rem;">
+            👨‍✈️
+          </div>
+          <div style="font-size:0.8rem;">
+            <strong>Jorge • Captain &amp; Founder</strong><br>
+            “I grew up on this water. Now I get to show it off every day.”
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ + CONTACT -->
+<section id="contact">
+  <div class="container faq-contact-grid">
+    <div id="faq">
+      <h2>Questions Before You Book?</h2>
+      <p class="section-subtitle" style="margin-bottom:1.4rem;">
+        Here are some of the things guests ask us most often. If you don’t see your question, just message us.
+      </p>
+
+      <div class="faq-item">
+        <div class="faq-q">Do I need to be an experienced swimmer?</div>
+        <div class="faq-a">
+          Not at all. We provide life vests, flotation and a safety briefing. Our guides stay close in the water and
+          can adjust the tour to your comfort level.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">What should I bring on the boat?</div>
+        <div class="faq-a">
+          Swimsuit, towel, reef-safe sunscreen, hat, sunglasses and a waterproof case if you want phone pics. We
+          provide gear, drinks and snacks on many tours.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Can you accommodate private groups and celebrations?</div>
+        <div class="faq-a">
+          Yes! Birthdays, bachelor/bachelorette trips, proposals, family reunions – tell us what you’re celebrating and
+          we’ll help you plan the perfect day.
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="contact-card">
+        <h3>Ready to Ride the Tide?</h3>
+        <p>
+          Share a few details and we’ll confirm availability, pricing and next steps. You can also reach us on WhatsApp
+          for faster replies.
+        </p>
+
+        <div class="contact-info">
+          <div><span class="emoji">📍</span><span>Caye Caulker, Belize</span></div>
+          <div><span class="emoji">📞</span><span>+501 XXX-XXXX</span></div>
+          <div><span class="emoji">💬</span><span>WhatsApp link here</span></div>
+          <div><span class="emoji">✉️</span><span>hello@oceanwavetours.com</span></div>
+        </div>
+
+        <form>
+          <div>
+            <label for="name">Name</label>
+            <input id="name" type="text" placeholder="Your name" required>
+          </div>
+          <div>
+            <label for="email">Email</label>
+            <input id="email" type="email" placeholder="you@example.com" required>
+          </div>
+          <div>
+            <label for="tour">Which tour are you interested in?</label>
+            <input id="tour" type="text" placeholder="Shark Ray Alley, Sunset Cruise, Private Charter..." />
+          </div>
+          <div>
+            <label for="date">Preferred date</label>
+            <input id="date" type="text" placeholder="MM / DD / YYYY" />
+          </div>
+          <div>
+            <label for="message">Tell us about your group</label>
+            <textarea id="message" placeholder="How many people, any special celebration, etc."></textarea>
+          </div>
+          <button type="submit" class="btn-primary" style="justify-content:center;margin-top:0.3rem;">
+            Send inquiry
+          </button>
+        </form>
+
+        <p class="contact-note">
+          *Form is a sample layout — connect it to your booking or email system.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container footer-inner">
+    <div>© <span id="year"></span> Ocean Wave Tours. All rights reserved.</div>
+    <div class="badge-pill">Fun &amp; social Belize boat tours</div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
+
+<!-- Booking Modal -->
+<div class="owt-modal-overlay" id="bookingOverlay" aria-hidden="true">
+  <div class="owt-modal" role="dialog" aria-modal="true" aria-labelledby="bookingTitle">
+    <div class="owt-modal-media" id="bookingMedia" style="background-image:url('assets/images/turneffe_atoll_premium_explorer-01.jpg');"></div>
+    <div class="owt-modal-content">
+      <button class="owt-close" type="button" id="bookingClose" aria-label="Close">✕</button>
+      <div class="owt-modal-title" id="bookingTitle">Tour Booking Form</div>
+
+      <form class="owt-form" id="bookingForm">
+        <input type="hidden" id="tourName" name="tourName" value="">
+
+        <div>
+          <label for="people">How many people are you booking for? *</label>
+          <select id="people" name="people" required>
+            <option value="1">1</option><option value="2">2</option><option value="3">3</option>
+            <option value="4">4</option><option value="5">5</option><option value="6">6</option>
+            <option value="7">7</option><option value="8">8</option><option value="9">9</option>
+            <option value="10+">10+</option>
+          </select>
+        </div>
+
+        <div>
+          <label>Name *</label>
+          <div class="owt-row">
+            <div>
+              <input id="firstName" name="firstName" type="text" placeholder="First Name" required>
+            </div>
+            <div>
+              <input id="lastName" name="lastName" type="text" placeholder="Last Name" required>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <label for="phone">Phone Number</label>
+          <input id="phone" name="phone" type="tel" placeholder="+1 (555) 555-5555">
+        </div>
+
+        <div>
+          <label for="date">Date *</label>
+          <input id="date" name="date" type="date" required>
+          <div class="owt-help">What date are you interested in going on tour?</div>
+        </div>
+
+        <div>
+          <label>Food Options *</label>
+          <div class="owt-row" style="grid-template-columns:1fr 1fr; align-items:center;">
+            <label style="font-weight:600; margin:0; display:flex; gap:8px; align-items:center;">
+              <input type="radio" name="food" value="Regular" required> Regular
+            </label>
+            <label style="font-weight:600; margin:0; display:flex; gap:8px; align-items:center;">
+              <input type="radio" name="food" value="Vegetarian" required> Vegetarian
+            </label>
+          </div>
+        </div>
+
+        <div>
+          <label for="requests">Special Requests</label>
+          <textarea id="requests" name="requests" placeholder="Anything else to note or any special requests? Let us know!"></textarea>
+        </div>
+
+        <div class="owt-check">
+          <input id="confirm" type="checkbox" required style="margin-top:3px;">
+          <label for="confirm" style="margin:0; font-weight:600;">
+            Confirmation *<br>
+            <span style="font-weight:400;">
+              Please be ready 30 minutes before departure. We'll message you to confirm pickup/location details.
+            </span>
+          </label>
+        </div>
+
+        <div class="owt-actions">
+          <button class="owt-btn" type="submit">Send Booking Request</button>
+          <button class="owt-btn secondary" type="button" id="bookingCancel">Cancel</button>
+        </div>
+
+        <div class="owt-note">
+          This form opens an email request (no payment). We’ll reply with availability and next steps.
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+<script>
+(function(){
+  const overlay = document.getElementById('bookingOverlay');
+  const closeBtn = document.getElementById('bookingClose');
+  const cancelBtn = document.getElementById('bookingCancel');
+  const title = document.getElementById('bookingTitle');
+  const tourName = document.getElementById('tourName');
+  const media = document.getElementById('bookingMedia');
+  const form = document.getElementById('bookingForm');
+
+  function openModal(tour, img){
+    title.textContent = tour + " – Booking Form";
+    tourName.value = tour;
+    if(img){ media.style.backgroundImage = `url('${img}')`; }
+    overlay.classList.add('show');
+    overlay.setAttribute('aria-hidden','false');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal(){
+    overlay.classList.remove('show');
+    overlay.setAttribute('aria-hidden','true');
+    document.body.style.overflow = '';
+  }
+
+  document.addEventListener('click', function(e){
+    const btn = e.target.closest('[data-book-tour]');
+    if(btn){
+      e.preventDefault();
+      const tour = btn.getAttribute('data-book-tour');
+      const img = btn.getAttribute('data-book-img');
+      openModal(tour, img);
+    }
+  });
+
+  closeBtn && closeBtn.addEventListener('click', closeModal);
+  cancelBtn && cancelBtn.addEventListener('click', closeModal);
+  overlay && overlay.addEventListener('click', function(e){
+    if(e.target === overlay) closeModal();
+  });
+
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape' && overlay.classList.contains('show')) closeModal();
+  });
+
+  form && form.addEventListener('submit', function(e){
+    e.preventDefault();
+    const data = new FormData(form);
+    const lines = [
+      `Tour: ${data.get('tourName')}`,
+      `People: ${data.get('people')}`,
+      `Name: ${data.get('firstName')} ${data.get('lastName')}`,
+      `Phone: ${data.get('phone') || ''}`,
+      `Date: ${data.get('date')}`,
+      `Food: ${data.get('food')}`,
+      `Special Requests: ${data.get('requests') || ''}`
+    ].join('%0D%0A');
+
+    const subject = encodeURIComponent(`Ocean Wave Tours Booking Request – ${data.get('tourName')}`);
+    const body = lines;
+    // Update this email anytime:
+    const to = 'hello@oceanwavetours.com';
+    window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
+    closeModal();
+    form.reset();
+  });
+
+  // Expose for debugging if needed
+  window.__owtOpen = openModal;
+})();
+</script>
+
+</body>
+</html>
