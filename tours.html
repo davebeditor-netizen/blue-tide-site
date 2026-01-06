@@ -1444,12 +1444,12 @@ Send Booking Request</button>
 </div>
 
 <script>
-(function(){
+window.addEventListener('DOMContentLoaded', function(){
   const overlay = document.getElementById('bookingOverlay');
   const closeBtn = document.getElementById('bookingClose');
   const cancelBtn = document.getElementById('bookingCancel');
   const title = document.getElementById('bookingTitle');
-  const tourName = document.getElementById('tourName');
+  const tourField = document.getElementById('tourName');
   const media = document.getElementById('bookingMedia');
   const form = document.getElementById('bookingForm');
 
@@ -1490,6 +1490,7 @@ Send Booking Request</button>
     // Store tour in hidden field so Formspree emails include which tour was requested
     if(tourField) tourField.value = tour;
 
+    if(!overlay) return;
     overlay.classList.add('show');
     overlay.setAttribute('aria-hidden','false');
     document.body.style.overflow = 'hidden';
@@ -1545,7 +1546,7 @@ Send Booking Request</button>
 
   // Expose for debugging if needed
   window.__owtOpen = openModal;
-})();
+});
 </script>
 
 <script>
