@@ -1037,8 +1037,8 @@
 <div class="contact-info">
 <div><span class="emoji">📍</span><span>Caye Caulker, Belize</span></div>
 <div><span class="emoji">📞</span><span>+501 XXX-XXXX</span></div>
-<div><span class="emoji">💬</span><span>WhatsApp link here</span></div>
-<div><span class="emoji">✉️</span><span>hello@oceanwavetours.com</span></div>
+<div><span class="emoji">💬</span><span><a href="https://wa.me/12067996638" target="_blank">WhatsApp Chat</a></span></div>
+<div><span class="emoji">✉️</span><span>oceanwavebelize@gmail.com</span></div>
 </div>
 <form>
 <div>
@@ -1047,7 +1047,7 @@
 </div>
 <div>
 <label for="email">Email</label>
-<input id="email" placeholder="you@example.com" required="" type="email"/>
+<input id="email" placeholder="oceanwavebelize@gmail.com" required="" type="email"/>
 </div>
 <div>
 <label for="tour">Which tour are you interested in?</label>
@@ -1066,8 +1066,7 @@
           </button>
 </form>
 <p class="contact-note">
-          *Form is a sample layout — connect it to your booking or email system.
-        </p>
+          </p>
 </div>
 </div>
 </div>
@@ -1112,7 +1111,7 @@
 </div>
 <div>
 <label for="phone">Phone Number</label>
-<input id="phone" name="phone" placeholder="+1 (555) 555-5555" type="tel"/>
+<input id="phone" name="phone" placeholder="(206) 799-6638" type="tel"/>
 </div>
 <div>
 <label for="date">Date *</label>
@@ -1214,7 +1213,7 @@
     const subject = encodeURIComponent(`Ocean Wave Tours Booking Request – ${data.get('tourName')}`);
     const body = lines;
     // Update this email anytime:
-    const to = 'hello@oceanwavetours.com';
+    const to = 'oceanwavebelize@gmail.com';
     window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
     closeModal();
     form.reset();
