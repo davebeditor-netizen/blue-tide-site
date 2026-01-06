@@ -583,12 +583,12 @@
           <div>
             <h3>Locations</h3>
             <ul>
-            <li>Hol Chan Marine Reserve</li>
-            <li>Shark Ray Alley</li>
-            <li>Chatos Area</li>
-            <li>Ship Wreck</li>
-            <li>Coral gardens / reef snorkel stop (conditions-based)</li>
-        </ul>
+              <li>Hol Chan Marine Reserve</li>
+              <li>Shark Ray Alley</li>
+              <li>Coral gardens / reef snorkel stop (conditions-based)</li>
+  <li>Chatos Area</li>
+  <li>Ship Wreck</li>
+</ul>
           </div>
           <div>
             <h3>What to expect</h3>
@@ -1197,12 +1197,12 @@
   <section>
     <div class="tour-detail" id="sandbar-sunday">
       <div>
-        <h2>Sandbar Sunday Funday</h2>
+        <h2>Sandbar Special</h2>
         <div class="tour-tagline">
           Your own pop-up beach club in the middle of the sea – floats, games, drinks and good energy.
         </div>
         <div style="display:flex; gap:10px; align-items:center; margin-bottom:10px;">
-          <a href="#" class="btn-primary" data-book-tour="Sandbar Sunday Funday" data-book-img="https://images.pexels.com/photos/165451/pexels-photo-165451.jpeg?auto=compress&cs=tinysrgb&w=1200">Book</a>
+          <a href="#" class="btn-primary" data-book-tour="Sandbar Special" data-book-img="https://images.pexels.com/photos/165451/pexels-photo-165451.jpeg?auto=compress&cs=tinysrgb&w=1200">Book</a>
           <span style="font-size:0.82rem;color:#60748a;">Quick request form (no payment) – we’ll confirm availability.</span>
         </div>
         <div class="tour-meta-row">
@@ -1247,7 +1247,7 @@
         
       </div>
       
-      <div class="side-slider" data-slider="sandbar_sunday_funday" aria-label="Sandbar Sunday Funday photo slider">
+      <div class="side-slider" data-slider="sandbar_sunday_funday" aria-label="Sandbar Special photo slider">
         <div class="slider-track">
           <div class="slide is-active" style="background-image:url('assets/images/SANDBAR_SUNDAY_FUNDAY_01.jpg');"></div>
           <div class="slide" style="background-image:url('assets/images/SANDBAR_SUNDAY_FUNDAY_02.jpg');"></div>
@@ -1364,7 +1364,9 @@
       <button class="owt-close" type="button" id="bookingClose" aria-label="Close">✕</button>
       <div class="owt-modal-title" id="bookingTitle">Tour Booking Form</div>
 
-      <form class="owt-form" id="bookingForm">
+      <form class="owt-form" id="bookingForm" action="https://formspree.io/f/mdakrjnw" method="POST">
+<input type="hidden" name="_subject" value="Ocean Wave Tours – Booking Request"/>
+
         <input type="hidden" id="tourName" name="tourName" value="">
 
         <div>
@@ -1391,7 +1393,7 @@
 
         <div>
           <label for="phone">Phone Number</label>
-          <input id="phone" name="phone" type="tel" placeholder="+1 (555) 555-5555">
+          <input id="phone" name="phone" type="tel" placeholder="">
         </div>
 
         <div>
@@ -1428,7 +1430,8 @@
         </div>
 
         <div class="owt-actions">
-          <button class="owt-btn" type="submit">Send Booking Request</button>
+          <button class="owt-btn" type="submit"><div class="formStatus" style="margin:10px 0;font-size:0.95rem;"></div>
+Send Booking Request</button>
           <button class="owt-btn secondary" type="button" id="bookingCancel">Cancel</button>
         </div>
 
@@ -1450,14 +1453,48 @@
   const media = document.getElementById('bookingMedia');
   const form = document.getElementById('bookingForm');
 
+  function getTourImageFromDetails(tourName){
+    // Try to find the matching tour detail section by its heading text
+    const sections = document.querySelectorAll('.tour-detail');
+    const norm = (s)=> (s||'').toLowerCase().replace(/\s+/g,' ').trim();
+    const target = norm(tourName);
+    for(const sec of sections){
+      const h = sec.querySelector('h2, h3, .tour-title');
+      if(!h) continue;
+      if(norm(h.textContent) !== target) continue;
+
+      // Prefer the first carousel/slider "slide" background-image
+      const slide = sec.querySelector('.carousel .slide, .slider .slide, .tour-carousel .slide, .slides .slide, .slide');
+      if(slide){
+        const style = slide.getAttribute('style') || '';
+        const m = style.match(/background-image:\s*url\(['"]?([^'")]+)['"]?\)/i);
+        if(m && m[1]) return m[1];
+      }
+
+      // Fallback to an <img> inside the gallery if present
+      const imgEl = sec.querySelector('.carousel img, .slider img, img');
+      if(imgEl && imgEl.src) return imgEl.src;
+    }
+    return null;
+  }
+
   function openModal(tour, img){
-    title.textContent = tour + " – Booking Form";
-    tourName.value = tour;
-    if(img){ media.style.backgroundImage = `url('${img}')`; }
+    title.textContent = tour + ' – Booking Form';
+
+    // Always use the matching tour image from the tour details section when possible
+    const resolvedImg = getTourImageFromDetails(tour) || img || '';
+    if(resolvedImg){
+      media.style.backgroundImage = `url('${resolvedImg}')`;
+    }
+
+    // Store tour in hidden field so Formspree emails include which tour was requested
+    if(tourField) tourField.value = tour;
+
     overlay.classList.add('show');
     overlay.setAttribute('aria-hidden','false');
     document.body.style.overflow = 'hidden';
   }
+
   function closeModal(){
     overlay.classList.remove('show');
     overlay.setAttribute('aria-hidden','true');
@@ -1561,6 +1598,41 @@
     document.querySelectorAll('.side-slider[data-slider]').forEach(initSlider);
   });
 })();
+</script>
+
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const forms = Array.from(document.querySelectorAll('form[action="https://formspree.io/f/mdakrjnw"]'));
+  forms.forEach((form) => {
+    form.addEventListener("submit", async function (e) {
+      e.preventDefault();
+      const submitBtn = form.querySelector('button[type="submit"], input[type="submit"]');
+      const statusEl = form.querySelector(".formStatus");
+      const originalText = submitBtn && submitBtn.textContent ? submitBtn.textContent : null;
+      if (statusEl) statusEl.textContent = "";
+      if (submitBtn) { submitBtn.disabled = true; if (submitBtn.textContent) submitBtn.textContent = "Sending…"; }
+      try {
+        const formData = new FormData(form);
+        const res = await fetch(form.action, {
+          method: "POST",
+          headers: { "Accept": "application/json" },
+          body: formData
+        });
+        if (res.ok) {
+          if (statusEl) statusEl.textContent = "Thanks! Your request was sent.";
+          form.reset();
+        } else {
+          if (statusEl) statusEl.textContent = "Sorry — it didn’t send. Please try again or message us on WhatsApp.";
+        }
+      } catch (err) {
+        if (statusEl) statusEl.textContent = "Sorry — it didn’t send. Please try again or message us on WhatsApp.";
+      } finally {
+        if (submitBtn) { submitBtn.disabled = false; if (originalText) submitBtn.textContent = originalText; }
+      }
+    });
+  });
+});
 </script>
 
 </body>
