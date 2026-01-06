@@ -1458,21 +1458,37 @@ window.addEventListener('DOMContentLoaded', function(){
     const sections = document.querySelectorAll('.tour-detail');
     const norm = (s)=> (s||'').toLowerCase().replace(/\s+/g,' ').trim();
     const target = norm(tourName);
+
+    const extractBgUrl = (el) => {
+      if(!el) return null;
+      const style = el.getAttribute('style') || '';
+      const m = style.match(/background-image:\s*url\(['"]?([^'")]+)['"]?\)/i) || style.match(/background-image:\s*url\(([^)]+)\)/i);
+      if(m && m[1]) return m[1].replace(/['"]/g,'').trim();
+      return null;
+    };
+
     for(const sec of sections){
       const h = sec.querySelector('h2, h3, .tour-title');
       if(!h) continue;
       if(norm(h.textContent) !== target) continue;
 
-      // Prefer the first carousel/slider "slide" background-image
-      const slide = sec.querySelector('.carousel .slide, .slider .slide, .tour-carousel .slide, .slides .slide, .slide');
-      if(slide){
-        const style = slide.getAttribute('style') || '';
-        const m = style.match(/background-image:\s*url\(['"]?([^'")]+)['"]?\)/i);
-        if(m && m[1]) return m[1];
-      }
+      // 1) Common layout: right/side image div
+      const side = sec.querySelector('.side-image');
+      const sideUrl = extractBgUrl(side);
+      if(sideUrl) return sideUrl;
 
-      // Fallback to an <img> inside the gallery if present
-      const imgEl = sec.querySelector('.carousel img, .slider img, img');
+      // 2) Carousel/slider "slide" background-image (if used)
+      const slide = sec.querySelector('.carousel .slide, .slider .slide, .tour-carousel .slide, .slides .slide, .slide');
+      const slideUrl = extractBgUrl(slide);
+      if(slideUrl) return slideUrl;
+
+      // 3) Any element inside section with inline background-image
+      const bgEl = sec.querySelector('[style*="background-image"]');
+      const bgUrl = extractBgUrl(bgEl);
+      if(bgUrl) return bgUrl;
+
+      // 4) Fallback to an <img> inside the section
+      const imgEl = sec.querySelector('img');
       if(imgEl && imgEl.src) return imgEl.src;
     }
     return null;
