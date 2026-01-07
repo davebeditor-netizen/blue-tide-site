@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- BUILD STAMP: 2026-01-07 | Simplified booking modal (no Food Options/Confirmation) -->
 
 <html lang="en">
 <head>
@@ -687,6 +688,13 @@
   color:#60748a;
   font-weight:600;
 }
+
+
+/* Mobile modal improvements */
+.owt-modal { position: fixed; inset: 0; }
+.owt-modal-card { max-height: 92vh; overflow: hidden; }
+.owt-modal-content { max-height: 92vh; overflow: hidden; }
+.owt-modal-body { overflow: auto; -webkit-overflow-scrolling: touch; }
 </style>
 </head>
 <body>
@@ -701,10 +709,10 @@
 <li><a href="#tours">Tours</a></li>
 <li><a href="#about">About</a></li>
 <li><a href="tours.html">Details</a></li>
-<li><a href="https://www.oceanwavebelize.com/#contact">Book</a></li>
+<li><a href="#contact">Book</a></li>
 </ul>
 </nav>
-<a class="btn-primary" href="https://www.oceanwavebelize.com/#contact">Book Now</a>
+<a class="btn-primary" href="#contact">Book Now</a>
 </div>
 </header>
 <!-- GIANT LOGO SECTION -->
@@ -783,7 +791,7 @@
           </p>
 <div class="tour-footer">
 <span class="price-tag">From $85 USD</span>
-<div style="display:flex; gap:10px; align-items:center; justify-content:flex-end;"><a class="btn-primary" data-book-img="assets/images/ALL_DAY_SNORKEL_01.JPEG" data-book-tour="All Day Snorkel Adventure" href="https://www.oceanwavebelize.com/#contact" style="padding:0.35rem 0.8rem; font-size:0.8rem; box-shadow:none;">Book</a><a class="btn-ghost" href="tours.html#shark-ray-alley" style="font-size:0.8rem;padding:0.35rem 0.8rem;">View details</a></div>
+<div style="display:flex; gap:10px; align-items:center; justify-content:flex-end;"><a class="btn-primary" data-book-img="assets/images/ALL_DAY_SNORKEL_01.JPEG" data-book-tour="All Day Snorkel Adventure" href="#" style="padding:0.35rem 0.8rem; font-size:0.8rem; box-shadow:none;">Book</a><a class="btn-ghost" href="tours.html#shark-ray-alley" style="font-size:0.8rem;padding:0.35rem 0.8rem;">View details</a></div>
 </div>
 </div>
 </article>
@@ -801,7 +809,7 @@
 <div class="tour-footer">
 <span class="price-tag">From $125.50 USD</span>
 <div style="display:flex; gap:10px; align-items:center; justify-content:flex-end;">
-<a class="btn-primary" data-book-img="assets/images/SPEARFISHING_TOUR_01.JPEG" data-book-tour="Spearfishing Tour" href="https://www.oceanwavebelize.com/#contact" style="padding:0.35rem 0.8rem; font-size:0.8rem; box-shadow:none;">Book</a>
+<a class="btn-primary" data-book-img="assets/images/SPEARFISHING_TOUR_01.JPEG" data-book-tour="Spearfishing Tour" href="#" style="padding:0.35rem 0.8rem; font-size:0.8rem; box-shadow:none;">Book</a>
 <a class="btn-ghost" href="tours.html#spearfishing" style="font-size:0.8rem;padding:0.35rem 0.8rem;">View details</a>
 </div>
 </div>
@@ -820,7 +828,7 @@
           </p>
 <div class="tour-footer">
 <span class="price-tag">From $65 USD</span>
-<div style="display:flex; gap:10px; align-items:center; justify-content:flex-end;"><a class="btn-primary" data-book-img="assets/images/SUNSET_CRUISE_RUM_PUNCH_01.jpg" data-book-tour="Sunset Cruise &amp; Rum Punch" href="https://www.oceanwavebelize.com/#contact" style="padding:0.35rem 0.8rem; font-size:0.8rem; box-shadow:none;">Book</a><a class="btn-ghost" href="tours.html#sunset-cruise" style="font-size:0.8rem;padding:0.35rem 0.8rem;">View details</a></div>
+<div style="display:flex; gap:10px; align-items:center; justify-content:flex-end;"><a class="btn-primary" data-book-img="assets/images/SUNSET_CRUISE_RUM_PUNCH_01.jpg" data-book-tour="Sunset Cruise &amp; Rum Punch" href="#" style="padding:0.35rem 0.8rem; font-size:0.8rem; box-shadow:none;">Book</a><a class="btn-ghost" href="tours.html#sunset-cruise" style="font-size:0.8rem;padding:0.35rem 0.8rem;">View details</a></div>
 </div>
 </div>
 </article>
@@ -837,7 +845,7 @@
           </p>
 <div class="tour-footer">
 <span class="price-tag">From $120 USD</span>
-<div style="display:flex; gap:10px; align-items:center; justify-content:flex-end;"><a class="btn-primary" data-book-img="assets/images/REEF_EXPLORER_BEACH_BBQ_01.jpg" data-book-tour="Reef Explorer &amp; Beach BBQ" href="https://www.oceanwavebelize.com/#contact" style="padding:0.35rem 0.8rem; font-size:0.8rem; box-shadow:none;">Book</a><a class="btn-ghost" href="tours.html#reef-explorer" style="font-size:0.8rem;padding:0.35rem 0.8rem;">View details</a></div>
+<div style="display:flex; gap:10px; align-items:center; justify-content:flex-end;"><a class="btn-primary" data-book-img="assets/images/REEF_EXPLORER_BEACH_BBQ_01.jpg" data-book-tour="Reef Explorer &amp; Beach BBQ" href="#" style="padding:0.35rem 0.8rem; font-size:0.8rem; box-shadow:none;">Book</a><a class="btn-ghost" href="tours.html#reef-explorer" style="font-size:0.8rem;padding:0.35rem 0.8rem;">View details</a></div>
 </div>
 </div>
 </article>
@@ -854,7 +862,7 @@
           </p>
 <div class="tour-footer">
 <span class="price-tag">Ask for group pricing</span>
-<div style="display:flex; gap:10px; align-items:center; justify-content:flex-end;"><a class="btn-primary" data-book-img="assets/images/PRIVATE_CHARTER_01.PNG" data-book-tour="Private Charter – Your Day, Your Way" href="https://www.oceanwavebelize.com/#contact" style="padding:0.35rem 0.8rem; font-size:0.8rem; box-shadow:none;">Book</a><a class="btn-ghost" href="tours.html#private-charter" style="font-size:0.8rem;padding:0.35rem 0.8rem;">View details</a></div>
+<div style="display:flex; gap:10px; align-items:center; justify-content:flex-end;"><a class="btn-primary" data-book-img="assets/images/PRIVATE_CHARTER_01.PNG" data-book-tour="Private Charter – Your Day, Your Way" href="#" style="padding:0.35rem 0.8rem; font-size:0.8rem; box-shadow:none;">Book</a><a class="btn-ghost" href="tours.html#private-charter" style="font-size:0.8rem;padding:0.35rem 0.8rem;">View details</a></div>
 </div>
 </div>
 </article>
@@ -871,7 +879,7 @@
           </p>
 <div class="tour-footer">
 <span class="price-tag">From $99 USD</span>
-<div style="display:flex; gap:10px; align-items:center; justify-content:flex-end;"><a class="btn-primary" data-book-img="assets/images/MANATEE_WILDLIFE_ENCOUNTER_01.JPEG" data-book-tour="Manatee &amp; Wildlife Encounter" href="https://www.oceanwavebelize.com/#contact" style="padding:0.35rem 0.8rem; font-size:0.8rem; box-shadow:none;">Book</a><a class="btn-ghost" href="tours.html#manatee" style="font-size:0.8rem;padding:0.35rem 0.8rem;">View details</a></div>
+<div style="display:flex; gap:10px; align-items:center; justify-content:flex-end;"><a class="btn-primary" data-book-img="assets/images/MANATEE_WILDLIFE_ENCOUNTER_01.JPEG" data-book-tour="Manatee &amp; Wildlife Encounter" href="#" style="padding:0.35rem 0.8rem; font-size:0.8rem; box-shadow:none;">Book</a><a class="btn-ghost" href="tours.html#manatee" style="font-size:0.8rem;padding:0.35rem 0.8rem;">View details</a></div>
 </div>
 </div>
 </article>
@@ -888,7 +896,7 @@
           </p>
 <div class="tour-footer">
 <span class="price-tag">From $89 USD</span>
-<div style="display:flex; gap:10px; align-items:center; justify-content:flex-end;"><a class="btn-primary" data-book-img="assets/images/SANDBAR_SUNDAY_FUNDAY_01.jpg" data-book-tour="Sandbar Special" href="https://www.oceanwavebelize.com/#contact" style="padding:0.35rem 0.8rem; font-size:0.8rem; box-shadow:none;">Book</a><a class="btn-ghost" href="tours.html#sandbar-sunday" style="font-size:0.8rem;padding:0.35rem 0.8rem;">View details</a></div>
+<div style="display:flex; gap:10px; align-items:center; justify-content:flex-end;"><a class="btn-primary" data-book-img="assets/images/SANDBAR_SUNDAY_FUNDAY_01.jpg" data-book-tour="Sandbar Special" href="#" style="padding:0.35rem 0.8rem; font-size:0.8rem; box-shadow:none;">Book</a><a class="btn-ghost" href="tours.html#sandbar-sunday" style="font-size:0.8rem;padding:0.35rem 0.8rem;">View details</a></div>
 </div>
 </div>
 </article>
@@ -906,7 +914,7 @@
 <div class="tour-footer">
 <span class="price-tag">$260 USD</span>
 <div style="display:flex; gap:10px; align-items:center; justify-content:flex-end;">
-<a class="btn-primary" data-book-img="assets/images/GOFFS_CAYE_TOUR_01.JPEG" data-book-tour="Goff's Caye Premium Day" href="https://www.oceanwavebelize.com/#contact" style="padding:0.35rem 0.8rem; font-size:0.8rem; box-shadow:none;">Book</a>
+<a class="btn-primary" data-book-img="assets/images/GOFFS_CAYE_TOUR_01.JPEG" data-book-tour="Goff's Caye Premium Day" href="#" style="padding:0.35rem 0.8rem; font-size:0.8rem; box-shadow:none;">Book</a>
 <a class="btn-ghost" href="tours.html#goffs-caye" style="font-size:0.8rem;padding:0.35rem 0.8rem;">View details</a>
 </div>
 </div>
@@ -926,7 +934,7 @@
 <div class="tour-footer">
 <span class="price-tag">$350 USD</span>
 <div style="display:flex; gap:10px; align-items:center; justify-content:flex-end;">
-<a class="btn-primary" data-book-img="assets/images/HALF_MOON_CAYE_TOUR_01.JPEG" data-book-tour="Half Moon Caye Adventure" href="https://www.oceanwavebelize.com/#contact" style="padding:0.35rem 0.8rem; font-size:0.8rem; box-shadow:none;">Book</a>
+<a class="btn-primary" data-book-img="assets/images/HALF_MOON_CAYE_TOUR_01.JPEG" data-book-tour="Half Moon Caye Adventure" href="#" style="padding:0.35rem 0.8rem; font-size:0.8rem; box-shadow:none;">Book</a>
 <a class="btn-ghost" href="tours.html#half-moon-caye" style="font-size:0.8rem;padding:0.35rem 0.8rem;">View details</a>
 </div>
 </div>
@@ -946,7 +954,7 @@
 <div class="tour-footer">
 <span class="price-tag">$260 USD</span>
 <div style="display:flex; gap:10px; align-items:center; justify-content:flex-end;">
-<a class="btn-primary" data-book-img="assets/images/TURNEFFE_ATOLL_PREMIUM_EXPLORER_01.JPEG" data-book-tour="Turneffe Atoll Premium Explorer" href="https://www.oceanwavebelize.com/#contact" style="padding:0.35rem 0.8rem; font-size:0.8rem; box-shadow:none;">Book</a>
+<a class="btn-primary" data-book-img="assets/images/TURNEFFE_ATOLL_PREMIUM_EXPLORER_01.JPEG" data-book-tour="Turneffe Atoll Premium Explorer" href="#" style="padding:0.35rem 0.8rem; font-size:0.8rem; box-shadow:none;">Book</a>
 <a class="btn-ghost" href="tours.html#turneffe-atoll" style="font-size:0.8rem;padding:0.35rem 0.8rem;">View details</a>
 </div>
 </div>
@@ -1040,14 +1048,14 @@
 <div><span class="emoji">💬</span><span><a href="https://wa.me/12067996638" target="_blank">WhatsApp Chat</a></span></div>
 <div><span class="emoji">✉️</span><span><a href="mailto:oceanwavebelize@gmail.com">oceanwavebelize@gmail.com</a></span></div>
 </div>
-<form id="inquiryForm" action="https://formspree.io/f/mdakrjnw" method="POST">
+<form action="https://formspree.io/f/mdakrjnw" id="inquiryForm" method="POST">
 <div>
 <label for="name">Name</label>
-<input id="name" name="name" placeholder="Your name" required type="text"/>
+<input id="name" name="name" placeholder="Your name" required="" type="text"/>
 </div>
 <div>
 <label for="email">Email</label>
-<input id="email" name="email" placeholder="Your Email" required type="email"/>
+<input id="email" name="email" placeholder="Your Email" required="" type="email"/>
 </div>
 <div>
 <label for="tour">Which tour are you interested in?</label>
@@ -1055,24 +1063,21 @@
 </div>
 <div>
 <label for="date">Preferred date</label>
-<input id="date" name="preferred_date"  type="date"/>
+<input id="date" name="preferred_date" placeholder="MM / DD / YYYY" type="text"/>
 </div>
 <div>
 <label for="message">Tell us about your group</label>
 <textarea id="message" name="message" placeholder="How many people, any special celebration, etc."></textarea>
 </div>
-
 <!-- Optional: customize subject line in your inbox -->
-<input type="hidden" name="_subject" value="Ocean Wave Tours – New Inquiry" />
-
+<input name="_subject" type="hidden" value="Ocean Wave Tours – New Inquiry"/>
 <button class="btn-primary" style="justify-content:center;margin-top:0.3rem;" type="submit">
   Send Inquiry
 </button>
-
 <div id="formStatus" style="margin-top:10px;font-size:0.95rem;"></div>
 </form>
 <p class="contact-note">
-          </p>
+</p>
 </div>
 </div>
 </div>
@@ -1124,34 +1129,16 @@
 <input id="date" name="date" required="" type="date"/>
 <div class="owt-help">What date are you interested in going on tour?</div>
 </div>
-<div>
-<label>Food Options *</label>
-<div class="owt-row" style="grid-template-columns:1fr 1fr; align-items:center;">
-<label style="font-weight:600; margin:0; display:flex; gap:8px; align-items:center;">
-<input name="food" required="" type="radio" value="Regular"/> Regular
-            </label>
-<label style="font-weight:600; margin:0; display:flex; gap:8px; align-items:center;">
-<input name="food" required="" type="radio" value="Vegetarian"/> Vegetarian
-            </label>
-</div>
-</div>
+
 <div>
 <label for="requests">Special Requests</label>
 <textarea id="requests" name="requests" placeholder="Anything else to note or any special requests? Let us know!"></textarea>
-</div>
-<div class="owt-check">
-<input id="confirm" required="" style="margin-top:3px;" type="checkbox"/>
-<label for="confirm" style="margin:0; font-weight:600;">
-            Confirmation *<br/>
-<span style="font-weight:400;">
-              Please be ready 30 minutes before departure. We'll message you to confirm pickup/location details.
-            </span>
-</label>
-</div>
-<div class="owt-actions">
+</div><div class="owt-actions">
 <button class="owt-btn" type="submit">Send Booking Request</button>
 <button class="owt-btn secondary" id="bookingCancel" type="button">Cancel</button>
 </div>
+
+
 <div class="owt-note">
           This form opens an email request (no payment). We’ll reply with availability and next steps.
         </div>
@@ -1229,8 +1216,6 @@
   window.__owtOpen = openModal;
 })();
 </script>
-
-
 <script>
 document.addEventListener("DOMContentLoaded", function () {
   // Silent submit for any Formspree-backed forms on the page
@@ -1275,17 +1260,5 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 </script>
-
-
-<script>
-// Date picker: prevent selecting past dates
-window.addEventListener('DOMContentLoaded', function () {
-  var d = document.querySelector('input[type="date"][name="date"], input[type="date"]#date, input[type="date"][name="preferredDate"]');
-  if (!d) return;
-  var today = new Date();
-  d.min = today.toISOString().split('T')[0];
-});
-</script>
-
 </body>
 </html>
