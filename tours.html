@@ -1364,7 +1364,7 @@
       <button class="owt-close" type="button" id="bookingClose" aria-label="Close">✕</button>
       <div class="owt-modal-title" id="bookingTitle">Tour Booking Form</div>
 
-      <form class="owt-form" id="bookingForm" action="https://formspree.io/f/mdakrjnw" method="POST">
+      <form class="owt-form" id="bookingForm" action="https://formspree.io/f/mdakrjnw" method="POST" target="formspree_hidden_iframe">
 <input type="hidden" name="_subject" value="Ocean Wave Tours – Booking Request"/>
 
         <input type="hidden" id="tourName" name="tourName" value="">
@@ -1420,7 +1420,7 @@
         </div>
 
         <div class="owt-check">
-          <input id="confirm" type="checkbox" required style="margin-top:3px;">
+          <input id="confirm" type="checkbox" name="confirm" required style="margin-top:3px;">
           <label for="confirm" style="margin:0; font-weight:600;">
             Confirmation *<br>
             <span style="font-weight:400;">
@@ -1429,9 +1429,9 @@
           </label>
         </div>
 
-        <div class="formStatus" style="margin:10px 0;font-size:0.95rem;"></div>
         <div class="owt-actions">
-          <button class="owt-btn" type="submit">Send Booking Request</button>
+          <button class="owt-btn" type="submit"><div class="formStatus" style="margin:10px 0;font-size:0.95rem;"></div>
+Send Booking Request</button>
           <button class="owt-btn secondary" type="button" id="bookingCancel">Cancel</button>
         </div>
 
@@ -1538,29 +1538,26 @@ window.addEventListener('DOMContentLoaded', function(){
     if(e.key === 'Escape' && overlay.classList.contains('show')) closeModal();
   });
 
-  form && form.addEventListener('submit', async function(e){
+  form && form.addEventListener('submit', function(e){
     e.preventDefault();
     const data = new FormData(form);
+    const lines = [
+      `Tour: ${data.get('tourName')}`,
+      `People: ${data.get('people')}`,
+      `Name: ${data.get('firstName')} ${data.get('lastName')}`,
+      `Phone: ${data.get('phone') || ''}`,
+      `Date: ${data.get('date')}`,
+      `Food: ${data.get('food')}`,
+      `Special Requests: ${data.get('requests') || ''}`
+    ].join('%0D%0A');
 
-    // Send silently to Formspree (no email app popup)
-    try {
-      const res = await fetch(form.action, {
-        method: 'POST',
-        body: data,
-        headers: { 'Accept': 'application/json' }
-      });
-
-      if(res.ok){
-        // lightweight success message
-        const st = form.querySelector('.formStatus'); if(st){st.textContent='Booking request sent! We\'ll reply with availability and next steps.'; st.style.color='#0a7a2f';}
-        closeModal();
-        form.reset();
-      } else {
-        alert('Sorry — your request did not send. Please try again in a moment.');
-      }
-    } catch(err){
-      const st = form.querySelector('.formStatus'); if(st){st.textContent='Network error — please check your connection and try again.'; st.style.color='#b00020';}
-    }
+    const subject = encodeURIComponent(`Ocean Wave Tours Booking Request – ${data.get('tourName')}`);
+    const body = lines;
+    // Update this email anytime:
+    const to = 'hello@oceanwavetours.com';
+    window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
+    closeModal();
+    form.reset();
   });
 
   // Expose for debugging if needed
@@ -1621,36 +1618,38 @@ window.addEventListener('DOMContentLoaded', function(){
 </script>
 
 
+
+
+
+  <!-- Hidden iframe for silent Formspree submissions (no redirect) -->
+  <iframe name="formspree_hidden_iframe" style="display:none;width:0;height:0;border:0;"></iframe>
+
+
 <script>
-document.addEventListener("DOMContentLoaded", function () {
-  const forms = Array.from(document.querySelectorAll('form[action="https://formspree.io/f/mdakrjnw"]'));
-  forms.forEach((form) => {
-    form.addEventListener("submit", async function (e) {
-      e.preventDefault();
-      const submitBtn = form.querySelector('button[type="submit"], input[type="submit"]');
-      const statusEl = form.querySelector(".formStatus");
-      const originalText = submitBtn && submitBtn.textContent ? submitBtn.textContent : null;
-      if (statusEl) statusEl.textContent = "";
-      if (submitBtn) { submitBtn.disabled = true; if (submitBtn.textContent) submitBtn.textContent = "Sending…"; }
-      try {
-        const formData = new FormData(form);
-        const res = await fetch(form.action, {
-          method: "POST",
-          headers: { "Accept": "application/json" },
-          body: formData
-        });
-        if (res.ok) {
-          if (statusEl) statusEl.textContent = "Thanks! Your request was sent.";
-          form.reset();
-        } else {
-          if (statusEl) statusEl.textContent = "Sorry — it didn’t send. Please try again or message us on WhatsApp.";
-        }
-      } catch (err) {
-        if (statusEl) statusEl.textContent = "Sorry — it didn’t send. Please try again or message us on WhatsApp.";
-      } finally {
-        if (submitBtn) { submitBtn.disabled = false; if (originalText) submitBtn.textContent = originalText; }
-      }
-    });
+window.addEventListener('DOMContentLoaded', function(){
+  const form = document.getElementById('bookingForm');
+  if(!form) return;
+
+  form.addEventListener('submit', function(){
+    const btn = form.querySelector('button[type="submit"], input[type="submit"]');
+    const status = form.querySelector('.formStatus');
+    if(btn){ btn.disabled = true; if(btn.textContent) btn.textContent = 'Sending…'; }
+    if(status){ status.textContent = 'Sending…'; }
+
+    // We can't read the Formspree response in an iframe (cross-origin),
+    // so we show an optimistic confirmation after a short delay.
+    setTimeout(function(){
+      if(status){ status.textContent = "Request sent! We'll email you back soon."; }
+      if(btn){ btn.disabled = false; if(btn.textContent) btn.textContent = 'Send Booking Request'; }
+      // Optional: reset fields except the hidden tourName/subject
+      try{
+        const keepTour = form.querySelector('#tourName')?.value || '';
+        const keepSubject = form.querySelector('input[name="_subject"]')?.value || '';
+        form.reset();
+        const tf = form.querySelector('#tourName'); if(tf) tf.value = keepTour;
+        const sf = form.querySelector('input[name="_subject"]'); if(sf) sf.value = keepSubject;
+      }catch(e){}
+    }, 900);
   });
 });
 </script>
