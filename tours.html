@@ -1326,7 +1326,7 @@
 <textarea id="requests" name="requests" placeholder="Anything else to note or any special requests? Let us know!"></textarea>
 </div>
 <div class="owt-check">
-<input id="confirm" name="confirm" required="" style="margin-top:3px;" type="checkbox"/>
+<input id="confirm" name="confirm" required="" style="margin-top:3px;" type="checkbox" name="confirm"/ required>
 <label for="confirm" style="margin:0; font-weight:600;">
             Confirmation *<br/>
 <span style="font-weight:400;">
@@ -1335,12 +1335,12 @@
 </label>
 </div>
 <div class="owt-actions">
-<button class="owt-btn" type="submit"><div class="formStatus" style="margin:10px 0;font-size:0.95rem;"></div>
-Send Booking Request</button>
+<button class="owt-btn" type="submit">Send Booking Request</button>
+<div class="formStatus" aria-live="polite" style="margin:10px 0;font-size:0.95rem;"></div>
 <button class="owt-btn secondary" id="bookingCancel" type="button">Cancel</button>
 </div>
 <div class="owt-note">
-          This form opens an email request (no payment). We’ll reply with availability and next steps.
+          No payment online yet. This sends a booking request to our inbox. We’ll reply with availability and next steps.
         </div>
 </form>
 </div>
@@ -1397,7 +1397,7 @@ Send Booking Request</button>
   });
 })();
 </script>
-<iframe name="formspree_hidden_iframe" style="display:none;width:0;height:0;border:0;"></iframe>
+<iframe id="formspree_hidden_iframe" name="formspree_hidden_iframe" style="display:none;width:0;height:0;border:0;"></iframe>
 <script>
 window.addEventListener('DOMContentLoaded', function(){
   const form = document.getElementById('bookingForm');
@@ -1423,5 +1423,54 @@ window.addEventListener('DOMContentLoaded', function(){
   });
 });
 </script>
+
+<script>
+window.addEventListener('DOMContentLoaded', function() {
+  const form = document.getElementById('bookingForm');
+  const iframe = document.getElementById('formspree_hidden_iframe');
+  if (!form || !iframe) return;
+
+  const getStatusEl = () => form.querySelector('.formStatus');
+  const getSubmitBtn = () => form.querySelector('button[type="submit"], input[type="submit"]');
+
+  let pending = false;
+
+  form.addEventListener('submit', function() {
+    // Browser will block submit if required fields (like Confirmation) are not completed.
+    pending = true;
+    const statusEl = getStatusEl();
+    const btn = getSubmitBtn();
+    if (statusEl) statusEl.textContent = 'Sending…';
+    if (btn) {
+      btn.disabled = true;
+      if (btn.tagName.toLowerCase() === 'button') btn.textContent = 'Sending…';
+    }
+  });
+
+  iframe.addEventListener('load', function() {
+    if (!pending) return;
+    pending = false;
+
+    const statusEl = getStatusEl();
+    const btn = getSubmitBtn();
+
+    if (statusEl) statusEl.textContent = "Request sent! We'll email you back soon.";
+    if (btn) {
+      btn.disabled = false;
+      if (btn.tagName.toLowerCase() === 'button') btn.textContent = 'Send Booking Request';
+    }
+
+    // Reset visible fields (keep hidden tourName/subject if present)
+    try {
+      const keepTour = form.querySelector('#tourName')?.value || '';
+      const keepSubject = form.querySelector('input[name="_subject"]')?.value || '';
+      form.reset();
+      const tf = form.querySelector('#tourName'); if (tf) tf.value = keepTour;
+      const sf = form.querySelector('input[name="_subject"]'); if (sf) sf.value = keepSubject;
+    } catch (e) {}
+  });
+});
+</script>
+
 </body>
 </html>
