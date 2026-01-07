@@ -1420,7 +1420,7 @@
         </div>
 
         <div class="owt-check">
-          <input id="confirm" type="checkbox" name="confirm" required style="margin-top:3px;">
+          <input id="confirm" type="checkbox" name="confirm" required style="margin-top:3px;" required>
           <label for="confirm" style="margin:0; font-weight:600;">
             Confirmation *<br>
             <span style="font-weight:400;">
@@ -1555,7 +1555,7 @@ window.addEventListener('DOMContentLoaded', function(){
     const body = lines;
     // Update this email anytime:
     const to = 'hello@oceanwavetours.com';
-    window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
+    // mailto removed (using Formspree POST)
     closeModal();
     form.reset();
   });
@@ -1618,37 +1618,64 @@ window.addEventListener('DOMContentLoaded', function(){
 </script>
 
 
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const forms = Array.from(document.querySelectorAll('form[action="https://formspree.io/f/mdakrjnw"]'));
+  forms.forEach((form) => {
+    form.addEventListener("submit", async function (e) {
+      e.preventDefault();
+      const submitBtn = form.querySelector('button[type="submit"], input[type="submit"]');
+      const statusEl = form.querySelector(".formStatus");
+      const originalText = submitBtn && submitBtn.textContent ? submitBtn.textContent : null;
+      if (statusEl) statusEl.textContent = "";
+      if (submitBtn) { submitBtn.disabled = true; if (submitBtn.textContent) submitBtn.textContent = "Sending…"; }
+      try {
+        const formData = new FormData(form);
+        const res = await fetch(form.action, {
+          method: "POST",
+          headers: { "Accept": "application/json" },
+          body: formData
+        });
+        if (res.ok) {
+          if (statusEl) statusEl.textContent = "Thanks! Your request was sent.";
+          form.reset();
+        } else {
+          if (statusEl) statusEl.textContent = "Sorry — it didn’t send. Please try again or message us on WhatsApp.";
+        }
+      } catch (err) {
+        if (statusEl) statusEl.textContent = "Sorry — it didn’t send. Please try again or message us on WhatsApp.";
+      } finally {
+        if (submitBtn) { submitBtn.disabled = false; if (originalText) submitBtn.textContent = originalText; }
+      }
+    });
+  });
+});
+</script>
 
 
-
-  <!-- Hidden iframe for silent Formspree submissions (no redirect) -->
   <iframe name="formspree_hidden_iframe" style="display:none;width:0;height:0;border:0;"></iframe>
-
 
 <script>
 window.addEventListener('DOMContentLoaded', function(){
   const form = document.getElementById('bookingForm');
   if(!form) return;
+  const status = form.querySelector('.formStatus');
+  const submitBtn = form.querySelector('button[type="submit"], input[type="submit"]');
 
   form.addEventListener('submit', function(){
-    const btn = form.querySelector('button[type="submit"], input[type="submit"]');
-    const status = form.querySelector('.formStatus');
-    if(btn){ btn.disabled = true; if(btn.textContent) btn.textContent = 'Sending…'; }
-    if(status){ status.textContent = 'Sending…'; }
+    if(submitBtn){
+      submitBtn.disabled = true;
+      if(submitBtn.tagName.toLowerCase() === 'button') submitBtn.textContent = 'Sending…';
+    }
+    if(status) status.textContent = 'Sending…';
 
-    // We can't read the Formspree response in an iframe (cross-origin),
-    // so we show an optimistic confirmation after a short delay.
+    // optimistic message (cannot read iframe response due to cross-origin)
     setTimeout(function(){
-      if(status){ status.textContent = "Request sent! We'll email you back soon."; }
-      if(btn){ btn.disabled = false; if(btn.textContent) btn.textContent = 'Send Booking Request'; }
-      // Optional: reset fields except the hidden tourName/subject
-      try{
-        const keepTour = form.querySelector('#tourName')?.value || '';
-        const keepSubject = form.querySelector('input[name="_subject"]')?.value || '';
-        form.reset();
-        const tf = form.querySelector('#tourName'); if(tf) tf.value = keepTour;
-        const sf = form.querySelector('input[name="_subject"]'); if(sf) sf.value = keepSubject;
-      }catch(e){}
+      if(status) status.textContent = "Request sent! We'll email you back soon.";
+      if(submitBtn){
+        submitBtn.disabled = false;
+        if(submitBtn.tagName.toLowerCase() === 'button') submitBtn.textContent = 'Send Booking Request';
+      }
     }, 900);
   });
 });
