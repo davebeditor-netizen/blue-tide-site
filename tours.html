@@ -1352,375 +1352,91 @@
     <div>Fun &amp; social Belize boat tours.</div>
   </div>
 </footer>
-<script>
-  document.getElementById("year").textContent = new Date().getFullYear();
-</script>
-
-<!-- Booking Modal -->
-<div class="owt-modal-overlay" id="bookingOverlay" aria-hidden="true">
-  <div class="owt-modal" role="dialog" aria-modal="true" aria-labelledby="bookingTitle">
-    <div class="owt-modal-media" id="bookingMedia" style="background-image:url('https://images.pexels.com/photos/3861488/pexels-photo-3861488.jpeg?auto=compress&cs=tinysrgb&w=1200');"></div>
-    <div class="owt-modal-content">
-      <button class="owt-close" type="button" id="bookingClose" aria-label="Close">✕</button>
-      <div class="owt-modal-title" id="bookingTitle">Tour Booking Form</div>
-
-      <form class="owt-form" id="bookingForm" action="https://formspree.io/f/mdakrjnw" method="POST">
-<input type="hidden" name="_subject" value="Ocean Wave Tours – Booking Request"/>
-
-        <input type="hidden" id="tourName" name="tourName" value="">
-
-        <div>
-          <label for="people">How many people are you booking for? *</label>
-          <select id="people" name="people" required>
-            <option value="1">1</option><option value="2">2</option><option value="3">3</option>
-            <option value="4">4</option><option value="5">5</option><option value="6">6</option>
-            <option value="7">7</option><option value="8">8</option><option value="9">9</option>
-            <option value="10+">10+</option>
-          </select>
-        </div>
-
-        <div>
-          <label>Name *</label>
-          <div class="owt-row">
-            <div>
-              <input id="firstName" name="firstName" type="text" placeholder="First Name" required>
-            </div>
-            <div>
-              <input id="lastName" name="lastName" type="text" placeholder="Last Name" required>
-            </div>
-          </div>
-      <div class="owt-field">
-        <label for="bookingEmail">Email *</label>
-        <input id="bookingEmail" name="email" type="email" placeholder="you@example.com" required />
-      </div>
-
-        </div>
-
-        <div>
-          <label for="phone">Phone Number</label>
-          <input id="phone" name="phone" type="tel" placeholder="">
-        </div>
-
-        <div>
-          <label for="date">Date *</label>
-          <input id="date" name="date" type="date" required>
-          <div class="owt-help">What date are you interested in going on tour?</div>
-        </div>
-
-        <div>
-          <label>Food Options *</label>
-          <div class="owt-row" style="grid-template-columns:1fr 1fr; align-items:center;">
-            <label style="font-weight:600; margin:0; display:flex; gap:8px; align-items:center;">
-              <input type="radio" name="food" value="Regular" required> Regular
-            </label>
-            <label style="font-weight:600; margin:0; display:flex; gap:8px; align-items:center;">
-              <input type="radio" name="food" value="Vegetarian" required> Vegetarian
-            </label>
-          </div>
-        </div>
-
-        <div>
-          <label for="requests">Special Requests</label>
-          <textarea id="requests" name="requests" placeholder="Anything else to note or any special requests? Let us know!"></textarea>
-        </div>
-
-        <div class="owt-check">
-          <input id="confirm" type="checkbox" required style="margin-top:3px;" required>
-          <label for="confirm" style="margin:0; font-weight:600;">
-            Confirmation *<br>
-            <span style="font-weight:400;">
-              Please be ready 30 minutes before departure. We'll message you to confirm pickup/location details.
-            </span>
-          </label>
-        </div>
-
-        <div class="owt-actions">
-          <button class="owt-btn" type="submit">Send Booking Request</button>
-          <button class="owt-btn secondary" type="button" id="bookingCancel">Cancel</button>
-        </div>
-
-        <div class="formStatus" aria-live="polite" style="margin:10px 0;font-size:0.95rem;"></div>
-
-        <div class="owt-note">
-          This form opens an email request (no payment). We’ll reply with availability and next steps.
-        </div>
-      
-<div id="bookingStatus" class="formStatus" aria-live="polite" style="margin-top:12px;font-size:0.95rem;"></div>
-</form>
-    </div>
-  </div>
-</div>
-
-<script>
-window.addEventListener('DOMContentLoaded', function(){
-  const overlay = document.getElementById('bookingOverlay');
-  const closeBtn = document.getElementById('bookingClose');
-  const cancelBtn = document.getElementById('bookingCancel');
-  const title = document.getElementById('bookingTitle');
-  const tourField = document.getElementById('tourName');
-  const media = document.getElementById('bookingMedia');
-  const form = document.getElementById('bookingForm');
-
-  function getTourImageFromDetails(tourName){
-    // Try to find the matching tour detail section by its heading text
-    const sections = document.querySelectorAll('.tour-detail');
-    const norm = (s)=> (s||'').toLowerCase().replace(/\s+/g,' ').trim();
-    const target = norm(tourName);
-
-    const extractBgUrl = (el) => {
-      if (!el) return null;
-      // Try inline style first
-      const style = (el.getAttribute('style') || '').toString();
-      const m1 = style.match(/background-image\s*:\s*url\((['"]?)([^'")]+)\1\)/i);
-      if (m1 && m1[2]) return m1[2].trim();
-      // Try computed style fallback
-      try {
-        const bg = window.getComputedStyle(el).backgroundImage || '';
-        const m2 = bg.match(/url\((['"]?)([^'")]+)\1\)/i);
-        if (m2 && m2[2]) return m2[2].trim();
-      } catch (e) {}
-      return null;
-    };
-
-    for(const sec of sections){
-      const h = sec.querySelector('h2, h3, .tour-title');
-      if(!h) continue;
-      if(norm(h.textContent) !== target) continue;
-
-      // 1) Common layout: right/side image div
-      const side = sec.querySelector('.side-image');
-      const sideUrl = extractBgUrl(side);
-      if(sideUrl) return sideUrl;
-
-      // 2) Carousel/slider "slide" background-image (if used)
-      const slide = sec.querySelector('.carousel .slide, .slider .slide, .tour-carousel .slide, .slides .slide, .slide');
-      const slideUrl = extractBgUrl(slide);
-      if(slideUrl) return slideUrl;
-
-      // 3) Any element inside section with inline background-image
-      const bgEl = sec.querySelector('[style*="background-image"]');
-      const bgUrl = extractBgUrl(bgEl);
-      if(bgUrl) return bgUrl;
-
-      // 4) Fallback to an <img> inside the section
-      const imgEl = sec.querySelector('img');
-      if(imgEl && imgEl.src) return imgEl.src;
-    }
-    return null;
-  }
-
-  function openModal(tour, img){
-    title.textContent = tour + ' – Booking Form';
-
-    // Always use the matching tour image from the tour details section when possible
-    const resolvedImg = getTourImageFromDetails(tour) || img || '';
-    if(resolvedImg){
-      media.style.backgroundImage = `url('${resolvedImg}')`;
-    }
-
-    // Store tour in hidden field so Formspree emails include which tour was requested
-    if(tourField) tourField.value = tour;
-
-    if(!overlay) return;
-    overlay.classList.add('show');
-    overlay.setAttribute('aria-hidden','false');
-    document.body.style.overflow = 'hidden';
-  }
-
-  function closeModal(){
-    overlay.classList.remove('show');
-    overlay.setAttribute('aria-hidden','true');
-    document.body.style.overflow = '';
-  }
-
-  document.addEventListener('click', function(e){
-    const btn = e.target.closest('[data-book-tour]');
-    if(btn){
-      e.preventDefault();
-      const tour = btn.getAttribute('data-book-tour');
-      const img = btn.getAttribute('data-book-img');
-      openModal(tour, img);
-    }
-  });
-
-  closeBtn && closeBtn.addEventListener('click', closeModal);
-  cancelBtn && cancelBtn.addEventListener('click', closeModal);
-  overlay && overlay.addEventListener('click', function(e){
-    if(e.target === overlay) closeModal();
-  });
-
-  document.addEventListener('keydown', function(e){
-    if(e.key === 'Escape' && overlay.classList.contains('show')) closeModal();
-  });
-
-  form && form.addEventListener('submit', function(e){
-    e.preventDefault();
-    const data = new FormData(form);
-    const lines = [
-      `Tour: ${data.get('tourName')}`,
-      `People: ${data.get('people')}`,
-      `Name: ${data.get('firstName')} ${data.get('lastName')}`,
-      `Phone: ${data.get('phone') || ''}`,
-      `Date: ${data.get('date')}`,
-      `Food: ${data.get('food')}`,
-      `Special Requests: ${data.get('requests') || ''}`
-    ].join('%0D%0A');
-
-    const subject = encodeURIComponent(`Ocean Wave Tours Booking Request – ${data.get('tourName')}`);
-    const body = lines;
-    // Update this email anytime:
-    const to = 'hello@oceanwavetours.com';
-    window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
-    closeModal();
-    form.reset();
-  });
-
-  // Expose for debugging if needed
-  window.__owtOpen = openModal;
-});
-</script>
+<iframe id="formspree_hidden_iframe" name="formspree_hidden_iframe" style="display:none;width:0;height:0;border:0;"></iframe>
 
 <script>
 (function(){
-  function initSlider(root){
-    const slides = Array.from(root.querySelectorAll('.slide'));
-    const dots = Array.from(root.querySelectorAll('.dot'));
-    const btnPrev = root.querySelector('.slider-btn.prev');
-    const btnNext = root.querySelector('.slider-btn.next');
-    if(!slides.length) return;
-
-    let index = 0;
-    let timer = null;
-
-    function setActive(i){
-      index = (i + slides.length) % slides.length;
-      slides.forEach((s, n) => s.classList.toggle('is-active', n === index));
-      dots.forEach((d, n) => {
-        const active = n === index;
-        d.classList.toggle('is-active', active);
-        d.setAttribute('aria-selected', active ? 'true' : 'false');
-      });
-    }
-
-    function next(){ setActive(index + 1); }
-    function prev(){ setActive(index - 1); }
-
-    function start(){
-      stop();
-      timer = setInterval(next, 4500);
-    }
-    function stop(){
-      if(timer) clearInterval(timer);
-      timer = null;
-    }
-
-    if(btnNext) btnNext.addEventListener('click', function(){ next(); start(); });
-    if(btnPrev) btnPrev.addEventListener('click', function(){ prev(); start(); });
-
-    dots.forEach((d, n) => d.addEventListener('click', function(){ setActive(n); start(); }));
-
-    root.addEventListener('mouseenter', stop);
-    root.addEventListener('mouseleave', start);
-
-    setActive(0);
-    start();
+  const ENDPOINT = "https://formspree.io/f/mdakrjnw";
+  function setStatus(form, msg, isError){
+    const el = form.querySelector('.formStatus');
+    if(!el) return;
+    el.textContent = msg;
+    el.style.color = isError ? '#b91c1c' : '#1f2937';
   }
 
-  document.addEventListener('DOMContentLoaded', function(){
-    document.querySelectorAll('.side-slider[data-slider]').forEach(initSlider);
-  });
-})();
-</script>
-
-
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-  const forms = Array.from(document.querySelectorAll('form[action="https://formspree.io/f/mdakrjnw"]'));
-  forms.forEach((form) => {
-    form.addEventListener("submit", async function (e) {
-      e.preventDefault();
-      const submitBtn = form.querySelector('button[type="submit"], input[type="submit"]');
-      const statusEl = form.querySelector(".formStatus");
-      const originalText = submitBtn && submitBtn.textContent ? submitBtn.textContent : null;
-      if (statusEl) statusEl.textContent = "";
-      if (submitBtn) { submitBtn.disabled = true; if (submitBtn.textContent) submitBtn.textContent = "Sending…"; }
-      try {
-        const formData = new FormData(form);
-        const res = await fetch(form.action, {
-          method: "POST",
-          headers: { "Accept": "application/json" },
-          body: formData
-        });
-        if (res.ok) {
-          if (statusEl) statusEl.textContent = "Thanks! Your request was sent.";
-          form.reset();
-        } else {
-          if (statusEl) statusEl.textContent = "Sorry — it didn’t send. Please try again or message us on WhatsApp.";
-        }
-      } catch (err) {
-        if (statusEl) statusEl.textContent = "Sorry — it didn’t send. Please try again or message us on WhatsApp.";
-      } finally {
-        if (submitBtn) { submitBtn.disabled = false; if (originalText) submitBtn.textContent = originalText; }
-      }
-    });
-  });
-});
-</script>
-
-
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-  const form = document.getElementById("bookingForm");
-  if (!form) return;
-
-  const statusEl = document.getElementById("bookingStatus") || form.querySelector(".formStatus");
-  const submitBtn = form.querySelector('button[type="submit"], input[type="submit"]');
-
-  form.addEventListener("submit", async function (e) {
-    e.preventDefault();
-
-    if (!form.checkValidity()) {
-      form.reportValidity();
-      return;
+  async function submitToFormspree(form){
+    const btn = form.querySelector('button[type="submit"], input[type="submit"]');
+    if(btn) {
+      btn.disabled = true;
+      if(btn.tagName.toLowerCase() === 'button') btn.textContent = 'Sending…';
     }
+    setStatus(form, 'Sending…', false);
 
-    if (statusEl) statusEl.textContent = "";
-    if (submitBtn && submitBtn.tagName.toLowerCase() === "button") {
-      submitBtn.disabled = true;
-      submitBtn.textContent = "Sending…";
-    } else if (submitBtn) {
-      submitBtn.disabled = true;
-    }
+    // Ensure endpoint is correct
+    form.setAttribute('action', ENDPOINT);
+    form.setAttribute('method', 'POST');
 
-    const keepTour = form.querySelector("#tourName") ? form.querySelector("#tourName").value : "";
+    const fd = new FormData(form);
+    // Helpful metadata for inbox
+    if(!fd.get('_subject')) fd.set('_subject', 'Ocean Wave Tours – Booking Request');
+    fd.set('_format', 'plain');
 
     try {
-      const res = await fetch("https://formspree.io/f/mdakrjnw", {
-        method: "POST",
-        body: new FormData(form),
-        headers: { "Accept": "application/json" }
+      const res = await fetch(ENDPOINT, {
+        method: 'POST',
+        headers: { 'Accept': 'application/json' },
+        body: fd
       });
-
-      if (res.ok) {
-        if (statusEl) statusEl.textContent = "Request sent! We’ll email you back soon.";
-        form.reset();
-        const tn = form.querySelector("#tourName");
-        if (tn) tn.value = keepTour;
+      const ok = res && res.ok;
+      if(ok) {
+        setStatus(form, "Request sent! We'll email you back soon.", false);
+        try {
+          // keep any hidden tour field if present
+          const keepTour = form.querySelector('[name="tour"], #tourName')?.value || '';
+          form.reset();
+          const tourInput = form.querySelector('[name="tour"], #tourName');
+          if(tourInput) tourInput.value = keepTour;
+        } catch(e){}
       } else {
-        if (statusEl) statusEl.textContent = "Sorry — it didn’t send. Please try again or message us on WhatsApp.";
+        // Try to parse error for debug
+        let detail = '';
+        try {
+          const data = await res.json();
+          if(data && data.error) detail = ' (' + data.error + ')';
+        } catch(e){}
+        throw new Error('Formspree returned ' + (res ? res.status : 'no response') + detail);
       }
-    } catch (err) {
-      if (statusEl) statusEl.textContent = "Sorry — it didn’t send. Please try again or message us on WhatsApp.";
+    } catch(err) {
+      // Fallback: iframe submit (silent, no redirect)
+      try {
+        form.setAttribute('target', 'formspree_hidden_iframe');
+        form.submit();
+        setStatus(form, "Request sent! We'll email you back soon.", false);
+      } catch(e) {
+        setStatus(form, "Could not send. Please refresh and try again.", true);
+      }
     } finally {
-      if (submitBtn && submitBtn.tagName.toLowerCase() === "button") {
-        submitBtn.disabled = false;
-        submitBtn.textContent = "Send Booking Request";
-      } else if (submitBtn) {
-        submitBtn.disabled = false;
+      if(btn) {
+        btn.disabled = false;
+        if(btn.tagName.toLowerCase() === 'button') btn.textContent = 'Send Booking Request';
       }
     }
+  }
+
+  window.addEventListener('DOMContentLoaded', function(){
+    const forms = Array.from(document.querySelectorAll('form.bookingForm'));
+    forms.forEach(form => {
+      // prevent duplicate bindings
+      if(form.__owt_bound) return;
+      form.__owt_bound = true;
+
+      form.addEventListener('submit', function(e){
+        e.preventDefault();
+        submitToFormspree(form);
+      });
+    });
   });
-});
+})();
 </script>
 
 </body>
