@@ -1429,9 +1429,9 @@
           </label>
         </div>
 
+        <div class="formStatus" style="margin:10px 0;font-size:0.95rem;"></div>
         <div class="owt-actions">
-          <button class="owt-btn" type="submit"><div class="formStatus" style="margin:10px 0;font-size:0.95rem;"></div>
-Send Booking Request</button>
+          <button class="owt-btn" type="submit">Send Booking Request</button>
           <button class="owt-btn secondary" type="button" id="bookingCancel">Cancel</button>
         </div>
 
@@ -1552,14 +1552,14 @@ window.addEventListener('DOMContentLoaded', function(){
 
       if(res.ok){
         // lightweight success message
-        alert('Booking request sent! We'll reply with availability and next steps.');
+        const st = form.querySelector('.formStatus'); if(st){st.textContent='Booking request sent! We\'ll reply with availability and next steps.'; st.style.color='#0a7a2f';}
         closeModal();
         form.reset();
       } else {
         alert('Sorry — your request did not send. Please try again in a moment.');
       }
     } catch(err){
-      alert('Network error — please check your connection and try again.');
+      const st = form.querySelector('.formStatus'); if(st){st.textContent='Network error — please check your connection and try again.'; st.style.color='#b00020';}
     }
   });
 
