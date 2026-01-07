@@ -783,7 +783,7 @@
           </p>
 <div class="tour-footer">
 <span class="price-tag">From $85 USD</span>
-<div style="display:flex; gap:10px; align-items:center; justify-content:flex-end;"><a class="btn-primary" data-book-img="assets/images/ALL_DAY_SNORKEL_01.JPEG" data-book-tour="All Day Snorkel Adventure" href="#" style="padding:0.35rem 0.8rem; font-size:0.8rem; box-shadow:none;">Book</a><a class="btn-ghost" href="tours.html#shark-ray-alley" style="font-size:0.8rem;padding:0.35rem 0.8rem;">View details</a></div>
+<div style="display:flex; gap:10px; align-items:center; justify-content:flex-end;"><a class="btn-primary" data-book-img="assets/images/ALL_DAY_SNORKEL_01.JPEG" data-book-tour="All Day Snorkel Party" href="#" style="padding:0.35rem 0.8rem; font-size:0.8rem; box-shadow:none;">Book</a><a class="btn-ghost" href="tours.html#shark-ray-alley" style="font-size:0.8rem;padding:0.35rem 0.8rem;">View details</a></div>
 </div>
 </div>
 </article>
@@ -1036,7 +1036,7 @@
         </p>
 <div class="contact-info">
 <div><span class="emoji">📍</span><span>Caye Caulker, Belize</span></div>
-<div><span class="emoji">📞 <a href="tel:+12067996638">(206) 799-6638</a></span><span></span></div>
+<div><span class="emoji">📞</span><span>206-799-6638</span></div>
 <div><span class="emoji">💬</span><span><a href="https://wa.me/12067996638" target="_blank">WhatsApp Chat</a></span></div>
 <div><span class="emoji">✉️</span><span><a href="mailto:oceanwavebelize@gmail.com">oceanwavebelize@gmail.com</a></span></div>
 </div>
@@ -1047,7 +1047,7 @@
 </div>
 <div>
 <label for="email">Email</label>
-<input id="email" name="email" placeholder="Your Email" required type="email"/>
+<input id="email" name="email" placeholder="oceanwavebelize@gmail.com" required type="email"/>
 </div>
 <div>
 <label for="tour">Which tour are you interested in?</label>
@@ -1055,7 +1055,7 @@
 </div>
 <div>
 <label for="date">Preferred date</label>
-<input id="date" name="preferred_date" placeholder="MM / DD / YYYY" type="text"/>
+<input id="date" name="preferred_date" type="date" />
 </div>
 <div>
 <label for="message">Tell us about your group</label>
@@ -1117,11 +1117,11 @@
 </div>
 <div>
 <label for="phone">Phone Number</label>
-<input id="phone" name="phone" placeholder="" type="tel"/>
+<input id="phone" name="phone" placeholder="(206) 799-6638" type="tel"/>
 </div>
 <div>
 <label for="date">Date *</label>
-<input id="date" name="date" required="" type="date"/>
+<input id="date" name="date" required="" type="date" />
 <div class="owt-help">What date are you interested in going on tour?</div>
 </div>
 <div>
@@ -1230,49 +1230,54 @@
 })();
 </script>
 
-
 <script>
 document.addEventListener("DOMContentLoaded", function () {
-  // Silent submit for any Formspree-backed forms on the page
-  const forms = Array.from(document.querySelectorAll('form[action="https://formspree.io/f/mdakrjnw"]'));
-  forms.forEach((form) => {
-    form.addEventListener("submit", async function (e) {
-      e.preventDefault();
+  const form = document.getElementById("inquiryForm");
+  if (!form) return;
 
-      const submitBtn = form.querySelector('button[type="submit"], input[type="submit"]');
-      const statusEl = form.querySelector(".formStatus") || form.querySelector("#formStatus");
+  const statusEl = document.getElementById("formStatus");
+  const submitBtn = form.querySelector('button[type="submit"]');
 
-      const originalText = submitBtn && submitBtn.textContent ? submitBtn.textContent : null;
-      if (statusEl) statusEl.textContent = "";
-      if (submitBtn) { submitBtn.disabled = true; if (submitBtn.textContent) submitBtn.textContent = "Sending…"; }
+  form.addEventListener("submit", async function (e) {
+    e.preventDefault();
 
-      try {
-        const formData = new FormData(form);
-        const res = await fetch(form.action, {
-          method: "POST",
-          headers: { "Accept": "application/json" },
-          body: formData
-        });
+    if (statusEl) statusEl.textContent = "";
+    if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = "Sending…"; }
 
-        if (res.ok) {
-          if (statusEl) {
-            statusEl.textContent = "Thanks! Your request was sent.";
-          }
-          form.reset();
-        } else {
-          if (statusEl) {
-            statusEl.textContent = "Sorry — it didn’t send. Please try again or message us on WhatsApp.";
-          }
-        }
-      } catch (err) {
-        if (statusEl) {
-          statusEl.textContent = "Sorry — it didn’t send. Please try again or message us on WhatsApp.";
-        }
-      } finally {
-        if (submitBtn) { submitBtn.disabled = false; if (originalText) submitBtn.textContent = originalText; }
+    try {
+      const formData = new FormData(form);
+      const res = await fetch(form.action, {
+        method: "POST",
+        headers: { "Accept": "application/json" },
+        body: formData
+      });
+
+      if (res.ok) {
+        if (statusEl) statusEl.textContent = "Thanks! Your inquiry was sent.";
+        form.reset();
+      } else {
+        if (statusEl) statusEl.textContent = "Sorry — it didn’t send. Please try again or message us on WhatsApp.";
       }
-    });
+    } catch (err) {
+      if (statusEl) statusEl.textContent = "Sorry — it didn’t send. Please try again or message us on WhatsApp.";
+    } finally {
+      if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = "Send Inquiry"; }
+    }
   });
+});
+</script>
+
+
+<script>
+// Date picker: prevent selecting past dates
+window.addEventListener('DOMContentLoaded', function () {
+  var d = document.querySelector('input[type="date"][name="date"], input[type="date"]#date');
+  if (!d) return;
+  var today = new Date();
+  var yyyy = today.getFullYear();
+  var mm = String(today.getMonth() + 1).padStart(2, '0');
+  var dd = String(today.getDate()).padStart(2, '0');
+  d.min = yyyy + '-' + mm + '-' + dd;
 });
 </script>
 
