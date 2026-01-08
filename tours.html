@@ -1467,13 +1467,14 @@
 <label for="requests">Special Requests</label>
 <textarea id="requests" name="requests" placeholder="Anything else to note or any special requests? Let us know!"></textarea>
 </div><div class="owt-actions">
-<button class="owt-btn" type="submit">Send Booking Request</button>
+<button class="owt-btn" type="submit"><div class="formStatus" style="margin:10px 0;font-size:0.95rem;"></div>
+Send Booking Request</button>
 <button class="owt-btn secondary" id="bookingCancel" type="button">Cancel</button>
 </div>
-<div class="formStatus" id="bookingStatus" style="margin:10px 0;font-size:0.95rem;"></div>
+
 
 <div class="owt-note">
-          This form sends your request to our inbox (no payment). We’ll reply with availability and next steps.
+          This form opens an email request (no payment). We’ll reply with availability and next steps.
         </div>
 </form>
 </div>
@@ -1541,55 +1542,27 @@
     if(e.key === 'Escape' && overlay.classList.contains('show')) closeModal();
   });
 
-  form && form.addEventListener('submit', async function(e){
-  e.preventDefault();
-
-  const submitBtn = form.querySelector('button[type="submit"], input[type="submit"]');
-  const statusEl = form.querySelector('#bookingStatus');
-
-  const originalText = submitBtn && submitBtn.textContent ? submitBtn.textContent : null;
-  if(statusEl) statusEl.textContent = '';
-  if(submitBtn){
-    submitBtn.disabled = true;
-    if(submitBtn.textContent) submitBtn.textContent = 'Sending…';
-  }
-
-  try{
+  form && form.addEventListener('submit', function(e){
+    e.preventDefault();
     const data = new FormData(form);
-
-    const msgLines = [
-      `Tour: ${data.get('tourName') || ''}`,
-      `People: ${data.get('people') || ''}`,
-      `Name: ${(data.get('firstName') || '')} ${(data.get('lastName') || '')}`.trim(),
+    const lines = [
+      `Tour: ${data.get('tourName')}`,
+      `People: ${data.get('people')}`,
+      `Name: ${data.get('firstName')} ${data.get('lastName')}`,
       `Phone: ${data.get('phone') || ''}`,
-      `Date: ${data.get('date') || ''}`,
+      `Date: ${data.get('date')}`,
+      `Food: ${data.get('food')}`,
       `Special Requests: ${data.get('requests') || ''}`
-    ].join('
-');
-    data.set('message', msgLines);
+    ].join('%0D%0A');
 
-    const res = await fetch(form.action, {
-      method: 'POST',
-      headers: { 'Accept': 'application/json' },
-      body: data
-    });
-
-    if(res.ok){
-      if(statusEl) statusEl.textContent = 'Thanks! Your booking request was sent.';
-      form.reset();
-      setTimeout(() => { try{ closeModal(); }catch(e){} }, 900);
-    }else{
-      if(statusEl) statusEl.textContent = 'Sorry — it didn’t send. Please try again or message us on WhatsApp.';
-    }
-  }catch(err){
-    if(statusEl) statusEl.textContent = 'Sorry — it didn’t send. Please try again or message us on WhatsApp.';
-  }finally{
-    if(submitBtn){
-      submitBtn.disabled = false;
-      if(originalText) submitBtn.textContent = originalText;
-    }
-  }
-});
+    const subject = encodeURIComponent(`Ocean Wave Tours Booking Request – ${data.get('tourName')}`);
+    const body = lines;
+    // Update this email anytime:
+    const to = 'hello@oceanwavetours.com';
+    window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
+    closeModal();
+    form.reset();
+  });
 
   // Expose for debugging if needed
   window.__owtOpen = openModal;
