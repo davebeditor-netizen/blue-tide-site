@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- BUILD STAMP: 2026-01-08 11:06:41 UTC | iOS modal scroll hard fix -->
 <!-- BUILD STAMP: 2026-01-08 06:17:44 | iPhone modal: sticky action bar + internal scroll fixes -->
 
 <html lang="en">
@@ -796,6 +797,48 @@
   .owt-modal-form{ padding-bottom: calc(140px + env(safe-area-inset-bottom)); }
 }
 
+
+/* === iOS Modal Scroll/Keyboard Fix (BUILD 2026-01-08 11:06:41 UTC) === */
+.owt-modal-overlay {
+  position: fixed !important;
+  inset: 0 !important;
+  display: none;
+  background: rgba(0,0,0,0.55) !important;
+  z-index: 9999 !important;
+}
+.owt-modal-overlay.is-open, .owt-modal-overlay.open, .owt-modal-overlay.active { display: block !important; }
+/* Make the OVERLAY itself the scroll container (works better on iOS) */
+.owt-modal-content {
+  position: fixed !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  overflow-y: auto !important;
+  -webkit-overflow-scrolling: touch !important;
+  padding: env(safe-area-inset-top) 12px calc(env(safe-area-inset-bottom) + 24px) !important;
+  box-sizing: border-box !important;
+}
+.owt-modal-card {
+  width: 100% !important;
+  max-width: 1100px !important;
+  margin: 0 auto !important;
+  border-radius: 24px !important;
+  overflow: hidden !important;
+  background: #fff !important;
+}
+/* Keep actions visible */
+.owt-form-actions {
+  position: sticky !important;
+  bottom: 0 !important;
+  background: #fff !important;
+  padding: 12px 0 env(safe-area-inset-bottom) !important;
+  border-top: 1px solid rgba(0,0,0,0.06) !important;
+}
+/* Prevent iOS input focus from zooming layout */
+@supports (-webkit-touch-callout: none) {
+  input, select, textarea { font-size: 16px !important; }
+}
+
 </style>
 </head>
 <body>
@@ -1417,5 +1460,100 @@ document.addEventListener("DOMContentLoaded", function () {
 })();
 </script>
 
+<script>
+/* === iOS Modal Scroll/Keyboard Fix (BUILD 2026-01-08 11:06:41 UTC) === */
+(function() {
+  const overlay = document.querySelector('.owt-modal-overlay');
+  const modalContent = document.querySelector('.owt-modal-content');
+  if (!overlay || !modalContent) return;
+
+  let bodyScrollY = 0;
+
+  function lockBody() {
+    bodyScrollY = window.scrollY || 0;
+    document.body.style.position = 'fixed';
+    document.body.style.top = `-${bodyScrollY}px`;
+    document.body.style.left = '0';
+    document.body.style.right = '0';
+    document.body.style.width = '100%';
+  }
+
+  function unlockBody() {
+    const top = document.body.style.top;
+    document.body.style.position = '';
+    document.body.style.top = '';
+    document.body.style.left = '';
+    document.body.style.right = '';
+    document.body.style.width = '';
+    const y = top ? Math.abs(parseInt(top, 10)) : bodyScrollY;
+    window.scrollTo(0, y);
+  }
+
+  function setKeyboardPadding() {
+    // Add bottom padding when the iOS keyboard is open so the sticky button isn't covered.
+    const vv = window.visualViewport;
+    if (!vv) return;
+    const keyboard = Math.max(0, window.innerHeight - vv.height - vv.offsetTop);
+    modalContent.style.paddingBottom = `calc(env(safe-area-inset-bottom) + ${24 + keyboard}px)`;
+  }
+
+  function openModal() {
+    overlay.classList.add('is-open'); overlay.classList.add('open'); overlay.classList.add('active');
+    lockBody();
+    setKeyboardPadding();
+  }
+
+  function closeModal() {
+    overlay.classList.remove('is-open'); overlay.classList.remove('open'); overlay.classList.remove('active');
+    modalContent.style.paddingBottom = '';
+    unlockBody();
+  }
+
+  // Expose hooks used by existing buttons
+  window.__owtOpenBookingModal = openModal;
+  window.__owtCloseBookingModal = closeModal;
+
+  // Close on overlay click (but not inside the card)
+  overlay.addEventListener('click', (e) => {
+    if (e.target === overlay) closeModal();
+  });
+
+  // Close buttons
+  document.querySelectorAll('[data-modal-close], .owt-modal-close, #bookingClose, #modalClose').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      closeModal();
+    });
+  });
+
+  // Focus handling: keep field in view inside modalContent
+  overlay.addEventListener('focusin', (e) => {
+    const el = e.target;
+    if (!el || typeof el.scrollIntoView !== 'function') return;
+    setTimeout(() => {
+      try {
+        el.scrollIntoView({ block: 'center', inline: 'nearest' });
+      } catch (_) {}
+    }, 50);
+  });
+
+  if (window.visualViewport) {
+    window.visualViewport.addEventListener('resize', setKeyboardPadding);
+    window.visualViewport.addEventListener('scroll', setKeyboardPadding);
+  }
+
+  // If your existing code opens/closes the modal, also sync lock/unlock by observing class.
+  const mo = new MutationObserver(() => {
+    if (overlay.classList.contains('is-open')) {
+      // ensure locked
+      if (document.body.style.position !== 'fixed') lockBody();
+      setKeyboardPadding();
+    } else {
+      if (document.body.style.position === 'fixed') unlockBody();
+    }
+  });
+  mo.observe(overlay, { attributes: true, attributeFilter: ['class'] });
+})();
+</script>
 </body>
 </html>
