@@ -1190,9 +1190,9 @@
 <div><span class="emoji">📍</span><span>Caye Caulker, Belize</span></div>
 <div><span class="emoji">📞 <a href="tel:+12067996638">(206) 799-6638</a></span><span></span></div>
 <div><span class="emoji">💬</span><span><a href="https://wa.me/12067996638" target="_blank">WhatsApp Chat</a></span></div>
-<div><span class="emoji">✉️</span><span><a href="mailto:oceanwavebelize@gmail.com">oceanwavebelize@gmail.com</a></span></div>
+<div><span class="emoji">✉️</span><span><a href="#">oceanwavebelize@gmail.com</a></span></div>
 </div>
-<form action="https://formspree.io/f/mdakrjnw" id="inquiryForm" method="POST">
+<form action="https://formspree.io/f/mdakrjnw" id="inquiryForm" method="POST" class="owt-booking-form">
 <div>
 <label for="name">Name</label>
 <input id="name" name="name" placeholder="Your name" required="" type="text"/>
@@ -1278,7 +1278,8 @@
 <label for="requests">Special Requests</label>
 <textarea id="requests" name="requests" placeholder="Anything else to note or any special requests? Let us know!"></textarea>
 </div><div class="owt-actions">
-<button class="owt-btn" type="submit">Send Booking Request</button>
+<button class="owt-btn" type="submit" type="submit">Send Booking Request</button>
+<div class="formStatus" aria-live="polite" style="margin-top:10px;font-size:0.95rem;"></div>
 <button class="owt-btn secondary" id="bookingCancel" type="button">Cancel</button>
 </div>
 
@@ -1368,7 +1369,7 @@
     const subject = encodeURIComponent(`Ocean Wave Tours Booking Request – ${data.get('tourName')}`);
     const body = lines;
     // Update this email anytime:
-    const to = '<a href="mailto:oceanwavebelize@gmail.com">oceanwavebelize@gmail.com</a>';
+    const to = '<a href="#">oceanwavebelize@gmail.com</a>';
     window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
     closeModal();
     form.reset();
@@ -1555,5 +1556,78 @@ document.addEventListener("DOMContentLoaded", function () {
   mo.observe(overlay, { attributes: true, attributeFilter: ['class'] });
 })();
 </script>
+
+<script>
+(function () {
+  const ENDPOINT = "https://formspree.io/f/mdakrjnw";
+  function setStatus(form, msg, isError) {
+    const el = form.querySelector('.formStatus');
+    if (!el) return;
+    el.textContent = msg;
+    el.style.color = isError ? '#b91c1c' : '#1f2937';
+  }
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    const form = e.currentTarget;
+    const btn = form.querySelector('button[type="submit"], input[type="submit"]');
+
+    setStatus(form, 'Sending…', false);
+    if (btn) {
+      btn.disabled = true;
+      if (btn.tagName.toLowerCase() === 'button') btn.textContent = 'Sending…';
+    }
+
+    const fd = new FormData(form);
+    if (!fd.get('_subject')) fd.set('_subject', 'Ocean Wave Tours – Booking Request');
+    fd.set('_format', 'plain');
+
+    try {
+      const res = await fetch(ENDPOINT, {
+        method: 'POST',
+        headers: { 'Accept': 'application/json' },
+        body: fd
+      });
+
+      if (res.ok) {
+        setStatus(form, "✅ Request sent! We'll email you back soon.", false);
+        try {
+          const keepTour = form.querySelector('[name="tour_name"], [name="tour"], #tourName')?.value || '';
+          form.reset();
+          const tourEl = form.querySelector('[name="tour_name"], [name="tour"], #tourName');
+          if (tourEl) tourEl.value = keepTour;
+        } catch (_) {}
+      } else {
+        let msg = '❌ Could not send. Please try again.';
+        try {
+          const data = await res.json();
+          if (data && data.errors && data.errors.length) {
+            msg = '❌ ' + data.errors.map(er => er.message).join(' ');
+          }
+        } catch (_) {}
+        setStatus(form, msg, true);
+      }
+    } catch (err) {
+      setStatus(form, '❌ Network error. Please try again.', true);
+    } finally {
+      if (btn) {
+        btn.disabled = false;
+        if (btn.tagName.toLowerCase() === 'button') btn.textContent = 'Send Booking Request';
+      }
+    }
+  }
+
+  window.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('form.owt-booking-form').forEach(function (form) {
+      if (form.__owtBound) return;
+      form.__owtBound = true;
+      form.setAttribute('action', ENDPOINT);
+      form.setAttribute('method', 'POST');
+      form.addEventListener('submit', handleSubmit);
+    });
+  });
+})();
+</script>
+
 </body>
 </html>

@@ -1430,7 +1430,7 @@
 <div class="owt-modal-content">
 <button aria-label="Close" class="owt-close" id="bookingClose" type="button">✕</button>
 <div class="owt-modal-title" id="bookingTitle">Tour Booking Form</div>
-<form action="https://formspree.io/f/mdakrjnw" class="owt-form" id="bookingForm" method="POST">
+<form action="https://formspree.io/f/mdakrjnw" class="owt-form owt-booking-form" id="bookingForm" method="POST">
 <input name="_subject" type="hidden" value="Ocean Wave Tours – Booking Request"/>
 <input id="tourName" name="tourName" type="hidden" value=""/>
 <div>
@@ -1785,5 +1785,78 @@ document.addEventListener("DOMContentLoaded", function () {
   mo.observe(overlay, { attributes: true, attributeFilter: ['class'] });
 })();
 </script>
+
+<script>
+(function () {
+  const ENDPOINT = "https://formspree.io/f/mdakrjnw";
+  function setStatus(form, msg, isError) {
+    const el = form.querySelector('.formStatus');
+    if (!el) return;
+    el.textContent = msg;
+    el.style.color = isError ? '#b91c1c' : '#1f2937';
+  }
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    const form = e.currentTarget;
+    const btn = form.querySelector('button[type="submit"], input[type="submit"]');
+
+    setStatus(form, 'Sending…', false);
+    if (btn) {
+      btn.disabled = true;
+      if (btn.tagName.toLowerCase() === 'button') btn.textContent = 'Sending…';
+    }
+
+    const fd = new FormData(form);
+    if (!fd.get('_subject')) fd.set('_subject', 'Ocean Wave Tours – Booking Request');
+    fd.set('_format', 'plain');
+
+    try {
+      const res = await fetch(ENDPOINT, {
+        method: 'POST',
+        headers: { 'Accept': 'application/json' },
+        body: fd
+      });
+
+      if (res.ok) {
+        setStatus(form, "✅ Request sent! We'll email you back soon.", false);
+        try {
+          const keepTour = form.querySelector('[name="tour_name"], [name="tour"], #tourName')?.value || '';
+          form.reset();
+          const tourEl = form.querySelector('[name="tour_name"], [name="tour"], #tourName');
+          if (tourEl) tourEl.value = keepTour;
+        } catch (_) {}
+      } else {
+        let msg = '❌ Could not send. Please try again.';
+        try {
+          const data = await res.json();
+          if (data && data.errors && data.errors.length) {
+            msg = '❌ ' + data.errors.map(er => er.message).join(' ');
+          }
+        } catch (_) {}
+        setStatus(form, msg, true);
+      }
+    } catch (err) {
+      setStatus(form, '❌ Network error. Please try again.', true);
+    } finally {
+      if (btn) {
+        btn.disabled = false;
+        if (btn.tagName.toLowerCase() === 'button') btn.textContent = 'Send Booking Request';
+      }
+    }
+  }
+
+  window.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('form.owt-booking-form').forEach(function (form) {
+      if (form.__owtBound) return;
+      form.__owtBound = true;
+      form.setAttribute('action', ENDPOINT);
+      form.setAttribute('method', 'POST');
+      form.addEventListener('submit', handleSubmit);
+    });
+  });
+})();
+</script>
+
 </body>
 </html>
