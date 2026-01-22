@@ -88,6 +88,31 @@
       color: #fff;
     }
 
+    /* Form input focus states */
+    input:focus,
+    textarea:focus,
+    select:focus {
+      outline: none;
+      border-color: var(--primary) !important;
+      box-shadow: 0 0 0 3px rgba(2, 136, 209, 0.1);
+    }
+
+    input:hover,
+    textarea:hover,
+    select:hover {
+      border-color: #cbd5e1;
+    }
+
+    /* Hide old Blue Tide logo image */
+    .logo-wrap img {
+      display: none !important;
+    }
+
+    .logo-text {
+      font-size: 1.1rem !important;
+      font-weight: 700 !important;
+    }
+
     .btn-primary {
       border-radius: 999px;
       padding: 0.6rem 1.4rem;
@@ -1930,7 +1955,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 <!-- Booking Modal -->
 <div class="owt-modal-overlay" id="bookingModal" style="display: none; position: fixed; inset: 0; background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(8px); z-index: 9999; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s ease;">
-  <div class="owt-modal-card" style="background: white; border-radius: 28px; max-width: 500px; width: 90%; max-height: 85vh; overflow: hidden; box-shadow: 0 25px 80px rgba(0, 0, 0, 0.3);">
+  <div class="owt-modal-card" style="position: relative; background: white; border-radius: 28px; max-width: 500px; width: 90%; max-height: 85vh; overflow: hidden; box-shadow: 0 25px 80px rgba(0, 0, 0, 0.3);">
     <button class="owt-modal-close" id="bookingClose" aria-label="Close modal" style="position: absolute; top: 1.5rem; right: 1.5rem; background: rgba(255, 255, 255, 0.9); border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; color: #0f172a; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); z-index: 10;">&times;</button>
     <div class="owt-modal-content" id="modalContent" style="padding: 2rem; overflow-y: auto; max-height: calc(85vh - 80px);">
       <div style="text-align: center; margin-bottom: 1.5rem;">
@@ -2151,6 +2176,58 @@ document.addEventListener("DOMContentLoaded", function () {
   }, 3000);
 })();
 </script>
+
+<!-- Animated Swimming Fish -->
+<div id="swimmingFish" style="position: fixed; width: 80px; height: 60px; pointer-events: none; z-index: 1000; transition: transform 0.3s ease;">
+  <svg viewBox="0 0 100 80" xmlns="http://www.w3.org/2000/svg">
+    <!-- Fish body -->
+    <ellipse cx="50" cy="40" rx="35" ry="20" fill="#0ea5e9" opacity="0.9"/>
+    <ellipse cx="50" cy="40" rx="30" ry="16" fill="#38bdf8" opacity="0.8"/>
+    
+    <!-- Fish tail -->
+    <path d="M 15 40 Q 5 30, 0 35 Q 5 40, 0 45 Q 5 50, 15 40" fill="#0ea5e9" opacity="0.9"/>
+    
+    <!-- Fish eye -->
+    <circle cx="70" cy="35" r="4" fill="#0f172a"/>
+    <circle cx="72" cy="33" r="1.5" fill="white"/>
+    
+    <!-- Fish mouth (for biting animation) -->
+    <path class="fish-mouth" d="M 85 40 L 90 38 L 90 42 Z" fill="#0f172a" opacity="0.7"/>
+    
+    <!-- Fish fins -->
+    <ellipse cx="45" cy="55" rx="8" ry="12" fill="#0ea5e9" opacity="0.7" transform="rotate(-30 45 55)"/>
+    <ellipse cx="45" cy="25" rx="8" ry="12" fill="#0ea5e9" opacity="0.7" transform="rotate(30 45 25)"/>
+  </svg>
+</div>
+
+<style>
+  @keyframes swimming {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+  }
+  
+  @keyframes biting {
+    0%, 100% { transform: scaleX(1); }
+    50% { transform: scaleX(0.95); }
+  }
+  
+  #swimmingFish.swimming svg {
+    animation: swimming 1s ease-in-out infinite;
+  }
+  
+  #swimmingFish.biting svg {
+    animation: biting 0.3s ease-in-out 3;
+  }
+  
+  #swimmingFish.biting .fish-mouth {
+    animation: mouth-snap 0.3s ease-in-out 3;
+  }
+  
+  @keyframes mouth-snap {
+    0%, 100% { transform: scaleY(1); }
+    50% { transform: scaleY(1.5); }
+  }
+</style>
 
 </body>
 </html>
